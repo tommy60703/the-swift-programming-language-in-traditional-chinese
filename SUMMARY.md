@@ -7,7 +7,7 @@
    * [基礎部分](chapter2/01_The_Basics.md)
    * [基本運算子](chapter2/02_Basic_Operators.md)
    * [字串和字元](chapter2/03_Strings_and_Characters.md)
-   * [集合類型](chapter2/04_Collection_Types.md)
+   * [集合型別](chapter2/04_Collection_Types.md)
    * [控制流程](chapter2/05_Control_Flow.md)
    * [函式](chapter2/06_Functions.md)
    * [閉包](chapter2/07_Closures.md)

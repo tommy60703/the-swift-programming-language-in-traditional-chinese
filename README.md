@@ -16,7 +16,7 @@
    * 基礎部分 ([numbbbbb], [lyuka], [JaySurplus])
    * 基本運算子 ([xielingwang])
    * 字串和字元 ([wh1100717])
-   * 集合類型 ([zqp])
+   * 集合型別 ([zqp])
    * 控制流程 ([vclwei], [coverxit], [NicePiao])
    * 函式 ([honghaoz])
    * 閉包 ([wh1100717])

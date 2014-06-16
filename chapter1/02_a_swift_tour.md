@@ -219,7 +219,7 @@ secondForLoop
 <a name="functions_and_closures"></a>
 ## 函式和閉包
 
-使用`func`來聲明一個函式，使用名字和參數來呼叫函式。使用`->`來指定函式回傳值。
+使用`func`來宣告一個函式，使用名字和參數來呼叫函式。使用`->`來指定函式回傳值。
 
 ```swift
 func greet(name: String, day: String) -> String {
@@ -271,7 +271,7 @@ func returnFifteen() -> Int {
 returnFifteen()
 ```
 
-函式是 first-class type，這意味著函式可以作為另一個函式的回傳值。
+函式是 first-class 型別，這意味著函式可以作為另一個函式的回傳值。
 
 ```swift
 func makeIncrementer() -> (Int -> Int) {
@@ -330,7 +330,7 @@ sort([1, 5, 3, 12, 2]) { $0 > $1 }
 <a name="objects_and_classes"></a>
 ## 物件和類別
 
-使用`class`和類名來創建一個類。類中屬性的聲明和常數、變數聲明一樣，唯一的區別就是它們的上下文是類。同樣，方法和函式聲明也一樣。
+使用`class`和類別名稱來創建一個類別。類別中屬性的宣告和常數、變數聲明一樣，唯一的區別就是它們的上下文（context）是類別。同樣，方法和函式宣告也一樣。
 
 ```swift
 class Shape {
@@ -342,9 +342,9 @@ class Shape {
 ```
 
 > 練習：  
-> 使用`let`添加一個常數屬性，再添加一個接收一個參數的方法。
+> 使用`let`增加一個常數屬性，再增加一個接收一個參數的方法。
 
-要創建一個類的實例，在類名後面加上括號。使用點語法來訪問實例的屬性和方法。
+要創建一個類別的實例，在類別名稱後面加上括號。使用點運算子來存取實例的屬性和方法。
 
 ```swift
 var shape = Shape()
@@ -352,7 +352,7 @@ shape.numberOfSides = 7
 var shapeDescription = shape.simpleDescription()
 ```
 
-這個版本的`Shape`類缺少了一些重要的東西：一個構造函式來初始化類實例。使用`init`來創建一個構造器。
+這個版本的`Shape`類別缺少了一些重要的東西：一個初始化函式來初始化類別實例。使用`init`來創建一個初始化函式。
 
 ```swift
 class NamedShape {
@@ -369,13 +369,13 @@ class NamedShape {
 }
 ```
 
-注意`self`被用來區別實例變數。當你創建實例的時候，像傳入函式參數一樣給類傳入構造器的參數。每個屬性都需要賦值——無論是通過聲明（就像`numberOfSides`）還是通過構造器（就像`name`）。
+注意`self`被用來區別實例變數和初始化函式的參數。當你創建實例的時候，像傳入函式參數一樣給類別傳入初始化函式的參數。每個屬性都需要指派值——無論是透過宣告式（就像`numberOfSides`）還是透過初始化函式（就像`name`）。
 
-如果你需要在刪除對像之前進行一些清理工作，使用`deinit`創建一個析構函式。
+如果你需要在刪除物件之前進行一些清理工作，使用`deinit`創建一個反初始化函式。
 
-子類的定義方法是在它們的類名後面加上父類的名字，用冒號分割。創建類的時候並不需要一個標准的根類，所以你可以忽略父類。
+子類別的定義方法是在它們的類別名稱後面加上父類別的名稱，並用冒號分開。類別並不一定需要一個標準的根類別，所以你可以忽略父類別。
 
-子類如果要重寫父類的方法的話，需要用`override`標記——如果沒有添加`override`就重寫父類方法的話編譯器會報錯。編譯器同樣會檢測`override`標記的方法是否確實在父類中。
+子類別如果要覆寫父類別的方法的話，需要用`override`標記——如果沒有添加`override`就覆寫父類別方法的話，編譯器會報錯。編譯器同樣會檢測`override`標記的方法是否確實存在父類別中。
 
 ```swift
 class Square: NamedShape {
@@ -401,7 +401,7 @@ test.simpleDescription()
 ```
 
 > 練習：  
-> 創建`NamedShape`的另一個子類`Circle`，構造器接收兩個參數，一個是半徑一個是名稱，實現`area`和`describe`方法。
+> 創建`NamedShape`的另一個子類別`Circle`，初始化函式接收半徑和名稱兩個參數，實做`area`和`describe`方法。
 
 屬性可以有 getter 和 setter 。
 
@@ -434,17 +434,17 @@ triangle.perimeter = 9.9
 triangle.sideLength
 ```
 
-在`perimeter`的 setter 中，新值的名字是`newValue`。你可以在`set`之後顯式的設置一個名字。
+在`perimeter`的 setter 中，新值的名稱是`newValue`。你可以在`set`之後顯式的提供一個名稱。
 
-注意`EquilateralTriangle`類的構造器執行了三步：
+注意`EquilateralTriangle`類別的初始化函式執行了三步：
 
-1. 設置子類聲明的屬性值
-2. 調用父類的構造器
-3. 改變父類定義的屬性值。其他的工作比如調用方法、getters和setters也可以在這個階段完成。
+1. 設置子類別宣告的屬性值
+2. 呼叫父類別的初始化函式
+3. 改變父類別定義的屬性值。其他的工作比如呼叫方法、getters 和 setters 也可以在這個階段完成。
 
-如果你不需要計算屬性，但是仍然需要在設置一個新值之前或者之後運行程式碼，使用`willSet`和`didSet`。
+如果你不需要計算屬性，但是仍然需要在設置一個新值之前或者之後執行程式碼，使用`willSet`和`didSet`。
 
-比如，下面的類確保三角形的邊長總是和正方形的邊長相同。
+比如，下面的類別確保三角形的邊長總是和正方形的邊長相同。
 
 ```swift
 class TriangleAndSquare {
@@ -470,7 +470,7 @@ triangleAndSquare.square = Square(sideLength: 50, name: "larger square")
 triangleAndSquare.triangle.sideLength
 ```
 
-類中的方法和一般的函式有一個重要的區別，函式的參數名只在函式內部使用，但是方法的參數名需要在調用的時候顯式說明（除了第一個參數）。默認情況下，方法的參數名和它在方法內部的名字一樣，不過你也可以定義第二個名字，這個名字被用在方法內部。
+類別中的方法和一般的函式有一個重要的區別，函式的參數名稱只在函式內部使用，但是方法的參數名稱需要在呼叫的時候也會被使用（除了第一個參數）。預設情況下，方法的參數名稱和它在方法內部的名稱一樣，不過你也可以定義第二個名稱，這個名稱被用在方法內部。
 
 ```swift
 class Counter {
@@ -483,7 +483,7 @@ var counter = Counter()
 counter.incrementBy(2, numberOfTimes: 7)
 ```
 
-處理變數的可選值時，你可以在操作（比如方法、屬性和子腳本）之前加`?`。如果`?`之前的值是`nil`，`?`後面的東西都會被忽略，並且整個表達式返回`nil`。否則，`?`之後的東西都會被運行。在這兩種情況下，整個表達式的值也是一個可選值。
+處理可選值時，你可以在操作（比如方法、屬性和 Subscript）之前加`?`。如果`?`之前的值是`nil`，`?`後面的東西都會被忽略，並且整個表達式回傳`nil`。否則，`?`之後的東西都會被執行。在這兩種情況下，整個表達式的值也是一個可選值。
 
 ```swift
 let optionalSquare: Square? = Square(sideLength: 2.5, name: "optional square")
@@ -491,9 +491,9 @@ let sideLength = optionalSquare?.sideLength
 ```
 
 <a name="enumerations_and_structure"></a>
-## 枚舉和結構體
+## 列舉和結構
 
-使用`enum`來創建一個枚舉。就像類和其他所有命名類型一樣，枚舉可以包含方法。
+使用`enum`來創建一個列舉。就像類別和其他所有命名型別一樣，列舉可以包含方法。
 
 ```swift
 enum Rank: Int {
@@ -520,11 +520,11 @@ let aceRawValue = ace.toRaw()
 ```
 
 > 練習：  
-> 寫一個函式，通過比較它們的原始值來比較兩個`Rank`值。
+> 寫一個函式，透過比較它們的原始值來比較兩個`Rank`值。
 
-在上面的例子中，枚舉原始值的類型是`Int`，所以你只需要設置第一個原始值。剩下的原始值會按照順序賦值。你也可以使用字符串或者浮點數作為枚舉的原始值。
+在上面的例子中，列舉原始值的類型是`Int`，所以你只需要設置第一個原始值。剩下的原始值會按照順序被指派。你也可以使用字串或者浮點數作為列舉的原始值。
 
-使用`toRaw`和`fromRaw`函式來在原始值和枚舉值之間進行轉換。
+使用`toRaw`和`fromRaw`函式來在原始值和列舉值之間進行轉換。
 
 ```swift
 if let convertedRank = Rank.fromRaw(3) {
@@ -532,7 +532,7 @@ if let convertedRank = Rank.fromRaw(3) {
 }
 ```
 
-枚舉的成員值是實際值，並不是原始值的另一種表達方法。實際上，如果原始值沒有意義，你不需要設置。
+列舉的成員值是實際值，並不是原始值的另一種表達方法。實際上，如果原始值沒有意義，你不需要提供。
 
 ```swift
 enum Suit {
@@ -556,12 +556,12 @@ let heartsDescription = hearts.simpleDescription()
 ```
 
 > 練習：  
-> 給`Suit`添加一個`color`方法，對`spades`和`clubs`返回“black”，對`hearts`和`diamonds`返回“red”。
+> 給`Suit`增加一個`color`方法，對`spades`和`clubs`回傳 “black”，對`hearts`和`diamonds`回傳 “red”。
 
-注意，有兩種方式可以引用`Hearts`成員：給`hearts`常數賦值時，枚舉成員`Suit.Hearts`需要用全名來引用，因為常數沒有顯式指定類型。在`switch`裡，枚舉成員使用縮寫`.Hearts`來引用，因為`self`的值已經知道是一個`suit`。已知變數類型的情況下你可以使用縮寫。
+注意，有兩種方式可以指向`Hearts`成員：指派值給`hearts`常數時，需要用全名來指向列舉成員`Suit.Hearts`，因為常數沒有顯式指定型別。在`switch`裡，可以使用縮寫`.Hearts`來指向列舉成員，因為`self`的值已經知道是一個`suit`。已知變數型別的情況下你可以使用縮寫。
 
-使用`struct`來創建一個結構體。結構體和類有很多相同的地方，比如方法和構造器。它們之間最大的一個區別就是
-結構體是傳值，類是傳引用。
+使用`struct`來創建一個結構。結構和類別有很多相同的地方，比如方法和初始化函式。它們之間最大的一個區別就是
+結構是傳值，類別是傳參考。
 
 ```swift
 struct Card {
@@ -577,11 +577,11 @@ let threeOfSpadesDescription = threeOfSpades.simpleDescription()
 ```
 
 > 練習：  
-> 給`Card`添加一個方法，創建一副完整的撲克牌並把每張牌的 rank 和 suit 對應起來。
+> 給`Card`增加一個方法，創建一副完整的撲克牌並把每張牌的 rank 和 suit 對應起來。
 
-一個枚舉成員的實例可以有實例值。相同枚舉成員的實例可以有不同的值。創建實例的時候傳入值即可。實例值和原始值是不同的：枚舉成員的原始值對於所有實例都是相同的，而且你是在定義枚舉的時候設置原始值。
+一個列舉成員的實例可以有實例值。相同列舉成員的實例可以有不同的值。創建實例的時候傳入值即可。實例值和原始值是不同的：列舉成員的原始值對於所有實例都是相同的，而且你是在定義列舉的時候設定原始值。
 
-例如，考慮從服務器獲取日出和日落的時間。服務器會返回正常結果或者錯誤信息。
+例如，考慮從伺服器獲取日出和日落的時間。伺服器會回傳正常結果或者錯誤信息。
 
 ```swift
 enum ServerResponse {
@@ -601,14 +601,14 @@ case let .Error(error):
 ```
 
 > 練習：  
-> 給`ServerResponse`和`switch`添加第三種情況。
+> 給`ServerResponse`和`switch`增加第三種情況。
 
-注意如何從`ServerResponse`中提取日升和日落時間。
+注意如何從`ServerResponse`中提取日出和日落時間。
 
 <a name="protocols_and_extensions"></a>
-## 協議和擴展
+## 協定和擴展
 
-使用`protocol`來聲明一個協議。
+使用`protocol`來宣告一個協定。
 
 ```swift
 protocol ExampleProtocol {
@@ -617,7 +617,7 @@ protocol ExampleProtocol {
 }
 ```
 
-類、枚舉和結構體都可以實現協議。
+類別、列舉和結構都可以實做協定。
 
 ```swift
 class SimpleClass: ExampleProtocol {
@@ -644,11 +644,11 @@ let bDescription = b.simpleDescription
 
 > 練習：
 >
-> 寫一個實現這個協議的枚舉。
+> 寫一個實做這個協定的列舉。
 
-注意聲明`SimpleStructure`時候`mutating`關鍵字用來標記一個會修改結構體的方法。`SimpleClass`的聲明不需要標記任何方法因為類中的方法經常會修改類。
+注意宣告`SimpleStructure`的時候`mutating`關鍵字用來標記一個會修改結構的方法。`SimpleClass`的宣告不需要標記任何方法因為類別中的方法經常會修改類別。
 
-使用`extension`來為現有的類型添加功能，比如新的方法和參數。你可以使用擴展來改造定義在別處，甚至是從外部庫或者框架引入的一個類型，使得這個類型遵循某個協議。
+使用`extension`來為現有的型別增加功能，比如新的方法和參數。你可以使用擴展來在別處增加協定一致性，甚至是從外部函式庫或框架引入的一個型別，使得這個型別遵循某個協定。
 
 ```swift
 extension Int: ExampleProtocol {
@@ -664,9 +664,9 @@ extension Int: ExampleProtocol {
 
 > 練習：
 >
-> 給`Double`類型寫一個擴展，添加`absoluteValue`功能。
+> 給`Double`型別寫一個擴展，增加`absoluteValue`功能。
 
-你可以像使用其他命名類型一樣使用協議名——例如，創建一個有不同類型但是都實現一個協議的對像集合。當你處理類型是協議的值時，協議外定義的方法不可用。
+你可以像使用其他命名型別一樣使用協定名稱——例如，創建一個有不同型別但是都實做一個協定的物件集合。當你處理型別是協定的值時，協定外定義的方法是不可用的。
 
 ```swift
 let protocolValue: ExampleProtocol = a
@@ -674,12 +674,12 @@ protocolValue.simpleDescription
 // protocolValue.anotherProperty  // Uncomment to see the error
 ```
 
-即使`protocolValue`變數運行時的類型是`simpleClass`，編譯器會把它的類型當做`ExampleProtocol`。這表示你不能調用類在它實現的協議之外實現的方法或者屬性。
+即使`protocolValue`變數執行時的型別是`simpleClass`，編譯器會把它的型別當做`ExampleProtocol`。這表示你不能呼叫類別在它實做的協定之外實做的方法或者屬性。
 
 <a name="generics"></a>
 ## 泛型
 
-在尖括號裡寫一個名字來創建一個泛型函式或者類型。
+在尖括號裡寫一個名稱來創建一個泛型函式或者型別。
 
 ```swift
 func repeat<ItemType>(item: ItemType, times: Int) -> ItemType[] {
@@ -692,7 +692,7 @@ func repeat<ItemType>(item: ItemType, times: Int) -> ItemType[] {
 repeat("knock", 4)
 ```
 
-你也可以創建泛型類、枚舉和結構體。
+你也可以創建泛型類別、列舉和結構。
 
 ```swift
 // Reimplement the Swift standard library's optional type
@@ -704,7 +704,7 @@ var possibleInteger: OptionalValue<Int> = .None
 possibleInteger = .Some(100)
 ```
 
-在類型名後面使用`where`來指定對類型的需求，比如，限定類型實現某一個協議，限定兩個類型是相同的，或者限定某個類必須有一個特定的父類
+在型別名稱後面使用`where`來指定對型別的需求，比如，限定型別有實現某一個協定，限定兩個型別是相同的，或者限定某個類別必須有一個特定的父類別
 
 ```swift
 func anyCommonElements <T, U where T: Sequence, U: Sequence, T.GeneratorType.Element: Equatable, T.GeneratorType.Element == U.GeneratorType.Element> (lhs: T, rhs: U) -> Bool {
@@ -721,6 +721,6 @@ anyCommonElements([1, 2, 3], [3])
 ```
 
 > 練習：  
-> 修改`anyCommonElements`函式來創建一個函式，返回一個數組，內容是兩個序列的共有元素。
+> 修改`anyCommonElements`函式來創建一個函式，回傳一個陣列，內容是兩個序列的共有元素。
 
-簡單起見，你可以忽略`where`，只在冒號後面寫協議或者類名。` <T: Equatable>`和`<T where T: Equatable>`是等價的。
+簡單起見，你可以忽略`where`，只在冒號後面寫協定或者類別名稱。` <T: Equatable>`和`<T where T: Equatable>`是等價的。

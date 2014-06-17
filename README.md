@@ -87,10 +87,10 @@
 2. 把 fork 過去的項目也就是你的項目 clone 到你的本地
 3. 在命令行運行 `git branch develop` 來創建一個新分支
 4. 運行 `git checkout develop` 來切換到新分支
-5. 運行 `git remote add upstream https://github.com/numbbbbb/the-swift-programming-language-in-chinese.git` 把我的庫添加為遠端庫
+5. 運行 `git remote add upstream https://github.com/tommy60703/the-swift-programming-language-in-traditional-chinese` 把我的庫添加為遠端庫
 6. 運行 `git remote update`更新
-7. 運行 `git fetch upstream gh-pages` 拉取我的庫的更新到本地
-8. 運行 `git rebase upstream/gh-pages` 將我的更新合並到你的分支
+7. 運行 `git fetch upstream master` 拉取我的庫的更新到本地
+8. 運行 `git rebase upstream/master` 將我的更新合並到你的分支
 
 這是一個初始化流程，只需要做一遍就行，之後請一直在 develop 分支進行修改。
 

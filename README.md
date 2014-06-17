@@ -1,52 +1,54 @@
-《繁體中文版 Apple 官方 Swift 教學》
+《正體中文版蘋果 Swift 官方教學》
 =============================================
 
-繁體中文版 Apple 官方 Swift 教學《The Swift Programming Language》
+正體中文版蘋果 Swift 官方教學《The Swift Programming Language》
 
 # 當前階段
 
-簡體中文版已由[numbbbbb]團隊翻譯完成，目前正在進行繁體中文化，包含大陸術語翻譯成台灣術語，歡迎校對，可以隨意提issue和pr。
+簡體中文版已由[numbbbbb]團隊翻譯完成，目前正在進行正體中文化，包含大陸術語翻譯成台灣術語，歡迎校對，可以隨意提 issue。
 
 # 譯者記錄
 
+* [簡體中文] 
+
 * 歡迎使用 Swift
-   * 關於 Swift ([numbbbbb])
-   * Swift 初見 ([numbbbbb])
+   * 關於 Swift ([tommy60703])
+   * Swift 初見 ([tommy60703])
 * Swift 教程
-   * 基礎部分 ([numbbbbb], [lyuka], [JaySurplus])
-   * 基本運算子 ([xielingwang])
-   * 字串和字元 ([wh1100717])
-   * 集合型別 ([zqp])
-   * 控制流程 ([vclwei], [coverxit], [NicePiao])
-   * 函式 ([honghaoz])
-   * 閉包 ([wh1100717])
-   * 列舉 ([yankuangshi])
-   * 類別和結構 ([JaySurplus])
-   * 屬性 ([shinyzhu])
-   * 方法 ([pp-prog])
-   * Subscripts ([siemenliu])
-   * 繼承 ([Hawstein])
-   * 初始化 ([lifedim])
-   * 反初始化 ([bruce0505])
-   * 自動引用計數 ([TimothyYe])
-   * Optional Chaining ([Jasonbroker])
-   * 型別檢查 ([xiehurricane])
-   * 巢狀型別 ([Lin-H])
-   * 擴展 ([lyuka])
-   * 協定 ([geek5nan])
-   * 泛型 ([takalard])
-   * 進階運算子 ([xielingwang])
+   * 基礎部分 ([tommy60703])
+   * 基本運算子 ([tommy60703])
+   * 字串和字元 ()
+   * 集合型別 ()
+   * 控制流程 ()
+   * 函式 ()
+   * 閉包 ()
+   * 列舉 ()
+   * 類別和結構 ()
+   * 屬性 ()
+   * 方法 ()
+   * Subscripts ()
+   * 繼承 ()
+   * 初始化 ()
+   * 反初始化 ()
+   * 自動引用計數 ()
+   * Optional Chaining ()
+   * 型別檢查 ()
+   * 巢狀型別 ()
+   * 擴展 ()
+   * 協定 ()
+   * 泛型 ()
+   * 進階運算子 ()
 * 語言參考
-   * 關於語言參考 ([dabing1022])
-   * 詞法結構 ([superkam])
-   * 型別 ([lyuka])
-   * 表達式 ([sg552] )
-   * 語句 ([coverxit])
-   * 宣告式 ([marsprince])
-   * 屬性 ([Hawstein])
-   * 模式 ([honghaoz])
-   * 泛型參數 ([fd5788])
-   * 語法總結 ([StanZhai])
+   * 關於語言參考 ()
+   * 詞法結構 ()
+   * 型別 ()
+   * 表達式 ()
+   * 語句 ()
+   * 宣告式 ()
+   * 屬性 ()
+   * 模式 ()
+   * 泛型參數 ()
+   * 語法總結 ()
 
 # 貢獻力量
 
@@ -61,9 +63,8 @@
 如果你願意一起校對的話，請仔細閱讀：
 
 - 使用 markdown 進行翻譯，文件名必須使用英文，因為中文的話 gitbook 編譯的時候會出問題
-- 翻譯後的文檔請放到 source 文件夾下的對應章節中，然後 pull request 即可，我會用 gitbook 編譯成網頁
-- 工作分支為 gh-pages，用於 GitHub 的 pages 服務
-- fork 過去之後新建一個分支進行翻譯，完成後 pull request 這個分支，沒問題的話我會合併到 gh-pages 分支中
+- 翻譯後的文檔請放到 source 文件夾下的對應章節中，然後 pull request 即可，我會將文件發佈到 Gitbook 上
+- fork 過去之後新建一個分支進行翻譯，完成後 pull request 這個分支，沒問題的話我會合併到 master 分支中
 - 有其他任何問題都歡迎發 issue，我看到了會盡快回覆
 
 謝謝！
@@ -72,9 +73,11 @@
 
 翻譯術語的時候請參考這個流程：
 
-- 盡量保證與台灣習慣用語和已翻譯的內容一致
+- 盡量保證與台灣習慣術語和已翻譯的內容一致
 - 盡量先搜尋，一般來說程式語言的大部分術語是一樣的，可以參考[這個網站](http://jjhou.boolan.com/terms.htm)
 - 如果以上兩條都沒有找到合適的結果，請自己決定一個合適的翻譯或者直接使用英文原文，後期校對的時候會進行統一
+
+對翻譯有任何意見都歡迎發 issue，我看到了會盡快回覆
 
 # 參考流程
 
@@ -100,60 +103,5 @@
 基於[WTFPL](http://en.wikipedia.org/wiki/WTFPL)協議開源。
 
 
-
-[numbbbbb]:https://github.com/numbbbbb
-[stanzhai]:https://github.com/stanzhai
-[coverxit]:https://github.com/coverxit
-[wh1100717]:https://github.com/wh1100717
-[TimothyYe]:https://github.com/TimothyYe
-[honghaoz]:https://github.com/honghaoz
-[lyuka]:https://github.com/lyuka
-[JaySurplus]:https://github.com/JaySurplus
-[Hawstein]:https://github.com/Hawstein
-[geek5nan]:https://github.com/geek5nan
-[yankuangshi]:https://github.com/yankuangshi
-[xielingwang]:https://github.com/xielingwang
-[yulingtianxia]:https://github.com/yulingtianxia
-[twlkyao]:https://github.com/twlkyao
-[dabing1022]:https://github.com/dabing1022
-[vclwei]:https://github.com/vclwei
-[fd5788]:https://github.com/fd5788
-[siemenliu]:https://github.com/siemenliu
-[youkugems]:https://github.com/youkugems
-[haolloyin]:https://github.com/haolloyin
-[wxstars]:https://github.com/wxstars
-[IceskYsl]:https://github.com/IceskYsl
-[sg552]:https://github.com/sg552
-[superkam]:https://github.com/superkam
-[zac1st1k]:https://github.com/zac1st1k
-[bzsy]:https://github.com/bzsy
-[pyanfield]:https://github.com/pyanfield
-[ericzyh]:https://github.com/ericzyh
-[peiyucn]:https://github.com/peiyucn
-[sunfiled]:https://github.com/sunfiled
-[lzw120]:https://github.com/lzw120
-[viztor]:https://github.com/viztor
-[wongzigii]:https://github.com/wongzigii
-[umcsdon]:https://github.com/umcsdon
-[zq54zquan]:https://github.com/zq54zquan
-[xiehurricane]:https://github.com/xiehurricane
-[Jasonbroker]:https://github.com/Jasonbroker
-[tualatrix]:https://github.com/tualatrix
-[pp-prog]:https://github.com/pp-prog
-[088haizi]:https://github.com/088haizi
-[baocaixiong]:https://github.com/baocaixiong
-[yeahdongcn]:https://github.com/yeahdongcn
-[shinyzhu]:https://github.com/shinyzhu
-[lslxdx]:https://github.com/lslxdx
-[Evilcome]:https://github.com/Evilcome
-[zqp]:https://github.com/zqp
-[NicePiao]:https://github.com/NicePiao
-[LunaticM]:https://github.com/LunaticM
-[menlongsheng]:https://github.com/menlongsheng
-[lifedim]:https://github.com/lifedim
-[happyming]:https://github.com/happyming
-[bruce0505]:https://github.com/bruce0505
-[Lin-H]:https://github.com/Lin-H
-[takalard]:https://github.com/takalard
-[dabing1022]:https://github.com/dabing1022
-[marsprince]:https://github.com/marsprince
+[簡體中文]:https://github.com/numbbbbb/the-swift-programming-language-in-chinese
+[tommy60703]:https://github.com/tommy60703

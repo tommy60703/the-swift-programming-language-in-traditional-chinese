@@ -1,38 +1,38 @@
-> 翻译：[honghaoz](https://github.com/honghaoz)
-> 校对：[numbbbbb](https://github.com/numbbbbb), [stanzhai](https://github.com/stanzhai)
+> 翻譯：[honghaoz](https://github.com/honghaoz)
+> 校對：[numbbbbb](https://github.com/numbbbbb), [stanzhai](https://github.com/stanzhai)
 
 # 模式（Patterns）
 -----------------
 
-本页内容包括：
+本頁內容包括：
 
 - [通配符模式（Wildcard Pattern）](#wildcard_pattern)
-- [标识符模式（Identifier Pattern）](#identifier_pattern)
-- [值绑定模式（Value-Binding Pattern）](#value-binding_pattern)
-- [元组模式（Tuple Pattern）](#tuple_pattern)
-- [枚举用例模式（Enumeration Case Pattern）](#enumeration_case_pattern)
-- [类型转换模式（Type-Casting Patterns）](#type-casting_patterns)
-- [表达式模式（Expression Pattern）](#expression_pattern)
+- [識別符號模式（Identifier Pattern）](#identifier_pattern)
+- [值綁定模式（Value-Binding Pattern）](#value-binding_pattern)
+- [元組模式（Tuple Pattern）](#tuple_pattern)
+- [列舉用例模式（Enumeration Case Pattern）](#enumeration_case_pattern)
+- [型別轉換模式（Type-Casting Patterns）](#type-casting_patterns)
+- [表達式模式（Expression Pattern）](#expression_pattern)
 
-模式（pattern）代表了单个值或者复合值的结构。例如，元组`(1, 2)`的结构是逗号分隔的，包含两个元素的列表。因为模式代表一种值的结构，而不是特定的某个值，你可以把模式和各种同类型的值匹配起来。比如，`(x, y)`可以匹配元组`(1, 2)`，以及任何含两个元素的元组。除了将模式与一个值匹配外，你可以从合成值中提取出部分或全部，然后分别把各个部分和一个常量或变量绑定起来。
+模式（pattern）代表了單個值或者複合值的結構。例如，元組`(1, 2)`的結構是逗號分隔的，包含兩個元素的列表。因為模式代表一種值的結構，而不是特定的某個值，你可以把模式和各種同型別的值匹配起來。比如，`(x, y)`可以匹配元組`(1, 2)`，以及任何含兩個元素的元組。除了將模式與一個值匹配外，你可以從合成值中提取出部分或全部，然後分別把各個部分和一個常數或變數綁定起來。
 
-在Swift中，模式出现在变量和常量的声明（在它们的左侧），`for-in`语句和`switch`语句（在它们的case标签）中。尽管任何模式都可以出现在`switch`语句的case标签中，但在其他情况下，只有通配符模式（wildcard pattern），标识符模式（identifier pattern）和包含这两种模式的模式才能出现。
+在Swift中，模式出現在變數和常數的宣告（在它們的左側），`for-in`語句和`switch`語句（在它們的case標簽）中。儘管任何模式都可以出現在`switch`語句的case標簽中，但在其他情況下，只有通配符模式（wildcard pattern），識別符號模式（identifier pattern）和包含這兩種模式的模式才能出現。
 
-你可以为通配符模式（wildcard pattern），标识符模式（identifier pattern）和元组模式（tuple pattern）指定类型注释，用来限制这种模式只匹配某种类型的值。
+你可以為通配符模式（wildcard pattern），識別符號模式（identifier pattern）和元組模式（tuple pattern）指定型別註解，用來限制這種模式只匹配某種型別的值。
 
-> 模式(Patterns) 语法  
-> *模式* → [*通配符模式*](..\chapter3\07_Patterns.html#wildcard_pattern) [*类型注解*](..\chapter3\03_Types.html#type_annotation) _可选_  
-> *模式* → [*标识符模式*](..\chapter3\07_Patterns.html#identifier_pattern) [*类型注解*](..\chapter3\03_Types.html#type_annotati(Value Binding)on) _可选_  
-> *模式* → [*值绑定模式*](..\chapter3\07_Patterns.html#value_binding_pattern)  
-> *模式* → [*元组模式*](..\chapter3\07_Patterns.html#tuple_pattern) [*类型注解*](..\chapter3\03_Types.html#type_annotation) _可选_  
+> 模式(Patterns) 語法  
+> *模式* → [*通配符模式*](..\chapter3\07_Patterns.html#wildcard_pattern) [*型別注解*](..\chapter3\03_Types.html#type_annotation) _可選_  
+> *模式* → [*識別符號模式*](..\chapter3\07_Patterns.html#identifier_pattern) [*型別注解*](..\chapter3\03_Types.html#type_annotati(Value Binding)on) _可選_  
+> *模式* → [*值綁定模式*](..\chapter3\07_Patterns.html#value_binding_pattern)  
+> *模式* → [*元組模式*](..\chapter3\07_Patterns.html#tuple_pattern) [*型別注解*](..\chapter3\03_Types.html#type_annotation) _可選_  
 > *模式* → [*enum-case-pattern*](..\chapter3\07_Patterns.html#enum_case_pattern)  
 > *模式* → [*type-casting-pattern*](..\chapter3\07_Patterns.html#type_casting_pattern)  
-> *模式* → [*表达式模式*](..\chapter3\07_Patterns.html#expression_pattern)  
+> *模式* → [*表達式模式*](..\chapter3\07_Patterns.html#expression_pattern)  
 
 <a name="wildcard_pattern"></a>
 ## 通配符模式（Wildcard Pattern）
 
-通配符模式匹配并忽略任何值，包含一个下划线（_）。当你不关心被匹配的值时，可以使用此模式。例如，下面这段代码进行了`1...3`的循环，并忽略了每次循环的值：
+通配符模式匹配並忽略任何值，包含一個底線（_）。當你不關心被匹配的值時，可以使用此模式。例如，下面這段程式碼進行了`1...3`的迴圈，並忽略了每次迴圈的值：
 
 ```swift
 for _ in 1...3 {
@@ -40,31 +40,31 @@ for _ in 1...3 {
 }
 ```
 
-> 通配符模式语法  
+> 通配符模式語法  
 > *通配符模式* → **_**  
 
 <a name="identifier_pattern"></a>
-## 标识符模式（Identifier Pattern）
+## 識別符號模式（Identifier Pattern）
 
-标识符模式匹配任何值，并将匹配的值和一个变量或常量绑定起来。例如，在下面的常量申明中，`someValue`是一个标识符模式，匹配了类型是`Int`的`42`。
+識別符號模式匹配任何值，並將匹配的值和一個變數或常數綁定起來。例如，在下面的常數申明中，`someValue`是一個識別符號模式，匹配了型別是`Int`的`42`。
 
 ```swift
 let someValue = 42
 ```
 
-当匹配成功时，`42`被绑定（赋值）给常量`someValue`。
+當匹配成功時，`42`被綁定（賦值）給常數`someValue`。
 
-当一个变量或常量申明的左边是标识符模式时，此时，标识符模式是隐式的值绑定模式（value-binding pattern）。
+當一個變數或常數申明的左邊是識別符號模式時，此時，識別符號模式是隱式的值綁定模式（value-binding pattern）。
 
-> 标识符模式语法  
-> *标识符模式* → [*标识符*](LexicalStructure.html#identifier)  
+> 識別符號模式語法  
+> *識別符號模式* → [*識別符號*](LexicalStructure.html#identifier)  
 
 <a name="value-binding_pattern"></a>
-## 值绑定模式（Value-Binding Pattern）
+## 值綁定模式（Value-Binding Pattern）
 
-值绑定模式绑定匹配的值到一个变量或常量。当绑定匹配值给常量时，用关键字`let`,绑定给变量时，用关键之`var`。
+值綁定模式綁定匹配的值到一個變數或常數。當綁定匹配值給常數時，用關鍵字`let`,綁定給變數時，用關鍵之`var`。
 
-标识符模式包含在值绑定模式中，绑定新的变量或常量到匹配的值。例如，你可以分解一个元组的元素，并把每个元素绑定到相应的标识符模式中。
+識別符號模式包含在值綁定模式中，綁定新的變數或常數到匹配的值。例如，你可以分解一個元組的元素，並把每個元素綁定到相應的識別符號模式中。
 
 ```swift
 let point = (3, 2)
@@ -76,19 +76,19 @@ case let (x, y):
 // prints "The point is at (3, 2).”
 ```
 
-在上面这个例子中，`let`将元组模式`(x, y)`分配到各个标识符模式。因为这种行为，`switch`语句中`case let (x, y):`和`case (let x, let y):`匹配的值是一样的。
+在上面這個範例中，`let`將元組模式`(x, y)`分配到各個識別符號模式。因為這種行為，`switch`語句中`case let (x, y):`和`case (let x, let y):`匹配的值是一樣的。
 
-> 值绑定(Value Binding)模式语法  
-> *值绑定模式* → **var** [*模式*](..\chapter3\07_Patterns.html#pattern) | **let** [*模式*](..\chapter3\07_Patterns.html#pattern)  
+> 值綁定(Value Binding)模式語法  
+> *值綁定模式* → **var** [*模式*](..\chapter3\07_Patterns.html#pattern) | **let** [*模式*](..\chapter3\07_Patterns.html#pattern)  
 
 <a name="tuple_pattern"></a>
-## 元组模式（Tuple Pattern）
+## 元組模式（Tuple Pattern）
 
-元组模式是逗号分隔的列表，包含一个或多个模式，并包含在一对圆括号中。元组模式匹配相应元组类型的值。
+元組模式是逗號分隔的列表，包含一個或多個模式，並包含在一對圓括號中。元組模式匹配相應元組型別的值。
 
-你可以使用类型注释来限制一个元组模式来匹配某种元组类型。例如，在常量申明`let (x, y): (Int, Int) = (1, 2)`中的元组模式`(x, y): (Int, Int)`，只匹配两个元素都是`Int`这种类型的元组。如果仅需要限制一个元组模式中的某几个元素，只需要直接对这几个元素提供类型注释即可。例如，在`let (x: String, y)`中的元组模式，只要某个元组类型是包含两个元素，且第一个元素类型是`String`，则被匹配。
+你可以使用型別註解來限制一個元組模式來匹配某種元組型別。例如，在常數申明`let (x, y): (Int, Int) = (1, 2)`中的元組模式`(x, y): (Int, Int)`，只匹配兩個元素都是`Int`這種型別的元組。如果僅需要限制一個元組模式中的某幾個元素，只需要直接對這幾個元素提供型別註解即可。例如，在`let (x: String, y)`中的元組模式，只要某個元組型別是包含兩個元素，且第一個元素型別是`String`，則被匹配。
 
-当元组模式被用在`for-in`语句或者变量或常量申明时，它可以包含通配符模式，标识符模式或者其他包含这两种模式的模式。例如，下面这段代码是不正确的，因为`(x, 0)`中的元素`0`是一个表达式模式：
+當元組模式被用在`for-in`語句或者變數或常數申明時，它可以包含通配符模式，識別符號模式或者其他包含這兩種模式的模式。例如，下面這段程式碼是不正確的，因為`(x, 0)`中的元素`0`是一個表達式模式：
 
 ```swift
 let points = [(0, 0), (1, 0), (1, 1), (2, 0), (2, 1)]
@@ -98,7 +98,7 @@ for (x, 0) in points {
 }
 ```
 
-对于只包含一个元素的元组，括号是不起作用的。模式匹配那个单个元素的类型。例如，下面是等效的：
+對於只包含一個元素的元組，括號是不起作用的。模式匹配那個單個元素的型別。例如，下面是等效的：
 
 ```swift
 let a = 2        // a: Int = 2
@@ -106,46 +106,46 @@ let (a) = 2      // a: Int = 2
 let (a): Int = 2 // a: Int = 2
 ```
 
-> 元组模式语法  
-> *元组模式* → **(** [*元组模式元素列表*](..\chapter3\07_Patterns.html#tuple_pattern_element_list) _可选_ **)**  
-> *元组模式元素列表* → [*元组模式元素*](..\chapter3\07_Patterns.html#tuple_pattern_element) | [*元组模式元素*](..\chapter3\07_Patterns.html#tuple_pattern_element) **,** [*元组模式元素列表*](..\chapter3\07_Patterns.html#tuple_pattern_element_list)  
-> *元组模式元素* → [*模式*](..\chapter3\07_Patterns.html#pattern)  
+> 元組模式語法  
+> *元組模式* → **(** [*元組模式元素列表*](..\chapter3\07_Patterns.html#tuple_pattern_element_list) _可選_ **)**  
+> *元組模式元素列表* → [*元組模式元素*](..\chapter3\07_Patterns.html#tuple_pattern_element) | [*元組模式元素*](..\chapter3\07_Patterns.html#tuple_pattern_element) **,** [*元組模式元素列表*](..\chapter3\07_Patterns.html#tuple_pattern_element_list)  
+> *元組模式元素* → [*模式*](..\chapter3\07_Patterns.html#pattern)  
 
 <a name="enumeration_case_pattern"></a>
-## 枚举用例模式（Enumeration Case Pattern）
+## 列舉用例模式（Enumeration Case Pattern）
 
-枚举用例模式匹配现有的枚举类型的某种用例。枚举用例模式仅在`switch`语句中的`case`标签中出现。
+列舉用例模式匹配現有的列舉型別的某種用例。列舉用例模式僅在`switch`語句中的`case`標簽中出現。
 
-如果你准备匹配的枚举用例有任何关联的值，则相应的枚举用例模式必须指定一个包含每个关联值元素的元组模式。关于使用`switch`语句来匹配包含关联值枚举用例的例子，请参阅`Associated Values`.
+如果你準備匹配的列舉用例有任何關聯的值，則相應的列舉用例模式必須指定一個包含每個關聯值元素的元組模式。關於使用`switch`語句來匹配包含關聯值列舉用例的範例，請參閱`Associated Values`.
 
-> 枚举用例模式语法  
-> *enum-case-pattern* → [*类型标识*](..\chapter3\03_Types.html#type_identifier) _可选_ **.** [*枚举的case名*](..\chapter3\05_Declarations.html#enum_case_name) [*元组模式*](..\chapter3\07_Patterns.html#tuple_pattern) _可选_  
+> 列舉用例模式語法  
+> *enum-case-pattern* → [*型別標識*](..\chapter3\03_Types.html#type_identifier) _可選_ **.** [*列舉的case名*](..\chapter3\05_Declarations.html#enum_case_name) [*元組模式*](..\chapter3\07_Patterns.html#tuple_pattern) _可選_  
 
 <a name="type-casting_patterns"></a>
-## 类型转换模式（Type-Casting Patterns）
+## 型別轉換模式（Type-Casting Patterns）
 
-有两种类型转换模式，`is`模式和`as`模式。这两种模式均只出现在`switch`语句中的`case`标签中。`is`模式和`as`模式有以下形式：
+有兩種型別轉換模式，`is`模式和`as`模式。這兩種模式均只出現在`switch`語句中的`case`標簽中。`is`模式和`as`模式有以下形式：
 
 > is `type`  
 > `pattern` as `type`
 
-`is`模式匹配一个值，如果这个值的类型在运行时（runtime）和`is`模式右边的指定类型（或者那个类型的子类）是一致的。`is`模式和`is`操作符一样，它们都进行类型转换，但是抛弃了返回的类型。
+`is`模式匹配一個值，如果這個值的型別在執行時（runtime）和`is`模式右邊的指定型別（或者那個型別的子類別）是一致的。`is`模式和`is`運算子一樣，它們都進行型別轉換，但是拋棄了回傳的型別。
 
-`as`模式匹配一个值，如果这个值的类型在运行时（runtime）和`as`模式右边的指定类型（或者那个类型的子类）是一致的。一旦匹配成功，匹配的值的类型被转换成`as`模式左边指定的模式。
+`as`模式匹配一個值，如果這個值的型別在執行時（runtime）和`as`模式右邊的指定型別（或者那個型別的子類別）是一致的。一旦匹配成功，匹配的值的型別被轉換成`as`模式左邊指定的模式。
 
-关于使用`switch`语句来匹配`is`模式和`as`模式值的例子，请参阅`Type Casting for Any and AnyObject`。
+關於使用`switch`語句來匹配`is`模式和`as`模式值的範例，請參閱`Type Casting for Any and AnyObject`。
 
-> 类型转换模式语法  
+> 型別轉換模式語法  
 > *type-casting-pattern* → [*is模式*](..\chapter3\07_Patterns.html#is_pattern) | [*as模式*](..\chapter3\07_Patterns.html#as_pattern)  
-> *is模式* → **is** [*类型*](..\chapter3\03_Types.html#type)  
-> *as模式* → [*模式*](..\chapter3\07_Patterns.html#pattern) **as** [*类型*](..\chapter3\03_Types.html#type)  
+> *is模式* → **is** [*型別*](..\chapter3\03_Types.html#type)  
+> *as模式* → [*模式*](..\chapter3\07_Patterns.html#pattern) **as** [*型別*](..\chapter3\03_Types.html#type)  
 
 <a name="expression_pattern"></a>
-## 表达式模式（Expression Pattern）
+## 表達式模式（Expression Pattern）
 
-表达式模式代表了一个表达式的值。这个模式只出现在`switch`语句中的`case`标签中。
+表達式模式代表了一個表達式的值。這個模式只出現在`switch`語句中的`case`標簽中。
 
-由表达式模式所代表的表达式用Swift标准库中的`~=`操作符与输入表达式的值进行比较。如果`~=`操作符返回`true`，则匹配成功。默认情况下，`~=`操作符使用`==`操作符来比较两个相同类型的值。它也可以匹配一个整数值与一个`Range`对象中的整数范围，正如下面这个例子所示：
+由表達式模式所代表的表達式用Swift標準函式庫中的`~=`運算子與輸入表達式的值進行比較。如果`~=`運算子回傳`true`，則匹配成功。預設情況下，`~=`運算子使用`==`運算子來比較兩個相同型別的值。它也可以匹配一個整數值與一個`Range`物件中的整數範圍，正如下面這個範例所示：
 
 ```swift
 let point = (1, 2)
@@ -160,7 +160,7 @@ default:
 // prints "(1, 2) is near the origin.”
 ```
 
-你可以重载`~=`操作符来提供自定义的表达式行为。例如，你可以重写上面的例子，以实现用字符串表达的点来比较`point`表达式。
+你可以重載`~=`運算子來提供自定義的表達式行為。例如，你可以重寫上面的範例，以實作用字串表達的點來比較`point`表達式。
 
 ```swift
 // Overload the ~= operator to match a string with an integer
@@ -178,5 +178,5 @@ default:
 // prints "(1, 2) is near the origin.”
 ```
 
-> 表达式模式语法  
-> *表达式模式* → [*表达式*](..\chapter3\04_Expressions.html#expression)  
+> 表達式模式語法  
+> *表達式模式* → [*表達式*](..\chapter3\04_Expressions.html#expression)  

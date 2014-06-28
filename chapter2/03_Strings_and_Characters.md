@@ -24,13 +24,13 @@ Swift 的`String`和`Character`型別提供了一個快速的、相容 Unicode �
 字串連接操作只需要簡單地透過`+`號將兩個字串相連即可。
 與 Swift 中其他值一樣，能否更改字串的值，取決於其被定義為常數還是變數。
 
-盡管語法簡單，但`String`型別是一種快速、現代化的字串實作。
+儘管語法簡單，但`String`型別是一種快速、現代化的字串實作。
 每一個字串都是由獨立編碼的 Unicode 字元組成，並支援以不同 Unicode 表示（representations）來存取這些字元。
 
 Swift 可以在常數、變數、字面量和表達式中進行字串插值操作，可以輕鬆創建用於顯示、儲存和列印的自定義字串。
 
 > 注意：  
-Swift 的`String`型別與 Foundation `NSString`類進行了無縫橋接。如果你利用 Cocoa 或 Cocoa Touch 中的 Foundation Framework 進行工作。所有`NSString` API 都可以呼叫你創建的任意`String`型別的值。除此之外，還可以使用本章介紹的`String`特性。你也可以在任意要求傳入`NSString`實體作為參數的 API 中使用`String`型別的值來替代。
+Swift 的`String`型別與 Foundation `NSString`類別進行了無縫橋接。如果你利用 Cocoa 或 Cocoa Touch 中的 Foundation Framework 進行工作。所有`NSString` API 都可以呼叫你創建的任意`String`型別的值。除此之外，還可以使用本章介紹的`String`特性。你也可以在任意要求傳入`NSString`實體作為參數的 API 中使用`String`型別的值來替代。
 >更多關於在 Foundation 和 Cocoa 中使用`String`的資訊請查看 [Using Swift with Cocoa and Objective-C](https://developer.apple.com/library/prerelease/ios/documentation/Swift/Conceptual/BuildingCocoaApps/index.html#//apple_ref/doc/uid/TP40014216)。  
 
 <a name="string_literals"></a>
@@ -103,7 +103,7 @@ constantString += " and another Highlander"
 ```
 
 > 注意：  
-在 Objective-C 和 Cocoa 中，你透過選擇兩個不同的類別(`NSString`和`NSMutableString`)來指定該字串是否可以被修改，Swift 中的字串是否可以修改僅透過定義的是變數還是常數來決定。
+在 Objective-C 和 Cocoa 中，你透過選擇兩個不同的類別別(`NSString`和`NSMutableString`)來指定該字串是否可以被修改，Swift 中的字串是否可以修改僅透過定義的是變數還是常數來決定。
 
 <a name="strings_are_value_types"></a>
 ## 字串是實值型別（Strings Are Value Types）
@@ -162,7 +162,7 @@ println("unusualMenagerie has \(countElements(unusualMenagerie)) characters")
 > 注意：  
 不同的 Unicode 字元以及相同 Unicode 字元的不同表示方式可能需要不同數量的記憶體空間來儲存。所以 Swift 中的字元在一個字串中並不一定占用相同的記憶體空間。因此字串的長度不得不透過遍歷字串中每一個字元的長度來進行計算。如果你正在處理一個長字串，需要注意`countElements`函式必須遍歷字串中的字元以精準計算字串的長度。
 
-> 另外需要注意的是透過`countElements`回傳的字元數量並不總是與包含相同字元的`NSString`的`length`屬性相同。`NSString`的`length`屬性是基於利用 UTF-16 表示的十六位程式碼單元數字，而不是基於 Unicode 字元。為了解決這個問題，`NSString`的`length`屬性在被 Swift 的`String`存取時會成為`utf16count`。  
+> 另外需要注意的是透過`countElements`回傳的字元數量並不總是與包含相同字元的`NSString`的`length`屬性相同。`NSString`的`length`屬性是基於利用 UTF-16 表示的十六位代碼單元數字，而不是基於 Unicode 字元。為了解決這個問題，`NSString`的`length`屬性在被 Swift 的`String`存取時會成為`utf16count`。  
 
 <a name="concatenating_strings_and_characters"></a>
 ## 連接字串和字元 (Concatenating Strings and Characters)
@@ -208,12 +208,12 @@ let message = "\(multiplier) 乘以 2.5 是 \(Double(multiplier) * 2.5)"
 // message 是 "3 乘以 2.5 是 7.5"
 ```
 
-在上面的例子中，`multiplier`作為`\(multiplier)`被插入到一個字串字面量中。
+在上面的範例中，`multiplier`作為`\(multiplier)`被插入到一個字串字面量中。
 當創建字串執行插值計算時此占位符（placeholder）會被替換為`multiplier`實際的值。
 
 `multiplier`的值也作為字串中後面表達式的一部分。
 該表達式計算`Double(multiplier) * 2.5`的值並將結果 (7.5) 插入到字串中。
-在這個例子中，表達式寫為`\(Double(multiplier) * 2.5)`並包含在字串字面量中。
+在這個範例中，表達式寫為`\(Double(multiplier) * 2.5)`並包含在字串字面量中。
 
 > 注意：  
 插值字串中寫在括號中的表達式不能包含非跳脫雙引號 (`"`) 和反斜杠 (`\`)，並且不能包含回車 (`\r`)或換行 (`\n`) 符號。
@@ -244,7 +244,7 @@ if quotation == sameQuotation {
 兩個方法均需要以字串作為參數傳入並回傳布林值。
 兩個方法均執行基本字串和前綴/後綴字串之間逐個字元的比較。
 
-下面的例子以一個字串陣列表示莎士比亞話劇《羅密歐與朱麗葉》中前兩場的場景位置：
+下面的範例以一個字串陣列表示莎士比亞話劇《羅密歐與朱麗葉》中前兩場的場景位置：
 
 ```swift
 let romeoAndJuliet = [
@@ -275,7 +275,7 @@ println("There are \(act1SceneCount) scenes in Act 1")
 // prints "There are 5 scenes in Act 1"
 ```
 
-類似地，你可以用`hasSuffix`方法來計算發生在不同地方的場景數：
+類別似地，你可以用`hasSuffix`方法來計算發生在不同地方的場景數：
 
 ```swift
 var mansionCount = 0
@@ -318,7 +318,7 @@ Swift 的字串和字元型別是完全相容 Unicode 標準的，它支援如�
 Unicode 中每一個字元都可以被解釋為一個或多個 unicode 純量。
 字元的 unicode 純量是一個唯一的 21 位元數字 (和名稱)，例如`U+0061`表示小寫的拉丁字母 A ("a")，`U+1F425`表示小雞表情 ("🐥")。
 
-當 Unicode 字串被寫進程式本文檔或其他儲存結構當中，這些 unicode 純量將會按照 Unicode 定義的格式之一進行編碼。其包括`UTF-8`（以 8 位元程式碼單元進行編碼） 和`UTF-16`（以 16 位元程式碼單元進行編碼）。
+當 Unicode 字串被寫進程式本文檔或其他儲存結構當中，這些 unicode 純量將會按照 Unicode 定義的格式之一進行編碼。其包括`UTF-8`（以 8 位元代碼單元進行編碼） 和`UTF-16`（以 16 位元代碼單元進行編碼）。
 
 <a name="unicode_representations_of_strings"></a>
 ### 字串的 Unicode 表示（Unicode Representations of Strings）
@@ -330,8 +330,8 @@ Swift 提供了幾種不同的方式來存取字串的 Unicode 表示。
 
 另外，能夠以其他三種 Unicode 相容的方式存取字串的值：
 
-* UTF-8 程式碼單元集合 (利用字串的`utf8`屬性進行存取)
-* UTF-16 程式碼單元集合 (利用字串的`utf16`屬性進行存取)
+* UTF-8 代碼單元集合 (利用字串的`utf8`屬性進行存取)
+* UTF-16 代碼單元集合 (利用字串的`utf16`屬性進行存取)
 * 21 位元的 Unicode 純量值集合 (利用字串的`unicodeScalars`屬性進行存取)
 
 下面由`D``o``g``!`和`🐶`(`DOG FACE`，Unicode 純量為`U+1F436`)組成的字串中的每一個字元代表著一種不同的表示：
@@ -354,8 +354,8 @@ print("\n")
 // 68 111 103 33 240 159 144 182
 ```
 
-上面的例子中，前四個 10 進制程式碼單元值 (68, 111, 103, 33) 代表了字元`D` `o` `g`和`!`，它們的 UTF-8 表示與 ASCII 表示相同。
-後四個程式碼單元值 (240, 159, 144, 182) 是`DOG FACE`的 4 位元組 UTF-8 表示。
+上面的範例中，前四個 10 進制代碼單元值 (68, 111, 103, 33) 代表了字元`D` `o` `g`和`!`，它們的 UTF-8 表示與 ASCII 表示相同。
+後四個代碼單元值 (240, 159, 144, 182) 是`DOG FACE`的 4 位元組 UTF-8 表示。
 
 <a name="UTF-16"></a>
 ### UTF-16
@@ -371,9 +371,9 @@ print("\n")
 // 68 111 103 33 55357 56374
 ```
 
-同樣，前四個程式碼單元值 (68, 111, 103, 33) 代表了字元`D` `o` `g`和`!`，它們的 UTF-16 程式碼單元和 UTF-8 完全相同。
+同樣，前四個代碼單元值 (68, 111, 103, 33) 代表了字元`D` `o` `g`和`!`，它們的 UTF-16 代碼單元和 UTF-8 完全相同。
 
-第五和第六個程式碼單元值 (55357 和 56374) 是`DOG FACE`字元的 UTF-16 表示。
+第五和第六個代碼單元值 (55357 和 56374) 是`DOG FACE`字元的 UTF-16 表示。
 第一個值為`U+D83D`(十進制值為 55357)，第二個值為`U+DC36`(十進制值為 56374)。
 
 <a name="unicode_scalars"></a>
@@ -393,7 +393,7 @@ print("\n")
 // 68 111 103 33 128054
 ```
 
-同樣，前四個程式碼單元值 (68, 111, 103, 33) 代表了字元`D` `o` `g`和`!`。
+同樣，前四個代碼單元值 (68, 111, 103, 33) 代表了字元`D` `o` `g`和`!`。
 第五位數值，128054，是一個十六進制 1F436 的十進制表示。
 其等同於`DOG FACE`的 Unicode 純量 U+1F436。
 

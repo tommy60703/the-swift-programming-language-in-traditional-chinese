@@ -27,9 +27,9 @@ Swift 的型別是在 C 和 Objective-C 的基礎上提出的，`Int`是整數�
 
 除了我們熟悉的型別，Swift 還增加了 Objective-C 中沒有的型別比如 tuple。Tuple 可以讓你創建或者傳遞一組資料，比如作為函式的回傳值時，你可以用一個 tuple 回傳多個值。
 
-Swift 還增加了 optional 型別，用於處理值不存在的情況。optional 表示 「那兒有一個值，並且它等於 x 」 或者 「那兒沒有值」。optional 有點像在 Objective-C 中使用`nil`，但是它可以用在任何型別上，不僅僅是類別。optional 型別比 Objective-C 中的`nil`指標更加安全也更具表現力，它是 Swift 許多強大特性的重要組成部分。
+Swift 還增加了 optional 型別，用於處理值不存在的情況。optional 表示 「那兒有一個值，並且它等於 x 」 或者 「那兒沒有值」。optional 有點像在 Objective-C 中使用`nil`，但是它可以用在任何型別上，不僅僅是類別別。optional 型別比 Objective-C 中的`nil`指標更加安全也更具表現力，它是 Swift 許多強大特性的重要組成部分。
 
-Swift 是一個型別安全的語言，optional 就是一個很好的例子。Swift 可以讓你清楚地知道值的型別。如果你的程式碼期望得到一個`String`，型別安全會阻止你不小心傳入一個`Int`。你可以在開發階段盡早發現並修正錯誤。
+Swift 是一個型別安全的語言，optional 就是一個很好的範例。Swift 可以讓你清楚地知道值的型別。如果你的程式碼期望得到一個`String`，型別安全會阻止你不小心傳入一個`Int`。你可以在開發階段盡早發現並修正錯誤。
 
 <a name="constants_and_variables"></a>
 ## 常數和變數
@@ -38,7 +38,7 @@ Swift 是一個型別安全的語言，optional 就是一個很好的例子。Sw
 
 ### 宣告常數和變數
 
-常數和變數必須在使用前宣告，用`let`來宣告常數，用`var`來宣告變數。下面的例子展示了如何用常數和變數來記錄用戶嘗試登錄的次數：
+常數和變數必須在使用前宣告，用`let`來宣告常數，用`var`來宣告變數。下面的範例展示了如何用常數和變數來記錄用戶嘗試登錄的次數：
 
 ```swift
 let maximumNumberOfLoginAttempts = 10
@@ -49,7 +49,7 @@ var currentLoginAttempt = 0
 
 「宣告一個名字是`maximumNumberOfLoginAttempts`的新常數，並給它一個值`10`。然後，宣告一個名字是`currentLoginAttempt`的變數並將它的值初始化為`0`。」
 
-在這個例子中，允許的最大嘗試登錄次數被宣告為一個常數，因為這個值不會改變。目前嘗試登錄次數被宣告為一個變數，因為每次嘗試登錄失敗的時候都需要增加這個值。
+在這個範例中，允許的最大嘗試登錄次數被宣告為一個常數，因為這個值不會改變。目前嘗試登錄次數被宣告為一個變數，因為每次嘗試登錄失敗的時候都需要增加這個值。
 
 你可以在一行中宣告多個常數或者多個變數，用逗號隔開：
 
@@ -64,7 +64,7 @@ var x = 0.0, y = 0.0, z = 0.0
 
 當你宣告常數或者變數的時候可以加上_型別標注（type annotation）_，說明常數或者變數中要儲存的值的型別。如果要添加型別標注，需要在常數或者變數名後面加上一個冒號和空格，然後加上型別名稱。
 
-這個例子給`welcomeMessage`變數添加了型別標注，表示這個變數可以儲存`String`型別的值：
+這個範例給`welcomeMessage`變數添加了型別標注，表示這個變數可以儲存`String`型別的值：
 
 ```swift
 var welcomeMessage: String
@@ -83,7 +83,7 @@ welcomeMessage = "Hello"
 ```
 
 > 注意：  
-一般來說你很少需要寫型別標注。如果你在宣告常數或者變數的時候指派了一個初始值，Swift可以推斷出這個常數或者變數的型別，請參考[型別安全和型別推斷](#type_safety_and_type_inference)。在上面的例子中，沒有給`welcomeMessage`指派初始值，所以變數`welcomeMessage`的型別是透過一個型別標注指定的，而不是透過初始值推斷的。
+一般來說你很少需要寫型別標注。如果你在宣告常數或者變數的時候指派了一個初始值，Swift可以推斷出這個常數或者變數的型別，請參考[型別安全和型別推斷](#type_safety_and_type_inference)。在上面的範例中，沒有給`welcomeMessage`指派初始值，所以變數`welcomeMessage`的型別是透過一個型別標注指定的，而不是透過初始值推斷的。
 
 ### 常數和變數的命名
 
@@ -102,7 +102,7 @@ let 🐶🐮 = "dogcow"
 > 注意：  
 如果你需要使用與 Swift 保留關鍵字相同的名稱作為常數或者變數名，你可以使用反引號（`）將關鍵字包圍的方式將其作為名字使用。無論如何，你應當避免使用關鍵字作為常數或變數名，除非你別無選擇。
 
-你可以更改現有的變數值為其他同型別的值，在下面的例子中，`friendlyWelcome`的值從`"Hello!"`改為了`"Bonjour!"`:
+你可以更改現有的變數值為其他同型別的值，在下面的範例中，`friendlyWelcome`的值從`"Hello!"`改為了`"Bonjour!"`:
 
 ```swift
 var friendlyWelcome = "Hello!"
@@ -136,9 +136,9 @@ println("This is a string")
 // 輸出 "This is a string"
 ```
 
-與 Cocoa 裡的`NSLog`函式類似的是，`println`函式可以輸出更復雜的訊息。這些訊息可以包含目前常數和變數的值。
+與 Cocoa 裡的`NSLog`函式類別似的是，`println`函式可以輸出更複雜的訊息。這些訊息可以包含目前常數和變數的值。
 
-Swift 用_字串插值（string interpolation）_的方式把常數名或者變數名當做占位符（placeholder）加入到長字串中，Swift 會用目前常數或變數的值替換這些占位符。將常數或變數名放入圓括號中，並在開括號前使用反斜線將其轉義：
+Swift 用_字串插值（string interpolation）_的方式把常數名或者變數名當做占位符（placeholder）加入到長字串中，Swift 會用目前常數或變數的值替換這些占位符。將常數或變數名放入圓括號中，並在開括號前使用反斜線將其跳脫：
 
 ```swift
 println("The current value of friendlyWelcome is \(friendlyWelcome)")
@@ -150,7 +150,7 @@ println("The current value of friendlyWelcome is \(friendlyWelcome)")
 
 <a name="comments"></a>
 ## 註解
-請將你的程式碼中的非執行文本註解成提示或者筆記以方便你將來閱讀。Swift 的編譯器將會在編譯程式碼時自動忽略掉註解部分。
+請將你的程式碼中的非執行文字註解成提示或者筆記以方便你將來閱讀。Swift 的編譯器將會在編譯程式碼時自動忽略掉註解部分。
 
 Swift 中的註解與 C 語言的註解非常相似。單行註解以雙正斜線（`//`）作為起始標記:
 
@@ -319,7 +319,7 @@ let justOverOneMillion = 1_000_000.000_000_1
 <a name="numeric_type_conversion"></a>
 ## 數值型型別轉換
 
-通常來講，即使程式碼中的整數常數和變數已知非負，也請使用`Int`型別。總是使用預設的整數型別可以保證你的整數常數和變數可以直接被複用並且可以匹配整數類字面量的型別推斷。
+通常來講，即使程式碼中的整數常數和變數已知非負，也請使用`Int`型別。總是使用預設的整數型別可以保證你的整數常數和變數可以直接被複用並且可以匹配整數類別字面量的型別推斷。
 只有在必要的時候才使用其他整數型別，比如要處理外部的長度明確的資料或者為了優化性能、記憶體占用等等。使用顯式指定長度的型別可以及時發現溢位並且可以暗示正在處理特殊資料。
 
 ### 整數轉換
@@ -335,7 +335,7 @@ let tooBig: Int8 = Int8.max + 1
 
 由於每種整數型別都可以儲存不同範圍的值，所以你必須根據不同情況選擇性使用數值型型別轉換。這種選擇性使用的方式，可以預防隱式轉換的錯誤並讓你的程式碼中的型別轉換意圖變得清晰。
 
-要將一種數字型別轉換成另一種，你要用目前值來初始化一個期望型別的新數字，這個數字的型別就是你的目標型別。在下面的例子中，常數`twoThousand`是`UInt16`型別，然而常數`one`是`UInt8`型別。它們不能直接相加，因為它們型別不同。所以要呼叫`UInt16(one)`來創建一個新的`UInt16`數字並用`one`的值來初始化，然後使用這個新數字來計算：
+要將一種數字型別轉換成另一種，你要用目前值來初始化一個期望型別的新數字，這個數字的型別就是你的目標型別。在下面的範例中，常數`twoThousand`是`UInt16`型別，然而常數`one`是`UInt8`型別。它們不能直接相加，因為它們型別不同。所以要呼叫`UInt16(one)`來創建一個新的`UInt16`數字並用`one`的值來初始化，然後使用這個新數字來計算：
 
 ```swift
 let twoThousand: UInt16 = 2_000
@@ -358,7 +358,7 @@ let pi = Double(three) + pointOneFourOneFiveNine
 // pi 等於 3.14159，所以被推測為 Double 型別
 ```
 
-這個例子中，常數`three`的值被用來創建一個`Double`型別的值，所以加號兩邊的數型別須相同。如果不進行轉換，兩者無法相加。
+這個範例中，常數`three`的值被用來創建一個`Double`型別的值，所以加號兩邊的數型別須相同。如果不進行轉換，兩者無法相加。
 
 浮點數到整數的同樣可以反向轉換，整數型別可以用`Double`或者`Float`型別來初始化：
 
@@ -415,43 +415,43 @@ if turnipsAreDelicious {
 // 輸出 "Eww, turnips are horrible."
 ```
 
-條件語句，例如`if`，請參考[控制流](05_Control_Flow.html)。
+條件語句，例如`if`，請參考[控制流程](05_Control_Flow.html)。
 
-如果你在需要使用`Bool`型別的地方使用了非布林值，Swift 的型別安全機制會報錯。下面的例子會報告一個編譯時錯誤：
+如果你在需要使用`Bool`型別的地方使用了非布林值，Swift 的型別安全機制會報錯。下面的範例會報告一個編譯時錯誤：
 
 ```swift
 let i = 1
 if i {
-    // 這個例子不會透過編譯，會報錯
+    // 這個範例不會透過編譯，會報錯
 }
 ```
 
-然而，下面的例子是合法的：
+然而，下面的範例是合法的：
 
 ```swift
 let i = 1
 if i == 1 {
-    // 這個例子會編譯成功
+    // 這個範例會編譯成功
 }
 ```
 
-`i == 1`的比較結果是`Bool`型別，所以第二個例子可以透過型別檢查。類似`i == 1`這樣的比較，請參考[基本運算子](05_Control_Flow.html)。
+`i == 1`的比較結果是`Bool`型別，所以第二個範例可以透過型別檢查。類別似`i == 1`這樣的比較，請參考[基本運算子](05_Control_Flow.html)。
 
-和 Swift 中的其他型別安全的例子一樣，這個方法可以避免錯誤並保證這塊程式碼的意圖總是清晰的。
+和 Swift 中的其他型別安全的範例一樣，這個方法可以避免錯誤並保證這塊程式碼的意圖總是清晰的。
 
 <a name="tuples"></a>
 ## Tuples
 
 _Tuples_把多個值組合成一個複合值。tuple 內的值可以使任意型別，並不要求是相同型別。
 
-下面這個例子中，`(404, "Not Found")`是一個描述 _HTTP 狀態碼（HTTP status code）_的 tuple。HTTP 狀態碼是當你請求網頁的時候 web 伺服器回傳的一個特殊值。如果你請求的網頁不存在就會回傳一個`404 Not Found`狀態碼。
+下面這個範例中，`(404, "Not Found")`是一個描述 _HTTP 狀態碼（HTTP status code）_的 tuple。HTTP 狀態碼是當你請求網頁的時候 web 伺服器回傳的一個特殊值。如果你請求的網頁不存在就會回傳一個`404 Not Found`狀態碼。
 
 ```swift
 let http404Error = (404, "Not Found")
 // http404Error 的型別是 (Int, String)，值是 (404, "Not Found")
 ```
 
-`(404, "Not Found")` tuple 把一個`Int`值和一個`String`值組合起來表示 HTTP 狀態碼的兩個部分：一個數字和一個人類可讀的描述。這個 tuple 可以被描述為「一個型別為`(Int, String)`的 tuple」。
+`(404, "Not Found")` tuple 把一個`Int`值和一個`String`值組合起來表示 HTTP 狀態碼的兩個部分：一個數字和一個人類別可讀的描述。這個 tuple 可以被描述為「一個型別為`(Int, String)`的 tuple」。
 
 你可以把任意順序的型別組合成一個 tuple，這個 tuple 可以包含所有型別。只要你想，你可以創建一個型別為`(Int, Int, Int)`或者`(String, Bool)`或者其他任何你想要的組合的 tuple。
 
@@ -500,7 +500,7 @@ println("The status message is \(http200Status.description)")
 作為函式回傳值時，tuple 非常有用。一個用來獲取網頁的函式可能會回傳一個`(Int, String)` tuple 來描述是否獲取成功。和只能回傳一個型別的值比較起來，一個包含兩個不同型別的值的 tuple 可以讓函式的回傳訊息更有用。請參考[函式參數與回傳值](06_Functions.html#Function_Parameters_and_Return_Values)。
 
 > 注意：  
-tuple 在臨時組織值的時候很有用，但是並不適合創建複雜的資料結構。如果你的資料結構並不是臨時使用，請使用類別或者結構而不是 tuple。請參考[類別和結構](09_Classes_and_Structures.html)。
+tuple 在臨時組織值的時候很有用，但是並不適合創建複雜的資料結構。如果你的資料結構並不是臨時使用，請使用類別別或者結構而不是 tuple。請參考[類別別和結構](09_Classes_and_Structures.html)。
 
 <a name="optionals"></a>
 ## Optionals
@@ -517,9 +517,9 @@ tuple 在臨時組織值的時候很有用，但是並不適合創建複雜的�
 >
 C 和 Objective-C 中並沒有 optionals 型別這個概念。最接近的是 Objective-C 中的一個特性，一個方法要不回傳一個物件，要不回傳`nil`，`nil`表示「缺少一個合法的物件」。然而，這只對物件起作用——對於結構，基本的 C 型別或者列舉型別不起作用。對於這些型別，Objective-C 方法一般會回傳一個特殊值（比如`NSNotFound`）來暗示值不存在。這種方法假設方法的呼叫者知道並記得對特殊值進行判斷。然而，Swift 的 optionals 可以讓你暗示_任意型別_的值不存在，並不需要一個特殊值。
 
-來看一個例子。Swift 的`String`型別有一個叫做`toInt`的方法，作用是將一個`String`值轉換成一個`Int`值。然而，並不是所有的字串都可以轉換成一個整數。字串`"123"`可以被轉換成數字`123`，但是字串`"hello, world"`不行。
+來看一個範例。Swift 的`String`型別有一個叫做`toInt`的方法，作用是將一個`String`值轉換成一個`Int`值。然而，並不是所有的字串都可以轉換成一個整數。字串`"123"`可以被轉換成數字`123`，但是字串`"hello, world"`不行。
 
-下面的例子使用`toInt`方法來嘗試將一個`String`轉換成`Int`：
+下面的範例使用`toInt`方法來嘗試將一個`String`轉換成`Int`：
 
 ```swift
 let possibleNumber = "123"
@@ -544,7 +544,7 @@ if convertedNumber {
 // 輸出 "123 has an integer value of 123"
 ```
 
-更多關於`if`語句的內容，請參考[控制流程](05_Control_Flow.html)。
+更多關於`if`語句的內容，請參考[控制流程程](05_Control_Flow.html)。
 
 > 注意：  
 使用`!`來獲取一個不存在的 optional 值會導致執行時錯誤。使用`!`來強制解析值之前，一定要確定 optional 包含一個非`nil`的值。
@@ -552,7 +552,7 @@ if convertedNumber {
 <a name="optional_binding"></a>
 ### Optional 綁定
 
-使用_optional 綁定（optional binding）_來判斷 optional 是否包含值，如果包含就把值指派給一個臨時常數或者變數。Optional 綁定可以用在`if`和`while`語句中來對 optional 的值進行判斷並把值指派給一個常數或者變數。`if`和`while`語句，請參考[控制流程](05_Control_Flow.html)。
+使用_optional 綁定（optional binding）_來判斷 optional 是否包含值，如果包含就把值指派給一個臨時常數或者變數。Optional 綁定可以用在`if`和`while`語句中來對 optional 的值進行判斷並把值指派給一個常數或者變數。`if`和`while`語句，請參考[控制流程程](05_Control_Flow.html)。
 
 像下面這樣在`if`語句中寫一個 optional 綁定：
 
@@ -562,7 +562,7 @@ if let constantName = someOptional {
 }
 ```
 
-你可以像上面這樣使用 optional 綁定來重寫`possibleNumber`這個例子：
+你可以像上面這樣使用 optional 綁定來重寫`possibleNumber`這個範例：
 
 ```swift
 if let actualNumber = possibleNumber.toInt() {
@@ -577,7 +577,7 @@ if let actualNumber = possibleNumber.toInt() {
 
 「如果`possibleNumber.toInt`回傳的 optional `Int`包含一個值，創建一個叫做`actualNumber`的新常數並將optional 包含的值指派給它。」
 
-如果轉換成功，`actualNumber`常數可以在`if`語句的第一個分支中使用。它已經被 optional _包含的_值初始化過，所以不需要再使用`!`後綴來獲取它的值。在這個例子中，`actualNumber`只被用來輸出轉換結果。
+如果轉換成功，`actualNumber`常數可以在`if`語句的第一個分支中使用。它已經被 optional _包含的_值初始化過，所以不需要再使用`!`後綴來獲取它的值。在這個範例中，`actualNumber`只被用來輸出轉換結果。
 
 你可以在 optional 綁定中使用常數和變數。如果你想在`if`語句的第一個分支中操作`actualNumber`的值，你可以改成`if var actualNumber`，這樣 optional 包含的值就會被指派給一個變數而不是常數。
 
@@ -612,11 +612,11 @@ Swift 的`nil`和 Objective-C 中的`nil`並不一樣。在 Objective-C 中，`n
 
 有時候在程式架構中，第一次被指派之後，可以確定一個 optional _總會_有值。在這種情況下，每次都要判斷和解析 optional 值是非常低效的，因為可以確定它總會有值。
 
-這種類型的 optionals 狀態被定義為_隱式解析 optionals（implicitly unwrapped optionals）_。把想要用作 optionals 的型別的後面的問號（`String?`）改成感嘆號（`String!`）來宣告一個隱式解析 optionals。
+這種型別的 optionals 狀態被定義為_隱式解析 optionals（implicitly unwrapped optionals）_。把想要用作 optionals 的型別的後面的問號（`String?`）改成感嘆號（`String!`）來宣告一個隱式解析 optionals。
 
-當 optionals 被第一次指派之後就可以確定之後一直有值的時候，隱式解析 optionals 非常有用。隱式解析 optionals 主要被用在 Swift 中類別的初始化中，請參考[類別實例之間的循環強參考](16_Automatic_Reference_Counting.html#strong_reference_cycles_between_class_instances)。
+當 optionals 被第一次指派之後就可以確定之後一直有值的時候，隱式解析 optionals 非常有用。隱式解析 optionals 主要被用在 Swift 中類別別的初始化中，請參考[類別別實例之間的迴圈強參考](16_Automatic_Reference_Counting.html#strong_reference_cycles_between_class_instances)。
 
-一個隱式解析 optionals 其實就是一個普通的 optionals，但是可以被當做非 optionals 來使用，並不需要每次都使用解析來獲取 optionals 值。下面的例子展示了 optionals `String`和隱式解析 optional `String`之間的區別：
+一個隱式解析 optionals 其實就是一個普通的 optionals，但是可以被當做非 optionals 來使用，並不需要每次都使用解析來獲取 optionals 值。下面的範例展示了 optionals `String`和隱式解析 optional `String`之間的區別：
 
 ```swift
 let possibleString: String? = "An optional string."
@@ -677,7 +677,7 @@ assert(age >= 0, "A person's age cannot be less than zero")
 // 因為 age < 0，所以assertion會觸發
 ```
 
-在這個例子中，只有`age >= 0`為`true`的時候程式碼執行才會繼續，也就是說，當`age`的值非負的時候。如果`age`的值是負數，就像程式碼中那樣，`age >= 0`為`false`，assertion 被觸發，結束應用程式。
+在這個範例中，只有`age >= 0`為`true`的時候程式碼執行才會繼續，也就是說，當`age`的值非負的時候。如果`age`的值是負數，就像程式碼中那樣，`age >= 0`為`false`，assertion 被觸發，結束應用程式。
 
 assertion 訊息不能使用字串插值。assertion 訊息可以省略，就像這樣：
 

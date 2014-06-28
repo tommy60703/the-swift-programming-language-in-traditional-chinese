@@ -38,7 +38,7 @@ Swift 是一個型別安全的語言，optional 就是一個很好的範例。Sw
 
 ### 宣告常數和變數
 
-常數和變數必須在使用前宣告，用`let`來宣告常數，用`var`來宣告變數。下面的範例展示了如何用常數和變數來記錄用戶嘗試登錄的次數：
+常數和變數必須在使用前宣告，用`let`來宣告常數，用`var`來宣告變數。下面的範例展示了如何用常數和變數來記錄使用者嘗試登錄的次數：
 
 ```swift
 let maximumNumberOfLoginAttempts = 10
@@ -136,7 +136,7 @@ println("This is a string")
 // 輸出 "This is a string"
 ```
 
-與 Cocoa 裡的`NSLog`函式類別似的是，`println`函式可以輸出更複雜的訊息。這些訊息可以包含目前常數和變數的值。
+與 Cocoa 裡的`NSLog`函式類似的是，`println`函式可以輸出更複雜的訊息。這些訊息可以包含目前常數和變數的值。
 
 Swift 用_字串插值（string interpolation）_的方式把常數名或者變數名當做占位符（placeholder）加入到長字串中，Swift 會用目前常數或變數的值替換這些占位符。將常數或變數名放入圓括號中，並在開括號前使用反斜線將其跳脫：
 
@@ -308,7 +308,7 @@ let exponentDouble = 1.21875e1
 let hexadecimalDouble = 0xC.3p0
 ```
 
-數值型字面量可以包括額外的格式來增強可讀性。整數和浮點數都可以添加額外的零並且包含下劃線，並不會影響字面量：
+數值型字面量可以包括額外的格式來增強可讀性。整數和浮點數都可以添加額外的零並且包含底線，並不會影響字面量：
 
 ```swift
 let paddedDouble = 000123.456
@@ -435,7 +435,7 @@ if i == 1 {
 }
 ```
 
-`i == 1`的比較結果是`Bool`型別，所以第二個範例可以透過型別檢查。類別似`i == 1`這樣的比較，請參考[基本運算子](05_Control_Flow.html)。
+`i == 1`的比較結果是`Bool`型別，所以第二個範例可以透過型別檢查。類似`i == 1`這樣的比較，請參考[基本運算子](05_Control_Flow.html)。
 
 和 Swift 中的其他型別安全的範例一樣，這個方法可以避免錯誤並保證這塊程式碼的意圖總是清晰的。
 
@@ -465,7 +465,7 @@ println("The status message is \(statusMessage)")
 // 輸出 "The status message is Not Found"
 ```
 
-如果你只需要一部分 tuple 值，分解的時候可以把要忽略的部分用下劃線（`_`）標記：
+如果你只需要一部分 tuple 值，分解的時候可以把要忽略的部分用底線（`_`）標記：
 
 ```swift
 let (justTheStatusCode, _) = http404Error

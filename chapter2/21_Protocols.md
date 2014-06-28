@@ -22,7 +22,7 @@
 
 `Protocol(協定)`用於**統一**方法和屬性的名稱，而不實作任何功能。`協定`能夠被類別，列舉，結構實作，滿足協定要求的類別，列舉，結構被稱為協定的`遵循者`。
 
-`遵循者`需要提供`協定`指定的成員，如屬性，方法，操作符，下標等。
+`遵循者`需要提供`協定`指定的成員，如屬性，方法，運算子，下標等。
 
 <a name="protocol_syntax"></a>
 ## 協定的語法
@@ -56,7 +56,7 @@ class SomeClass: SomeSuperClass, FirstProtocol, AnotherProtocol {
 
 `協定`能夠要求其`遵循者`必須含有一些**特定名稱和型別**的`實例屬性(instance property)`或`類別屬性 (type property)`，也能夠要求屬性具有`(設置權限)settable` 和`(存取權限)gettable`，但它不要求`屬性`是`儲存型屬性(stored property)`還是`計算型屬性(calculate property)`。
 
-如果協定要求屬性具有設置權限和存取權限，那常數儲存型屬性或者只讀計算型屬性都無法滿足此要求。如果協定只要求屬性具有存取權限，那任何型別的屬性都可以滿足此要求，無論這些屬性是否具有設置權限。
+如果協定要求屬性具有設置權限和存取權限，那常數儲存型屬性或者唯讀計算型屬性都無法滿足此要求。如果協定只要求屬性具有存取權限，那任何型別的屬性都可以滿足此要求，無論這些屬性是否具有設置權限。
 
 通常前綴`var`關鍵字將屬性宣告為變數。在屬性宣告後寫上`{ get set }`表示屬性為可讀寫的。`{ get }`用來表示屬性為可讀的。即使你為可讀的屬性實作了`setter`方法，它也不會出錯。
 
@@ -199,7 +199,7 @@ lightSwitch.toggle()
 
 使用場景：
 
-* 作為函式，方法或構造器中的參數型別，回傳值型別
+* 作為函式，方法或建構器中的參數型別，回傳值型別
 * 作為常數，變數，屬性的型別
 * 作為陣列，字典或其他容器中的元素型別
 
@@ -224,11 +224,11 @@ class Dice {
 
 `Dice`含有`sides`和`generator`兩個屬性，前者用來表示骰子有幾個面，後者為骰子提供一個隨機數生成器。由於後者為`RandomNumberGenerator`的協定型別。所以它能夠被賦值為任意`遵循`該協定的型別。
 
-此外，使用`構造器(init)`來代替之前版本中的`setup`操作。構造器中含有一個名為`generator`，型別為`RandomNumberGenerator`的形參，使得它可以接收任意遵循`RandomNumberGenerator`協定的型別。
+此外，使用`建構器(init)`來代替之前版本中的`setup`操作。建構器中含有一個名為`generator`，型別為`RandomNumberGenerator`的形參，使得它可以接收任意遵循`RandomNumberGenerator`協定的型別。
 
 `roll`方法用來模擬骰子的面值。它先使用`generator`的`random`方法來創建一個[0-1]區間內的隨機數種子，然後加工這個隨機數種子生成骰子的面值。
 
-如下所示，`LinearCongruentialGenerator`的實例作為隨機數生成器傳入`Dice`的`構造器`
+如下所示，`LinearCongruentialGenerator`的實例作為隨機數生成器傳入`Dice`的`建構器`
 
 ```swift
 var d6 = Dice(sides: 6,generator: LinearCongruentialGenerator())
@@ -252,7 +252,7 @@ for _ in 1...5 {
 
 委托模式可以用來響應特定的動作或接收外部資料源提供的資料，而無需要知道外部資料源的型別。
 
-下文是兩個基於骰子游戲的協定：
+下文是兩個基於骰子遊戲的協定：
 
 ```swift
 protocol DiceGame {
@@ -267,9 +267,9 @@ protocol DiceGameDelegate {
 }
 ```
 
-`DiceGame`協定可以在任意含有骰子的游戲中實作，`DiceGameDelegate`協定可以用來追蹤`DiceGame`的游戲過程。
+`DiceGame`協定可以在任意含有骰子的遊戲中實作，`DiceGameDelegate`協定可以用來追蹤`DiceGame`的遊戲過程。
 
-如下所示，`SnakesAndLadders`是`Snakes and Ladders`(譯者注：[控制流程](05_Control_Flow.html)章節有該游戲的詳細介紹)游戲的新版本。新版本使用`Dice`作為骰子，並且實作了`DiceGame`和`DiceGameDelegate`協定
+如下所示，`SnakesAndLadders`是`Snakes and Ladders`(譯者注：[控制流程](05_Control_Flow.html)章節有該遊戲的詳細介紹)遊戲的新版本。新版本使用`Dice`作為骰子，並且實作了`DiceGame`和`DiceGameDelegate`協定
 
 ```swift
 class SnakesAndLadders: DiceGame {
@@ -304,12 +304,12 @@ class SnakesAndLadders: DiceGame {
 }
 ```
 
-游戲的`初始化設置(setup)`被`SnakesAndLadders`類別的`構造器(initializer)`實作。所有的游戲邏輯被轉移到了`play`方法中。
+遊戲的`初始化設置(setup)`被`SnakesAndLadders`類別的`建構器(initializer)`實作。所有的遊戲邏輯被轉移到了`play`方法中。
 
 > 注意：
-因為`delegate`並不是該游戲的必備條件，`delegate`被定義為遵循`DiceGameDelegate`協定的可選屬性
+因為`delegate`並不是該遊戲的必備條件，`delegate`被定義為遵循`DiceGameDelegate`協定的可選屬性
 
-`DicegameDelegate`協定提供了三個方法用來追蹤游戲過程。被放置於游戲的邏輯中，即`play()`方法內。分別在游戲開始時，新一輪開始時，游戲結束時被呼叫。
+`DicegameDelegate`協定提供了三個方法用來追蹤遊戲過程。被放置於遊戲的邏輯中，即`play()`方法內。分別在遊戲開始時，新一輪開始時，遊戲結束時被呼叫。
 
 因為`delegate`是一個遵循`DiceGameDelegate`的可選屬性，因此在`play()`方法中使用了`可選鏈`來呼叫委托方法。 若`delegate`屬性為`nil`， 則委托呼叫*優雅地*失效。若`delegate`不為`nil`，則委托方法被呼叫
 
@@ -335,9 +335,9 @@ class DiceGameTracker: DiceGameDelegate {
 }
 ```
 
-`DiceGameTracker`實作了`DiceGameDelegate`協定的方法要求，用來記錄游戲已經進行的輪數。 當游戲開始時，`numberOfTurns`屬性被賦值為0；在每新一輪中遞加；游戲結束後，輸出列印游戲的總輪數。
+`DiceGameTracker`實作了`DiceGameDelegate`協定的方法要求，用來記錄遊戲已經進行的輪數。 當遊戲開始時，`numberOfTurns`屬性被賦值為0；在每新一輪中遞加；遊戲結束後，輸出列印遊戲的總輪數。
 
-`gameDidStart`方法從`game`參數獲取游戲資訊並輸出。`game`在方法中被當做`DiceGame`型別而不是`SnakeAndLadders`型別，所以方法中只能存取`DiceGame`協定中的成員。
+`gameDidStart`方法從`game`參數獲取遊戲資訊並輸出。`game`在方法中被當做`DiceGame`型別而不是`SnakeAndLadders`型別，所以方法中只能存取`DiceGame`協定中的成員。
 
 `DiceGameTracker`的執行情況，如下所示：
 
@@ -544,7 +544,7 @@ wishHappyBirthday(birthdayPerson)
 
 使用`is`檢驗協定一致性，使用`as`將協定型別`向下轉換(downcast)`為的其他協定型別。檢驗與轉換的語法和之前相同(*詳情查看[型別檢查](18_Type_Casting.html)*)：
 
-* `is`操作符用來檢查實例是否`遵循`了某個`協定`。
+* `is`運算子用來檢查實例是否`遵循`了某個`協定`。
 * `as?`回傳一個可選值，當實例`遵循`協定時，回傳該協定型別；否則回傳`nil`
 * `as`用以強制向下轉換型。
 
@@ -607,7 +607,7 @@ for object in objects {
 // Something that doesn't have an area
 ```
 
-當陣列中的元素遵循`HasArea`協定時，通過`as?`操作符將其`可選綁定(optional binding)`到`objectWithArea`常數上。
+當陣列中的元素遵循`HasArea`協定時，通過`as?`運算子將其`可選綁定(optional binding)`到`objectWithArea`常數上。
 
 `objects`陣列中元素的型別並不會因為`向下轉型`而改變，當它們被賦值給`objectWithArea`時只被視為`HasArea`型別，因此只有`area`屬性能夠被存取。
 

@@ -17,7 +17,7 @@
 可選鏈（Optional Chaining）是一種可以請求和呼叫屬性、方法及子腳本的過程，它的可選性體現於請求或呼叫的目標當前可能為空（`nil`）。如果可選的目標有值，那麼呼叫就會成功；相反，如果選擇的目標為空（`nil`），則這種呼叫將回傳空（`nil`）。多次請求或呼叫可以被鏈接在一起形成一個鏈，如果任何一個節點為空（`nil`）將導致整個鏈失效。
 
 > 注意：  
-Swift 的可選鏈和 Objective-C 中的消息為空有些相像，但是 Swift 可以使用在任意型別中，並且失敗與否可以被檢測到。
+Swift 的可選鏈和 Objective-C 中的訊息為空有些相像，但是 Swift 可以使用在任意型別中，並且失敗與否可以被檢測到。
 
 <a name="optional_chaining_as_an_alternative_to_forced_unwrapping"></a>
 ## 可選鏈可替代強制解析
@@ -71,7 +71,7 @@ if let roomCount = john.residence?.numberOfRooms {
 
 這告訴 Swift 來鏈接可選`residence?`屬性，如果`residence`存在則取回`numberOfRooms`的值。
 
-因為這種嘗試獲得`numberOfRooms`的操作有可能失敗，可選鏈會回傳`Int?`型別值，或者稱作“可選`Int`”。當`residence`是空的時候（上例），選擇`Int`將會為空，因此會出先無法存取`numberOfRooms`的情況。
+因為這種嘗試獲得`numberOfRooms`的操作有可能失敗，可選鏈會回傳`Int?`型別值，或者稱作「可選`Int`」。當`residence`是空的時候（上例），選擇`Int`將會為空，因此會出先無法存取`numberOfRooms`的情況。
 
 要注意的是，即使numberOfRooms是非可選`Int`（`Int?`）時這一點也成立。只要是通過可選鏈的請求就意味著最後`numberOfRooms`總是回傳一個`Int?`而不是`Int`。
 
@@ -127,7 +127,7 @@ class Residence {
 
 因為`Residence`儲存了一個`Room`實例的陣列，它的`numberOfRooms`屬性值不是一個固定的儲存值，而是通過計算而來的。`numberOfRooms`屬性值是由回傳`rooms`陣列的`count`屬性值得到的。
 
-為了能快速存取`rooms`陣列，`Residence`定義了一個只讀的子腳本，通過插入陣列的元素角標就可以成功呼叫。如果該角標存在，子腳本則將該元素回傳。
+為了能快速存取`rooms`陣列，`Residence`定義了一個唯讀的子腳本，通過插入陣列的元素角標就可以成功呼叫。如果該角標存在，子腳本則將該元素回傳。
 
 `Residence`中也提供了一個`printNumberOfRooms`的方法，即簡單的列印房間個數。
 
@@ -166,7 +166,7 @@ class Address {
 <a name="calling_properties_through_optional_chaining"></a>
 ##通過可選鏈呼叫屬性
 
-正如上面“ [可選鏈可替代強制解析](#optional_chaining_as_an_alternative_to_forced_unwrapping)”中所述，你可以利用可選鏈的可選值獲取屬性，並且檢查屬性是否獲取成功。然而，你不能使用可選鏈為屬性賦值。
+正如上面「 [可選鏈可替代強制解析](#optional_chaining_as_an_alternative_to_forced_unwrapping)」中所述，你可以利用可選鏈的可選值獲取屬性，並且檢查屬性是否獲取成功。然而，你不能使用可選鏈為屬性賦值。
 
 使用上述定義的類別來創建一個人實例，並再次嘗試後去它的`numberOfRooms`屬性：
 
@@ -191,7 +191,7 @@ if let roomCount = john.residence?.numberOfRooms {
 
 ```swift
 func printNumberOfRooms(){
-	println(“The number of rooms is \(numberOfRooms)”)
+	println(「The number of rooms is \(numberOfRooms)」)
 }
 ```
 
@@ -267,7 +267,7 @@ if let johnsStreet = john.residence?.address?.street {
 } else {
     println("Unable to retrieve the address.")
 }
-// 列印 "Unable to retrieve the address.”。
+// 列印 "Unable to retrieve the address.」。
 ```
 
 `john.residence`的值現在包含一個`Residence`實例，然而`john.residence.address`現在是`nil`，因此`john.residence?.address?.street`呼叫失敗。
@@ -292,7 +292,7 @@ if let johnsStreet = john.residence?.address?.street {
 // 列印 "John's street name is Laurel Street."。
 ```
 
-值得注意的是，“`!`”符號在給`john.residence.address`分配`address`實例時的使用。`john.residence`屬性是一個可選型別，因此你需要在它獲取`address`屬性之前使用`!`解析以獲得它的實際值。
+值得注意的是，「`!`」符號在給`john.residence.address`分配`address`實例時的使用。`john.residence`屬性是一個可選型別，因此你需要在它獲取`address`屬性之前使用`!`解析以獲得它的實際值。
 
 <a name="chaining_on_methods_with_optional_return_values"></a>
 ##鏈接可選回傳值的方法

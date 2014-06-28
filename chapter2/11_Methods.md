@@ -87,7 +87,7 @@ counter.incrementBy(5, numberOfTimes: 3)
 
 你不必為第一個參數值再定義一個外部變數名：因為從函式名`incrementBy`已經能很清楚地看出它的作用。但是第二個參數，就要被一個外部參數名稱所限定，以便在方法被呼叫時明確它的作用。
 
-這種預設的行為能夠有效的處理方法（method）,類別似於在參數`numberOfTimes`前寫一個井號（`#`）：
+這種預設的行為能夠有效的處理方法（method）,類似於在參數`numberOfTimes`前寫一個井字號（`#`）：
 
 ```swift
 func incrementBy(amount: Int, #numberOfTimes: Int) {
@@ -100,9 +100,9 @@ func incrementBy(amount: Int, #numberOfTimes: Int) {
 <a name="modifying_external_parameter"></a>
 ### 修改方法的外部參數名稱(Modifying External Parameter Name Behavior for Methods)
 
-有時為方法的第一個參數提供一個外部參數名稱是非常有用的，儘管這不是預設的行為。你可以自己添加一個顯式的外部名稱或者用一個井號（`#`）作為第一個參數的前綴來把這個局部名稱當作外部名稱使用。
+有時為方法的第一個參數提供一個外部參數名稱是非常有用的，儘管這不是預設的行為。你可以自己添加一個顯式的外部名稱或者用一個井字號（`#`）作為第一個參數的前綴來把這個局部名稱當作外部名稱使用。
 
-相反，如果你不想為方法的第二個及後續的參數提供一個外部名稱，可以通過使用下劃線（`_`）作為該參數的顯式外部名稱，這樣做將覆蓋預設行為。
+相反，如果你不想為方法的第二個及後續的參數提供一個外部名稱，可以通過使用底線（`_`）作為該參數的顯式外部名稱，這樣做將覆蓋預設行為。
 
 <a name="self_property"></a>
 ## `self`屬性(The self Property)
@@ -232,13 +232,13 @@ class SomeClass {
 SomeClass.someTypeMethod()
 ```
 
-在型別方法的方法體（body）中，`self`指向這個型別本身，而不是型別的某個實例。對於結構和列舉來說，這意味著你可以用`self`來消除靜態屬性和靜態方法參數之間的歧義（類別似於我們在前面處理實例屬性和實例方法參數時做的那樣）。
+在型別方法的方法體（body）中，`self`指向這個型別本身，而不是型別的某個實例。對於結構和列舉來說，這意味著你可以用`self`來消除靜態屬性和靜態方法參數之間的歧義（類似於我們在前面處理實例屬性和實例方法參數時做的那樣）。
 
 一般來說，任何未限定的方法和屬性名稱，將會來自於本類別中另外的型別級別的方法和屬性。一個型別方法可以呼叫本類別中另一個型別方法的名稱，而無需在方法名稱前面加上型別名稱的前綴。同樣，結構和列舉的型別方法也能夠直接通過靜態屬性的名稱存取靜態屬性，而不需要型別名稱前綴。
 
-下面的範例定義了一個名為`LevelTracker`結構。它監測玩家的游戲發展情況（游戲的不同層次或階段）。這是一個單人游戲，但也可以儲存多個玩家在同一設備上的游戲資訊。
+下面的範例定義了一個名為`LevelTracker`結構。它監測玩家的遊戲發展情況（遊戲的不同層次或階段）。這是一個單人遊戲，但也可以儲存多個玩家在同一設備上的遊戲資訊。
 
-游戲初始時，所有的游戲等級（除了等級 1）都被鎖定。每次有玩家完成一個等級，這個等級就對這個設備上的所有玩家解鎖。`LevelTracker`結構用靜態屬性和方法監測游戲的哪個等級已經被解鎖。它還監測每個玩家的當前等級。
+遊戲初始時，所有的遊戲等級（除了等級 1）都被鎖定。每次有玩家完成一個等級，這個等級就對這個設備上的所有玩家解鎖。`LevelTracker`結構用靜態屬性和方法監測遊戲的哪個等級已經被解鎖。它還監測每個玩家的當前等級。
 
 ```swift
 struct LevelTracker {
@@ -263,7 +263,7 @@ struct LevelTracker {
 
 `LevelTracker`監測玩家的已解鎖的最高等級。這個值被儲存在靜態屬性`highestUnlockedLevel`中。
 
-`LevelTracker`還定義了兩個型別方法與`highestUnlockedLevel`配合工作。第一個型別方法是`unlockLevel`：一旦新等級被解鎖，它會更新`highestUnlockedLevel`的值。第二個型別方法是`levelIsUnlocked`：如果某個給定的等級已經被解鎖，它將回傳`true`。（注意：儘管我們沒有使用類別似`LevelTracker.highestUnlockedLevel`的寫法，這個型別方法還是能夠存取靜態屬性`highestUnlockedLevel`）
+`LevelTracker`還定義了兩個型別方法與`highestUnlockedLevel`配合工作。第一個型別方法是`unlockLevel`：一旦新等級被解鎖，它會更新`highestUnlockedLevel`的值。第二個型別方法是`levelIsUnlocked`：如果某個給定的等級已經被解鎖，它將回傳`true`。（注意：儘管我們沒有使用類似`LevelTracker.highestUnlockedLevel`的寫法，這個型別方法還是能夠存取靜態屬性`highestUnlockedLevel`）
 
 除了靜態屬性和型別方法，`LevelTracker`還監測每個玩家的進度。它用實例屬性`currentLevel`來監測玩家當前的等級。
 
@@ -285,7 +285,7 @@ class Player {
 }
 ```
 
-`Player`類別創建一個新的`LevelTracker`實例來監測這個用戶的發展進度。它提供了`completedLevel`方法：一旦玩家完成某個指定等級就呼叫它。這個方法為所有玩家解鎖下一等級，並且將當前玩家的進度更新為下一等級。（我們忽略了`advanceToLevel`回傳的布林值，因為之前呼叫`LevelTracker.unlockLevel`時就知道了這個等級已經被解鎖了）。
+`Player`類別創建一個新的`LevelTracker`實例來監測這個使用者的發展進度。它提供了`completedLevel`方法：一旦玩家完成某個指定等級就呼叫它。這個方法為所有玩家解鎖下一等級，並且將當前玩家的進度更新為下一等級。（我們忽略了`advanceToLevel`回傳的布林值，因為之前呼叫`LevelTracker.unlockLevel`時就知道了這個等級已經被解鎖了）。
 
 你還可以為一個新的玩家創建一個`Player`的實例，然後看這個玩家完成等級一時發生了什麼：
 

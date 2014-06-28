@@ -20,7 +20,7 @@
 <a name="subscript_syntax"></a>
 ## 下標腳本語法
 
-下標腳本允許你通過在實例後面的方括號中傳入一個或者多個的索引值來對實例進行存取和賦值。語法類別似於實例方法和計算型屬性的混合。與定義實例方法類別似，定義下標腳本使用`subscript`關鍵字，顯式宣告入參（一個或多個）和回傳型別。與實例方法不同的是下標腳本可以設定為讀寫或只讀。這種方式又有點像計算型屬性的getter和setter：
+下標腳本允許你通過在實例後面的方括號中傳入一個或者多個的索引值來對實例進行存取和賦值。語法類似於實例方法和計算型屬性的混合。與定義實例方法類似，定義下標腳本使用`subscript`關鍵字，顯式宣告入參（一個或多個）和回傳型別。與實例方法不同的是下標腳本可以設定為讀寫或唯讀。這種方式又有點像計算型屬性的getter和setter：
 
 ```swift
 subscript(index: Int) -> Int {
@@ -34,9 +34,9 @@ subscript(index: Int) -> Int {
 }
 ```
 
-`newValue`的型別必須和下標腳本定義的回傳型別相同。與計算型屬性相同的是set的入參宣告`newValue`就算不寫，在set程式碼塊中依然可以使用預設的`newValue`這個變數來存取新賦的值。
+`newValue`的型別必須和下標腳本定義的回傳型別相同。與計算型屬性相同的是set的入參宣告`newValue`就算不寫，在set程式碼區塊中依然可以使用預設的`newValue`這個變數來存取新賦的值。
 
-與只讀計算型屬性一樣，可以直接將原本應該寫在`get`程式碼塊中的程式碼寫在`subscript`中：
+與唯讀計算型屬性一樣，可以直接將原本應該寫在`get`程式碼區塊中的程式碼寫在`subscript`中：
 
 ```swift
 subscript(index: Int) -> Int {
@@ -44,7 +44,7 @@ subscript(index: Int) -> Int {
 }
 ```
 
-下面程式碼演示了一個在`TimesTable`結構中使用只讀下標腳本的用法，該結構用來展示傳入整數的*n*倍。
+下面程式碼演示了一個在`TimesTable`結構中使用唯讀下標腳本的用法，該結構用來展示傳入整數的*n*倍。
 
 ```swift
 struct TimesTable {
@@ -58,12 +58,12 @@ println("3的6倍是\(threeTimesTable[6])")
 // 輸出 "3的6倍是18"
 ```
 
-在上例中，通過`TimesTable`結構創建了一個用來表示索引值三倍的實例。數值`3`作為結構`構造函式`入參初始化實例成員`multiplier`。
+在上例中，通過`TimesTable`結構創建了一個用來表示索引值三倍的實例。數值`3`作為結構`建構函式`入參初始化實例成員`multiplier`。
 
 你可以通過下標腳本來得到結果，比如`threeTimesTable[6]`。這條語句存取了`threeTimesTable`的第六個元素，回傳`6`的`3`倍即`18`。
 
 >注意：  
-> `TimesTable`範例是基於一個固定的數學公式。它並不適合開放寫權限來對`threeTimesTable[someIndex]`進行賦值操作，這也是為什麼附屬腳本只定義為只讀的原因。  
+> `TimesTable`範例是基於一個固定的數學公式。它並不適合開放寫權限來對`threeTimesTable[someIndex]`進行賦值操作，這也是為什麼附屬腳本只定義為唯讀的原因。  
 
 <a name="subscript_usage"></a>
 ## 下標腳本用法
@@ -82,7 +82,7 @@ numberOfLegs["bird"] = 2
 更多關於字典（Dictionary）下標腳本的資訊請參考[讀取和修改字典](../chapter2/04_Collection_Types.html)
 
 > 注意：  
-> Swift 中字典的附屬腳本實作中，在`get`部分回傳值是`Int?`，上例中的`numberOfLegs`字典通過附屬腳本回傳的是一個`Int?`或者說“可選的int”，不是每個字典的索引都能得到一個整型值，對於沒有設過值的索引的存取回傳的結果就是`nil`；同樣想要從字典實例中刪除某個索引下的值也只需要給這個索引賦值為`nil`即可。  
+> Swift 中字典的附屬腳本實作中，在`get`部分回傳值是`Int?`，上例中的`numberOfLegs`字典通過附屬腳本回傳的是一個`Int?`或者說「可選的int」，不是每個字典的索引都能得到一個整型值，對於沒有設過值的索引的存取回傳的結果就是`nil`；同樣想要從字典實例中刪除某個索引下的值也只需要給這個索引賦值為`nil`即可。  
 
 <a name="subscript_options"></a>
 ## 下標腳本選項
@@ -118,9 +118,9 @@ struct Matrix {
 }
 ```
 
-`Matrix`提供了一個兩個入參的構造方法，入參分別是`rows`和`columns`，創建了一個足夠容納`rows * columns`個數的`Double`型別陣列。為了儲存，將陣列的大小和陣列每個元素初始值0.0，都傳入陣列的構造方法中來創建一個正確大小的新陣列。關於陣列的構造方法和析構方法請參考[創建並且構造一個陣列](../chapter2/04_Collection_Types.html)。
+`Matrix`提供了一個兩個入參的建構方法，入參分別是`rows`和`columns`，創建了一個足夠容納`rows * columns`個數的`Double`型別陣列。為了儲存，將陣列的大小和陣列每個元素初始值0.0，都傳入陣列的建構方法中來創建一個正確大小的新陣列。關於陣列的建構方法和析構方法請參考[創建並且建構一個陣列](../chapter2/04_Collection_Types.html)。
 
-你可以通過傳入合適的`row`和`column`的數量來構造一個新的`Matrix`實例：
+你可以通過傳入合適的`row`和`column`的數量來建構一個新的`Matrix`實例：
 
 ```swift
 var matrix = Matrix(rows: 2, columns: 2)

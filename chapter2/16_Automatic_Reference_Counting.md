@@ -49,7 +49,7 @@ class Person {
 }
 ```
 
-`Person`類別有一個構造函式，此構造函式為實例的`name`屬性賦值並列印出資訊，以表明初始化過程生效。`Person`類別同時也擁有析構函式，同樣會在實例被銷毀的時候列印出資訊。
+`Person`類別有一個建構函式，此建構函式為實例的`name`屬性賦值並列印出資訊，以表明初始化過程生效。`Person`類別同時也擁有析構函式，同樣會在實例被銷毀的時候列印出資訊。
 
 接下來的程式碼片段定義了三個型別為`Person?`的變數，用來按照程式碼片段中的順序，為新的`Person`實例建立多個參考。由於這些變數是被定義為可選型別（Person?，而不是Person），它們的值會被自動初始化為`nil`，目前還不會參考到`Person`類別的實例。
 
@@ -63,10 +63,10 @@ var reference3: Person?
 
 ```swift
 reference1 = Person(name: "John Appleseed")
-// prints "John Appleseed is being initialized”
+// prints "John Appleseed is being initialized」
 ```
 
-應當注意到當你呼叫`Person`類別的構造函式的時候，"John Appleseed is being initialized”會被列印出來。由此可以確定構造函式被執行。
+應當注意到當你呼叫`Person`類別的建構函式的時候，"John Appleseed is being initialized」會被列印出來。由此可以確定建構函式被執行。
 
 由於`Person`類別的新實例被賦值給了`reference1`變數，所以`reference1`到`Person`類別的新實例之間建立了一個強參考。正是因為這個強參考，ARC 會保證`Person`實例被保持在內存中不被銷毀。
 
@@ -124,7 +124,7 @@ class Apartment {
 
 每一個`Person`實例有一個型別為`String`，名字為`name`的屬性，並有一個可選的初始化為`nil`的`apartment`屬性。`apartment`屬性是可選的，因為一個人並不總是擁有公寓。
 
-類別似的，每個`Apartment`實例有一個叫`number`，型別為`Int`的屬性，並有一個可選的初始化為`nil`的`tenant`屬性。`tenant`屬性是可選的，因為一棟公寓並不總是有居民。
+類似的，每個`Apartment`實例有一個叫`number`，型別為`Int`的屬性，並有一個可選的初始化為`nil`的`tenant`屬性。`tenant`屬性是可選的，因為一棟公寓並不總是有居民。
 
 這兩個類別都定義了析構函式，用以在類別實例被析構的時候輸出資訊。這讓你能夠知曉`Person`和`Apartment`的實例是否像預期的那樣被銷毀。
 
@@ -185,7 +185,7 @@ Swift 提供了兩種辦法用來解決你在使用類別的屬性時所遇到�
 
 弱參考不會牢牢保持住參考的實例，並且不會阻止 ARC 銷毀被參考的實例。這種行為阻止了參考變為迴圈強參考。宣告屬性或者變數時，在前面加上`weak`關鍵字表明這是一個弱參考。
 
-在實例的生命周期中，如果某些時候參考沒有值，那麼弱參考可以阻止迴圈強參考。如果參考總是有值，則可以使用無主參考，在[無主參考](#2)中有描述。在上面`Apartment`的範例中，一個公寓的生命周期中，有時是沒有“居民”的，因此適合使用弱參考來解決迴圈強參考。
+在實例的生命周期中，如果某些時候參考沒有值，那麼弱參考可以阻止迴圈強參考。如果參考總是有值，則可以使用無主參考，在[無主參考](#2)中有描述。在上面`Apartment`的範例中，一個公寓的生命周期中，有時是沒有「居民」的，因此適合使用弱參考來解決迴圈強參考。
 
 > 注意:  
 > 弱參考必須被宣告為變數，表明其值能在執行時被修改。弱參考不能被宣告為常數。  
@@ -253,12 +253,12 @@ number73 = nil
 // prints "Apartment #73 is being deinitialized"
 ```
 
-上面的兩段程式碼展示了變數`john`和`number73`在被賦值為`nil`後，`Person`實例和`Apartment`實例的析構函式都列印出“銷毀”的資訊。這證明了參考迴圈被打破了。
+上面的兩段程式碼展示了變數`john`和`number73`在被賦值為`nil`後，`Person`實例和`Apartment`實例的析構函式都列印出「銷毀」的資訊。這證明了參考迴圈被打破了。
 
 <a name="2"></a>
 ### 無主參考
 
-和弱參考類別似，無主參考不會牢牢保持住參考的實例。和弱參考不同的是，無主參考是永遠有值的。因此，無主參考總是被定義為非可選型別（non-optional type）。你可以在宣告屬性或者變數時，在前面加上關鍵字`unowned`表示這是一個無主參考。
+和弱參考類似，無主參考不會牢牢保持住參考的實例。和弱參考不同的是，無主參考是永遠有值的。因此，無主參考總是被定義為非可選型別（non-optional type）。你可以在宣告屬性或者變數時，在前面加上關鍵字`unowned`表示這是一個無主參考。
 
 由於無主參考是非可選型別，你不需要在使用它的時候將它展開。無主參考總是可以被直接存取。不過 ARC 無法在實例被銷毀後將無主參考設為`nil`，因為非可選型別的變數不允許被賦值為`nil`。
 
@@ -270,7 +270,7 @@ number73 = nil
 
 `Customer`和`CreditCard`之間的關系與前面弱參考範例中`Apartment`和`Person`的關系截然不同。在這個資料模型中，一個客戶可能有或者沒有信用卡，但是一張信用卡總是關聯著一個客戶。為了表示這種關系，`Customer`類別有一個可選型別的`card`屬性，但是`CreditCard`類別有一個非可選型別的`customer`屬性。
 
-此外，只能通過將一個`number`值和`customer`實例傳遞給`CreditCard`構造函式的方式來創建`CreditCard`實例。這樣可以確保當創建`CreditCard`實例時總是有一個`customer`實例與之關聯。
+此外，只能通過將一個`number`值和`customer`實例傳遞給`CreditCard`建構函式的方式來創建`CreditCard`實例。這樣可以確保當創建`CreditCard`實例時總是有一個`customer`實例與之關聯。
 
 由於信用卡總是關聯著一個客戶，因此將`customer`屬性定義為無主參考，用以避免迴圈強參考：
 
@@ -328,7 +328,7 @@ john = nil
 // prints "Card #1234567890123456 is being deinitialized"
 ```
 
-最後的程式碼展示了在`john`變數被設為`nil`後`Customer`實例和`CreditCard`實例的構造函式都列印出了“銷毀”的資訊。
+最後的程式碼展示了在`john`變數被設為`nil`後`Customer`實例和`CreditCard`實例的建構函式都列印出了「銷毀」的資訊。
 
 ###無主參考以及隱式解析可選屬性
 
@@ -366,13 +366,13 @@ class City {
 }
 ```
 
-為了建立兩個類別的依賴關系，`City`的構造函式有一個`Country`實例的參數，並且將實例保存為`country`屬性。
+為了建立兩個類別的依賴關系，`City`的建構函式有一個`Country`實例的參數，並且將實例保存為`country`屬性。
 
-`Country`的構造函式呼叫了`City`的構造函式。然而，只有`Country`的實例完全初始化完後，`Country`的構造函式才能把`self`傳給`City`的構造函式。（[在兩段式構造過程中有具體描述](14_Initialization.html)）
+`Country`的建構函式呼叫了`City`的建構函式。然而，只有`Country`的實例完全初始化完後，`Country`的建構函式才能把`self`傳給`City`的建構函式。（[在兩段式建構過程中有具體描述](14_Initialization.html)）
 
 為了滿足這種需求，通過在型別結尾處加上感嘆號（City!）的方式，將`Country`的`capitalCity`屬性宣告為隱式解析可選型別的屬性。這表示像其他可選型別一樣，`capitalCity`屬性的預設值為`nil`，但是不需要展開它的值就能存取它。（[在隱式解析可選型別中有描述](01_The_Basics.html)）
 
-由於`capitalCity`預設值為`nil`，一旦`Country`的實例在構造函式中給`name`屬性賦值後，整個初始化過程就完成了。這代表一旦`name`屬性被賦值後，`Country`的構造函式就能參考並傳遞隱式的`self`。`Country`的構造函式在賦值`capitalCity`時，就能將`self`作為參數傳遞給`City`的構造函式。
+由於`capitalCity`預設值為`nil`，一旦`Country`的實例在建構函式中給`name`屬性賦值後，整個初始化過程就完成了。這代表一旦`name`屬性被賦值後，`Country`的建構函式就能參考並傳遞隱式的`self`。`Country`的建構函式在賦值`capitalCity`時，就能將`self`作為參數傳遞給`City`的建構函式。
 
 以上的意義在於你可以通過一條語句同時創建`Country`和`City`的實例，而不產生迴圈強參考，並且`capitalCity`的屬性能被直接存取，而不需要通過感嘆號來展開它的可選值：
 
@@ -382,14 +382,14 @@ println("\(country.name)'s capital city is called \(country.capitalCity.name)")
 // prints "Canada's capital city is called Ottawa"
 ```
 
-在上面的範例中，使用隱式解析可選值的意義在於滿足了兩個類別構造函式的需求。`capitalCity`屬性在初始化完成後，能像非可選值一樣使用和存取同時還避免了迴圈強參考。
+在上面的範例中，使用隱式解析可選值的意義在於滿足了兩個類別建構函式的需求。`capitalCity`屬性在初始化完成後，能像非可選值一樣使用和存取同時還避免了迴圈強參考。
 
 <a name="strong_reference_cycles_for_closures"></a>
 ##閉包引起的迴圈強參考
 
 前面我們看到了迴圈強參考環是在兩個類別實例屬性互相保持對方的強參考時產生的，還知道了如何用弱參考和無主參考來打破迴圈強參考。
 
-迴圈強參考還會發生在當你將一個閉包賦值給類別實例的某個屬性，並且這個閉包體中又使用了實例。這個閉包體中可能存取了實例的某個屬性，例如`self.someProperty`，或者閉包中呼叫了實例的某個方法，例如`self.someMethod`。這兩種情況都導致了閉包 “捕獲" `self`，從而產生了迴圈強參考。
+迴圈強參考還會發生在當你將一個閉包賦值給類別實例的某個屬性，並且這個閉包體中又使用了實例。這個閉包體中可能存取了實例的某個屬性，例如`self.someProperty`，或者閉包中呼叫了實例的某個方法，例如`self.someMethod`。這兩種情況都導致了閉包 「捕獲" `self`，從而產生了迴圈強參考。
 
 迴圈強參考的產生，是因為閉包和類別相似，都是參考型別。當你把一個閉包賦值給某個屬性時，你也把一個參考賦值給了這個閉包。實質上，這跟之前的問題是一樣的－兩個強參考讓彼此一直有效。但是，和兩個類別實例不同，這次一個是類別實例，另一個是閉包。
 
@@ -425,7 +425,7 @@ class HTMLElement {
 
 `HTMLElement`類別定義了一個`name`屬性來表示這個元素的名稱，例如代表段落的"p"，或者代表換行的"br"。`HTMLElement`還定義了一個可選屬性`text`，用來設置和展現 HTML 元素的文字。
 
-除了上面的兩個屬性，`HTMLElement`還定義了一個`lazy`屬性`asHTML`。這個屬性參考了一個閉包，將`name`和`text`組合成 HTML 字串片段。該屬性是`() -> String`型別，或者可以理解為“一個沒有參數，回傳`String`的函式”。
+除了上面的兩個屬性，`HTMLElement`還定義了一個`lazy`屬性`asHTML`。這個屬性參考了一個閉包，將`name`和`text`組合成 HTML 字串片段。該屬性是`() -> String`型別，或者可以理解為「一個沒有參數，回傳`String`的函式」。
 
 預設情況下，閉包賦值給了`asHTML`屬性，這個閉包回傳一個代表 HTML 標簽的字串。如果`text`值存在，該標簽就包含可選值`text`；如果`text`不存在，該標簽就不包含文字。對於段落元素，根據`text`是"some text"還是`nil`，閉包會回傳"`<p>some text</p>`"或者"`<p />`"。
 
@@ -434,9 +434,9 @@ class HTMLElement {
 > 注意:  
 `asHTML`宣告為`lazy`屬性，因為只有當元素確實需要處理為HTML輸出的字串時，才需要使用`asHTML`。也就是說，在預設的閉包中可以使用`self`，因為只有當初始化完成以及`self`確實存在後，才能存取`lazy`屬性。
 
-`HTMLElement`類別只提供一個構造函式，通過`name`和`text`（如果有的話）參數來初始化一個元素。該類別也定義了一個析構函式，當`HTMLElement`實例被銷毀時，列印一條消息。
+`HTMLElement`類別只提供一個建構函式，通過`name`和`text`（如果有的話）參數來初始化一個元素。該類別也定義了一個析構函式，當`HTMLElement`實例被銷毀時，列印一條訊息。
 
-下面的程式碼展示了如何用`HTMLElement`類別創建實例並列印消息。
+下面的程式碼展示了如何用`HTMLElement`類別創建實例並列印訊息。
 
 ```swift
 var paragraph: HTMLElement? = HTMLElement(name: "p", text: "hello, world")
@@ -462,7 +462,7 @@ println(paragraph!.asHTML())
 paragraph = nil
 ```
 
-注意`HTMLElementdeinitializer`中的消息並沒有別列印，證明了`HTMLElement`實例並沒有被銷毀。
+注意`HTMLElementdeinitializer`中的訊息並沒有別列印，證明了`HTMLElement`實例並沒有被銷毀。
 
 <a name="resolving_strong_reference_cycles_for_closures"></a>
 ##解決閉包引起的迴圈強參考
@@ -532,7 +532,7 @@ class HTMLElement {
 }
 ```
 
-上面的`HTMLElement`實作和之前的實作一致，只是在`asHTML`閉包中多了一個捕獲列表。這裡，捕獲列表是`[unowned self]`，表示“用無主參考而不是強參考來捕獲`self`”。
+上面的`HTMLElement`實作和之前的實作一致，只是在`asHTML`閉包中多了一個捕獲列表。這裡，捕獲列表是`[unowned self]`，表示「用無主參考而不是強參考來捕獲`self`」。
 
 和之前一樣，我們可以創建並列印`HTMLElement`實例：
 
@@ -546,7 +546,7 @@ println(paragraph!.asHTML())
 
 ![](https://developer.apple.com/library/prerelease/ios/documentation/Swift/Conceptual/Swift_Programming_Language/Art/closureReferenceCycle02_2x.png)
 
-這一次，閉包以無主參考的形式捕獲`self`，並不會持有`HTMLElement`實例的強參考。如果將`paragraph`賦值為`nil`，`HTMLElement`實例將會被銷毀，並能看到它的析構函式列印出的消息。
+這一次，閉包以無主參考的形式捕獲`self`，並不會持有`HTMLElement`實例的強參考。如果將`paragraph`賦值為`nil`，`HTMLElement`實例將會被銷毀，並能看到它的析構函式列印出的訊息。
 
 ```swift
 paragraph = nil

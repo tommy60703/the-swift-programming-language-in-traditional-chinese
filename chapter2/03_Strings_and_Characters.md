@@ -70,7 +70,7 @@ let sparklingHeart = "\U0001F496"  // 💖, Unicode 純量 U+1F496
 <a name="initializing_an_empty_string"></a>
 ## 初始化空字串 (Initializing an Empty String)
 
-為了構造一個很長的字串，可以創建一個空字串作為初始值。
+為了建構一個很長的字串，可以創建一個空字串作為初始值。
 可以將空的字串字面量指派給變數，也可以初始化一個新的`String`實體：
 
 ```swift
@@ -275,7 +275,7 @@ println("There are \(act1SceneCount) scenes in Act 1")
 // prints "There are 5 scenes in Act 1"
 ```
 
-類別似地，你可以用`hasSuffix`方法來計算發生在不同地方的場景數：
+類似地，你可以用`hasSuffix`方法來計算發生在不同地方的場景數：
 
 ```swift
 var mansionCount = 0
@@ -288,7 +288,7 @@ for scene in romeoAndJuliet {
     }
 }
 println("\(mansionCount) mansion scenes; \(cellCount) cell scenes")
-// prints "6 mansion scenes; 2 cell scenes”
+// prints "6 mansion scenes; 2 cell scenes」
 ```
 
 <a name="uppercase_and_lowercase_strings"></a>

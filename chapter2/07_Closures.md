@@ -11,8 +11,8 @@
 - [值捕獲（Capturing Values）](#capturing_values)
 - [閉包是參考型別（Closures Are Reference Types）](#closures_are_reference_types)
 
-閉包是自包含的函式程式碼塊，可以在程式碼中被傳遞和使用。
-Swift 中的閉包與 C 和 Objective-C 中的程式碼塊（blocks）以及其他一些程式語言中的 lambdas 函式比較相似。
+閉包是自包含的函式程式碼區塊，可以在程式碼中被傳遞和使用。
+Swift 中的閉包與 C 和 Objective-C 中的程式碼區塊（blocks）以及其他一些程式語言中的 lambdas 函式比較相似。
 
 閉包可以捕獲和儲存其所在上下文中任意常數和變數的參考。
 這就是所謂的閉合並包裹著這些常數和變數，俗稱閉包。Swift 會為你管理在捕獲過程中涉及到的所有內存操作。
@@ -74,12 +74,12 @@ var reversed = sort(names, backwards)
 ```
 
 如果第一個字串 (`s1`) 大於第二個字串 (`s2`)，`backwards`函式回傳`true`，表示在新的陣列中`s1`應該出現在`s2`前。
-對於字串中的字元來說，“大於” 表示 “按照字母順序較晚出現”。
+對於字串中的字元來說，「大於」 表示 「按照字母順序較晚出現」。
 這意味著字母`"B"`大於字母`"A"`，字串`"Tom"`大於字串`"Tim"`。
 其將進行字母逆序排序，`"Barry"`將會排在`"Alex"`之後。
 
 然而，這是一個相當冗長的方式，本質上只是寫了一個單表達式函式 (a > b)。
-在下面的範例中，利用閉合表達式語法可以更好的構造一個內聯排序閉包。
+在下面的範例中，利用閉合表達式語法可以更好的建構一個內聯排序閉包。
 
 <a name="closure_expression_syntax"></a>
 ### 閉包表達式語法（Closure Expression Syntax）
@@ -130,7 +130,7 @@ reversed = sort(names, { (s1: String, s2: String) -> Bool in return s1 > s2 } )
 reversed = sort(names, { s1, s2 in return s1 > s2 } )
 ```
 
-實際上任何情況下，通過內聯閉包表達式構造的閉包作為參數傳遞給函式時，都可以推斷出閉包的參數和回傳值型別，這意味著你幾乎不需要利用完整格式構造任何內聯閉包。
+實際上任何情況下，通過內聯閉包表達式建構的閉包作為參數傳遞給函式時，都可以推斷出閉包的參數和回傳值型別，這意味著你幾乎不需要利用完整格式建構任何內聯閉包。
 
 <a name="implicit_returns_from_single_expression_closures"></a>
 ### 單表達式閉包隱式回傳（Implicit Return From Single-Expression Clossures）
@@ -222,7 +222,7 @@ let numbers = [16, 58, 510]
 ```
 
 如上程式碼創建了一個數字位和它們名字映射的英文版本字典。
-同時定義了一個准備轉換為字串的整型陣列。
+同時定義了一個準備轉換為字串的整型陣列。
 
 你現在可以通過傳遞一個尾隨閉包給`numbers`的`map`方法來創建對應的字串版本陣列。
 需要注意的時呼叫`numbers.map`不需要在`map`後面包含任何括號，因為其只需要傳遞閉包表達式這一個參數，並且該閉包表達式參數通過尾隨方式進行撰寫：
@@ -317,7 +317,7 @@ func incrementor() -> Int {
 
 由於沒有修改`amount`變數，`incrementor`實際上捕獲並儲存了該變數的一個副本，而該副本隨著`incrementor`一同被儲存。
 
-然而，因為每次呼叫該函式的時候都會修改`runningTotal`的值，`incrementor`捕獲了當前`runningTotal`變數的參考，而不是僅僅復制該變數的初始值。捕獲一個參考保證了當`makeIncrementor`結束時候並不會消失，也保證了當下一次執行`incrementor`函式時，`runningTotal`可以繼續增加。
+然而，因為每次呼叫該函式的時候都會修改`runningTotal`的值，`incrementor`捕獲了當前`runningTotal`變數的參考，而不是僅僅複製該變數的初始值。捕獲一個參考保證了當`makeIncrementor`結束時候並不會消失，也保證了當下一次執行`incrementor`函式時，`runningTotal`可以繼續增加。
 
 > 注意：  
 > Swift 會決定捕獲參考還是拷貝值。  

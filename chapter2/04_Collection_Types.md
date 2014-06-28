@@ -10,12 +10,12 @@
 - [字典（Dictionaries）](#dictionaries)
 - [集合的可變性（Mutability of Collections）](#mutability_of_collections)
 
-Swift 語言提供經典的陣列和字典兩種集合型別來儲存集合資料。陣列用來按順序儲存相同型別的資料。字典雖然無序儲存相同型別資料值但是需要由獨有的標識符參考和尋址（就是鍵值對）。
+Swift 語言提供經典的陣列和字典兩種集合型別來儲存集合資料。陣列用來按順序儲存相同型別的資料。字典雖然無序儲存相同型別資料值但是需要由獨有的識別符號參考和尋址（就是鍵值對）。
 
 Swift 語言裡的陣列和字典中儲存的資料值型別必須明確。 這意味著我們不能把不正確的資料型別插入其中。 同時這也說明我們完全可以對獲取出的值型別非常自信。 Swift 對顯式型別集合的使用確保了我們的程式碼對工作所需要的型別非常清楚，也讓我們在開發中可以早早地找到任何的型別不匹配錯誤。
 
 > 注意：  
-Swift 的陣列結構在被宣告成常數和變數或者被傳入函式與方法中時會相對於其他型別展現出不同的特性。 獲取更多資訊請參見[集合的可變性](#mutability_of_collections)與[集合在賦值和復制中的行為](09_Classes_and_Structures.html#assignment_and_copy_behavior_for_collection_types)章節。
+Swift 的陣列結構在被宣告成常數和變數或者被傳入函式與方法中時會相對於其他型別展現出不同的特性。 獲取更多資訊請參見[集合的可變性](#mutability_of_collections)與[集合在賦值和複製中的行為](09_Classes_and_Structures.html#assignment_and_copy_behavior_for_collection_types)章節。
 
 <a name="arrays"></a>
 ## 陣列
@@ -39,17 +39,17 @@ Swift 陣列特定於它所儲存元素的型別。這與 Objective-C 的 NSArra
 
 ```swift
 var shoppingList: String[] = ["Eggs", "Milk"]
-// shoppingList 已經被構造並且擁有兩個初始項。
+// shoppingList 已經被建構並且擁有兩個初始項。
 ```
 
-`shoppingList`變數被宣告為“字串值型別的陣列“，記作`String[]`。 因為這個陣列被規定只有`String`一種資料結構，所以只有`String`型別可以在其中被存取。 在這裡，`shoppinglist`陣列由兩個`String`值（`"Eggs"` 和`"Milk"`）構造，並且由字面量定義。
+`shoppingList`變數被宣告為「字串值型別的陣列「，記作`String[]`。 因為這個陣列被規定只有`String`一種資料結構，所以只有`String`型別可以在其中被存取。 在這裡，`shoppinglist`陣列由兩個`String`值（`"Eggs"` 和`"Milk"`）建構，並且由字面量定義。
 
 > 注意：  
 > `Shoppinglist`陣列被宣告為變數（`var`關鍵字創建）而不是常數（`let`創建）是因為以後可能會有更多的資料項被插入其中。  
 
-在這個範例中，字面量僅僅包含兩個`String`值。匹配了該陣列的變數宣告（只能包含`String`的陣列），所以這個字面量的分配過程就是允許用兩個初始項來構造`shoppinglist`。
+在這個範例中，字面量僅僅包含兩個`String`值。匹配了該陣列的變數宣告（只能包含`String`的陣列），所以這個字面量的分配過程就是允許用兩個初始項來建構`shoppinglist`。
 
-由於 Swift 的型別推斷機制，當我們用字面量構造只擁有相同型別值陣列的時候，我們不必把陣列的型別定義清楚。 `shoppinglist`的構造也可以這樣寫：
+由於 Swift 的型別推斷機制，當我們用字面量建構只擁有相同型別值陣列的時候，我們不必把陣列的型別定義清楚。 `shoppinglist`的建構也可以這樣寫：
 
 ```swift
 var shoppingList = ["Eggs", "Milk"]
@@ -61,7 +61,7 @@ var shoppingList = ["Eggs", "Milk"]
 ### 存取和修改陣列
 
 我們可以通過陣列的方法和屬性來存取和修改陣列，或者下標語法。
-還可以使用陣列的只讀屬性`count`來獲取陣列中的資料項數量。
+還可以使用陣列的唯讀屬性`count`來獲取陣列中的資料項數量。
 
 ```swift
 println("The shopping list contains \(shoppingList.count) items.")
@@ -136,7 +136,7 @@ shoppingList.insert("Maple Syrup", atIndex: 0)
 
 這次`insert`函式呼叫把值為`"Maple Syrup"`的新資料項插入列表的最開始位置，並且使用`0`作為索引值。
 
-類別似的我們可以使用`removeAtIndex`方法來移除陣列中的某一項。這個方法把陣列在特定索引值中儲存的資料項移除並且回傳這個被移除的資料項（我們不需要的時候就可以無視它）:
+類似的我們可以使用`removeAtIndex`方法來移除陣列中的某一項。這個方法把陣列在特定索引值中儲存的資料項移除並且回傳這個被移除的資料項（我們不需要的時候就可以無視它）:
 
 ```swift
 let mapleSyrup = shoppingList.removeAtIndex(0)
@@ -193,9 +193,9 @@ for (index, value) in enumerate(shoppingList) {
 更多關於`for-in`迴圈的介紹請參見[for 迴圈](05_Control_Flow.html#for_loops)。
 
 <a name="creating_and_initializing_an_array"></a>
-### 創建並且構造一個陣列
+### 創建並且建構一個陣列
 
-我們可以使用構造語法來創建一個由特定資料型別構成的空陣列：
+我們可以使用建構語法來創建一個由特定資料型別構成的空陣列：
 
 ```swift
 var someInts = Int[]()
@@ -203,7 +203,7 @@ println("someInts is of type Int[] with \(someInts.count) items。")
 // 列印 "someInts is of type Int[] with 0 items。"（someInts是0資料項的Int[]陣列）
 ```
 
-注意`someInts`被設置為一個`Int[]`構造函式的輸出所以它的變數型別被定義為`Int[]`。
+注意`someInts`被設置為一個`Int[]`建構函式的輸出所以它的變數型別被定義為`Int[]`。
 
 除此之外，如果程式碼上下文中提供了型別資訊， 例如一個函式參數或者一個已經定義好型別的常數或者變數，我們可以使用空陣列語句創建一個空陣列，它的寫法很簡單：`[]`（一對空方括號）：
 
@@ -214,21 +214,21 @@ someInts = []
 // someInts 現在是空陣列，但是仍然是Int[]型別的。
 ```
 
-Swift 中的`Array`型別還提供一個可以創建特定大小並且所有資料都被預設的構造方法。我們可以把准備加入新陣列的資料項數量（`count`）和適當型別的初始值（`repeatedValue`）傳入陣列建構函式：
+Swift 中的`Array`型別還提供一個可以創建特定大小並且所有資料都被預設的建構方法。我們可以把準備加入新陣列的資料項數量（`count`）和適當型別的初始值（`repeatedValue`）傳入陣列建構函式：
 
 ```swift
 var threeDoubles = Double[](count: 3, repeatedValue:0.0)
 // threeDoubles 是一種 Double[]陣列, 等於 [0.0, 0.0, 0.0]
 ```
 
-因為型別推斷的存在，我們使用這種構造方法的時候不需要特別指定陣列中儲存的資料型別，因為型別可以從預設值推斷出來：
+因為型別推斷的存在，我們使用這種建構方法的時候不需要特別指定陣列中儲存的資料型別，因為型別可以從預設值推斷出來：
 
 ```swift
 var anotherThreeDoubles = Array(count: 3, repeatedValue: 2.5)
 // anotherThreeDoubles is inferred as Double[], and equals [2.5, 2.5, 2.5]
 ```
 
-最後，我們可以使用加法操作符（`+`）來組合兩種已存在的相同型別陣列。新陣列的資料型別會被從兩個陣列的資料型別中推斷出來：
+最後，我們可以使用加法運算子（`+`）來組合兩種已存在的相同型別陣列。新陣列的資料型別會被從兩個陣列的資料型別中推斷出來：
 
 ```swift
 var sixDoubles = threeDoubles + anotherThreeDoubles
@@ -238,18 +238,18 @@ var sixDoubles = threeDoubles + anotherThreeDoubles
 <a name="dictionaries"></a>
 ## 字典
 
-字典是一種儲存多個相同型別的值的容器。每個值（value）都關聯唯一的鍵（key），鍵作為字典中的這個值資料的標識符。和陣列中的資料項不同，字典中的資料項並沒有具體順序。我們在需要通過標識符（鍵）存取資料的時候使用字典，這種方法很大程度上和我們在現實世界中使用字典查字義的方法一樣。
+字典是一種儲存多個相同型別的值的容器。每個值（value）都關聯唯一的鍵（key），鍵作為字典中的這個值資料的識別符號。和陣列中的資料項不同，字典中的資料項並沒有具體順序。我們在需要通過識別符號（鍵）存取資料的時候使用字典，這種方法很大程度上和我們在現實世界中使用字典查字義的方法一樣。
 
 Swift 的字典使用時需要具體規定可以儲存鍵和值型別。不同於 Objective-C 的`NSDictionary`和`NSMutableDictionary` 類別可以使用任何型別的物件來作鍵和值並且不提供任何關於這些物件的本質資訊。在 Swift 中，在某個特定字典中可以儲存的鍵和值必須提前定義清楚，方法是通過顯性型別標注或者型別推斷。
 
 Swift 的字典使用`Dictionary<KeyType, ValueType>`定義,其中`KeyType`是字典中鍵的資料型別，`ValueType`是字典中對應於這些鍵所儲存值的資料型別。
 
-`KeyType`的唯一限制就是可哈希的，這樣可以保證它是獨一無二的，所有的 Swift 基本型別（例如`String`，`Int`， `Double`和`Bool`）都是預設可哈希的，並且所有這些型別都可以在字典中當做鍵使用。未關聯值的列舉成員（參見[列舉](08_Enumerations.html)）也是預設可哈希的。
+`KeyType`的唯一限制就是可雜湊的，這樣可以保證它是獨一無二的，所有的 Swift 基本型別（例如`String`，`Int`， `Double`和`Bool`）都是預設可雜湊的，並且所有這些型別都可以在字典中當做鍵使用。未關聯值的列舉成員（參見[列舉](08_Enumerations.html)）也是預設可雜湊的。
 
 <a name="dictionary_literals"></a>
 ## 字典字面量
 
-我們可以使用字典字面量來構造字典，它們和我們剛才介紹過的陣列字面量擁有相似語法。一個字典字面量是一個定義擁有一個或者多個鍵值對的字典集合的簡單語句。
+我們可以使用字典字面量來建構字典，它們和我們剛才介紹過的陣列字面量擁有相似語法。一個字典字面量是一個定義擁有一個或者多個鍵值對的字典集合的簡單語句。
 
 一個鍵值對是一個`key`和一個`value`的結合體。在字典字面量中，每一個鍵值對的鍵和值都由冒號分割。這些鍵值對構成一個列表，其中這些鍵值對由方括號包含並且由逗號分割：
 
@@ -270,9 +270,9 @@ var airports: Dictionary<String, String> = ["TYO": "Tokyo", "DUB": "Dublin"]
 
 `airports`字典使用字典字面量初始化，包含兩個鍵值對。第一對的鍵是`TYO`，值是`Tokyo`。第二對的鍵是`DUB`，值是`Dublin`。
 
-這個字典語句包含了兩個`String: String`型別的鍵值對。它們對應`airports`變數宣告的型別（一個只有`String`鍵和`String`值的字典）所以這個字典字面量是構造兩個初始資料項的`airport`字典。
+這個字典語句包含了兩個`String: String`型別的鍵值對。它們對應`airports`變數宣告的型別（一個只有`String`鍵和`String`值的字典）所以這個字典字面量是建構兩個初始資料項的`airport`字典。
 
-和陣列一樣，如果我們使用字面量構造字典就不用把型別定義清楚。`airports`的也可以用這種方法簡短定義：
+和陣列一樣，如果我們使用字面量建構字典就不用把型別定義清楚。`airports`的也可以用這種方法簡短定義：
 
 ```swift
 var airports = ["TYO": "Tokyo", "DUB": "Dublin"]
@@ -283,7 +283,7 @@ var airports = ["TYO": "Tokyo", "DUB": "Dublin"]
 <a name="accessing_and_modifying_a_dictionary"></a>
 ### 讀取和修改字典
 
-我們可以通過字典的方法和屬性來讀取和修改字典，或者使用下標語法。和陣列一樣，我們可以通過字典的只讀屬性`count`來獲取某個字典的資料項數量：
+我們可以通過字典的方法和屬性來讀取和修改字典，或者使用下標語法。和陣列一樣，我們可以通過字典的唯讀屬性`count`來獲取某個字典的資料項數量：
 
 ```swift
 println("The dictionary of airports contains \(airports.count) items.")
@@ -306,7 +306,7 @@ airports["LHR"] = "London Heathrow"
 
 作為另一種下標方法，字典的`updateValue(forKey:)`方法可以設置或者更新特定鍵對應的值。就像上面所示的示例，`updateValue(forKey:)`方法在這個鍵不存在對應值的時候設置值或者在存在時更新已存在的值。和上面的下標方法不一樣，這個方法回傳更新值之前的原值。這樣方便我們檢查更新是否成功。
 
-`updateValue(forKey:)`函式會回傳包含一個字典值型別的可選值。舉例來說：對於儲存`String`值的字典，這個函式會回傳一個`String?`或者“可選 `String`”型別的值。如果值存在，則這個可選值值等於被替換的值，否則將會是`nil`。
+`updateValue(forKey:)`函式會回傳包含一個字典值型別的可選值。舉例來說：對於儲存`String`值的字典，這個函式會回傳一個`String?`或者「可選 `String`」型別的值。如果值存在，則這個可選值值等於被替換的值，否則將會是`nil`。
 
 ```swift
 if let oldValue = airports.updateValue("Dublin Internation", forKey: "DUB") {
@@ -377,7 +377,7 @@ for airportName in airports.values {
 // Airport name: London Heathrow
 ```
 
-如果我們只是需要使用某個字典的鍵集合或者值集合來作為某個接受`Array`實例 API 的參數，可以直接使用`keys`或者`values`屬性直接構造一個新陣列：
+如果我們只是需要使用某個字典的鍵集合或者值集合來作為某個接受`Array`實例 API 的參數，可以直接使用`keys`或者`values`屬性直接建構一個新陣列：
 
 ```swift
 let airportCodes = Array(airports.keys)
@@ -393,7 +393,7 @@ let airportNames = Array(airports.values)
 <a name="creating_an_empty_dictionary"></a>
 ### 創建一個空字典
 
-我們可以像陣列一樣使用構造語法創建一個空字典：
+我們可以像陣列一樣使用建構語法創建一個空字典：
 
 ```swift
 var namesOfIntegers = Dictionary<Int, String>()
@@ -422,7 +422,7 @@ namesOfIntegers = [:]
 對字典來說，不可變性也意味著我們不能替換其中任何現有鍵所對應的值。不可變字典的內容在被首次設定之後不能更改。
 不可變性對陣列來說有一點不同，當然我們不能試著改變任何不可變陣列的大小，但是我們可以重新設定相對現存索引所對應的值。這使得 Swift 陣列在大小被固定的時候依然可以做的很棒。
 
-Swift 陣列的可變性行為同時影響了陣列實例如何被分配和修改，想獲取更多資訊，請參見[集合在賦值和復制中的行為](09_Classes_and_Structures.html#assignment_and_copy_behavior_for_collection_types)。
+Swift 陣列的可變性行為同時影響了陣列實例如何被分配和修改，想獲取更多資訊，請參見[集合在賦值和複製中的行為](09_Classes_and_Structures.html#assignment_and_copy_behavior_for_collection_types)。
 
 > 注意：  
 > 在我們不需要改變陣列大小的時候創建不可變陣列是很好的習慣。如此 Swift 編譯器可以優化我們創建的集合。  

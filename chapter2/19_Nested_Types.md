@@ -66,13 +66,13 @@ struct BlackjackCard {
 如上文所提到的，列舉型`Rank`在自己內部定義了一個嵌套結構`Values`。這個結構包含兩個變數，只有`Ace`有兩個數值，其余牌都只有一個數值。結構`Values`中定義的兩個屬性：
 
 `first`, 為` Int`
-`second`, 為 `Int?`, 或 “optional `Int`”
+`second`, 為 `Int?`, 或 「optional `Int`」
 
 `Rank`定義了一個計算屬性`values`，這個計算屬性會根據牌的面值，用適當的數值去初始化`Values`實例，並賦值給`values`。對於`J`,`Q`,`K`,`Ace`會使用特殊數值，對於數字面值的牌使用`Int`型別的值。
 
 `BlackjackCard`結構自身有兩個屬性—`rank`與`suit`，也同樣定義了一個計算屬性`description`，`description`屬性用`rank`和`suit`的中內容來構建對這張撲克牌名字和數值的描述，並用可選型別`second`來檢查是否存在第二個值，若存在，則在原有的描述中增加對第二數值的描述。
 
-因為`BlackjackCard`是一個沒有自定義構造函式的結構，在[Memberwise Initializers for Structure Types](https://github.com/CocoaChina-editors/Welcome-to-Swift/blob/master/The%20Swift%20Programming%20Language/02Language%20Guide/14Initialization.md)中知道結構有預設的成員構造函式，所以你可以用預設的`initializer`去初始化新的常數`theAceOfSpades`:
+因為`BlackjackCard`是一個沒有自定義建構函式的結構，在[Memberwise Initializers for Structure Types](https://github.com/CocoaChina-editors/Welcome-to-Swift/blob/master/The%20Swift%20Programming%20Language/02Language%20Guide/14Initialization.md)中知道結構有預設的成員建構函式，所以你可以用預設的`initializer`去初始化新的常數`theAceOfSpades`:
 
 ```swift
 let theAceOfSpades = BlackjackCard(rank: .Ace, suit: .Spades)

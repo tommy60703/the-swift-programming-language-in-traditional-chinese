@@ -12,7 +12,7 @@
 - [函式型別（Function Types）](#Function_Types)
 - [函式嵌套（Nested Functions）](#Nested_Functions)
 
-函式是用來完成特定任務的獨立的程式碼塊。你給一個函式起一個合適的名字，用來標示函式做什麼，並且當函式需要執行的時候，這個名字會被“呼叫”。
+函式是用來完成特定任務的獨立的程式碼區塊。你給一個函式起一個合適的名字，用來標示函式做什麼，並且當函式需要執行的時候，這個名字會被「呼叫」。
 
 Swift 統一的函式語法足夠靈活，可以用來表示任何函式，包括從最簡單的沒有參數名字的 C 風格函式，到複雜的帶局部和外部參數名的 Objective-C 風格函式。參數可以提供預設值，以簡化函式呼叫。參數也可以既當做傳入參數，也當做傳出參數，也就是說，一旦函式執行結束，傳入的參數值可以被修改。
 
@@ -23,7 +23,7 @@ Swift 統一的函式語法足夠靈活，可以用來表示任何函式，包�
 
 當你定義一個函式時，你可以定義一個或多個有名字和型別的值，作為函式的輸入（稱為參數，parameters），也可以定義某種型別的值作為函式執行結束的輸出（稱為回傳型別）。
 
-每個函式有個函式名，用來描述函式執行的任務。要使用一個函式時，你用函式名“呼叫”，並傳給它匹配的輸入值（稱作實參，arguments）。一個函式的實參必須與函式參數表裡參數的順序一致。
+每個函式有個函式名，用來描述函式執行的任務。要使用一個函式時，你用函式名「呼叫」，並傳給它匹配的輸入值（稱作實參，arguments）。一個函式的實參必須與函式參數表裡參數的順序一致。
 
 在下面範例中的函式叫做`"greetingForPerson"`，之所以叫這個名字是因為這個函式用一個人的名字當做輸入，並回傳給這個人的問候語。為了完成這個任務，你定義一個輸入參數-一個叫做 `personName` 的 `String` 值，和一個包含給這個人問候語的 `String` 型別的回傳值：
 
@@ -47,11 +47,11 @@ println(sayHello("Brian"))
 
 呼叫 `sayHello` 函式時，在圓括號中傳給它一個 `String` 型別的實參。因為這個函式回傳一個 `String` 型別的值，`sayHello` 可以被包含在 `println` 的呼叫中，用來輸出這個函式的回傳值，正如上面所示。
 
-在 `sayHello` 的函式體中，先定義了一個新的名為 `greeting` 的 `String` 常數，同時賦值了給 `personName` 的一個簡單問候消息。然後用 `return` 關鍵字把這個問候回傳出去。一旦 `return greeting` 被呼叫，該函式結束它的執行並回傳 `greeting` 的當前值。
+在 `sayHello` 的函式體中，先定義了一個新的名為 `greeting` 的 `String` 常數，同時賦值了給 `personName` 的一個簡單問候訊息。然後用 `return` 關鍵字把這個問候回傳出去。一旦 `return greeting` 被呼叫，該函式結束它的執行並回傳 `greeting` 的當前值。
 
 你可以用不同的輸入值多次呼叫 `sayHello`。上面的範例展示的是用`"Anna"`和`"Brian"`呼叫的結果，該函式分別回傳了不同的結果。
 
-為了簡化這個函式的定義，可以將問候消息的創建和回傳寫成一句：
+為了簡化這個函式的定義，可以將問候訊息的創建和回傳寫成一句：
 
 ```swift
 func sayHelloAgain(personName: String) -> String {
@@ -80,9 +80,9 @@ println(halfOpenRangeLength(1, 10))
 // prints "9
 ```
 
-### 無參數函式（Functions Without Parameters）
+### 無參函式（Functions Without Parameters）
 
-函式可以沒有參數。下面這個函式就是一個無參函式，當被呼叫時，它回傳固定的 `String` 消息：
+函式可以沒有參數。下面這個函式就是一個無參函式，當被呼叫時，它回傳固定的 `String` 訊息：
 
 ```swift
 func sayHelloWorld() -> String {
@@ -125,9 +125,10 @@ printAndCount("hello, world")
 // prints "hello, world" and returns a value of 12
 printWithoutCounting("hello, world")
 // prints "hello, world" but does not return a value
+
 ```
 
-第一個函式 `printAndCount`，輸出一個字串並回傳 `Int` 型別的字元數。第二個函式 `printWithoutCounting`呼叫了第一個函式，但是忽略了它的回傳值。當第二個函式被呼叫時，消息依然會由第一個函式輸出，但是回傳值不會被用到。
+第一個函式 `printAndCount`，輸出一個字串並回傳 `Int` 型別的字元數。第二個函式 `printWithoutCounting`呼叫了第一個函式，但是忽略了它的回傳值。當第二個函式被呼叫時，訊息依然會由第一個函式輸出，但是回傳值不會被用到。
 
 > 注意：  
 > 回傳值可以被忽略，但定義了有回傳值的函式必須回傳一個值，如果在函式定義底部沒有回傳任何值，這叫導致編譯錯誤（compile-time error）。  
@@ -136,7 +137,7 @@ printWithoutCounting("hello, world")
 
 你可以用元組（tuple）型別讓多個值作為一個複合值從函式中回傳。
 
-下面的這個範例中，`count` 函式用來計算一個字串中元音，輔音和其他字母的個數（基於美式英語的標準）。
+下面的這個範例中，`count` 函式用來計算一個字串中母音，子音和其他字母的個數（基於美式英語的標準）。
 
 ```swift
 func count(string: String) -> (vowels: Int, consonants: Int, others: Int) {
@@ -235,9 +236,9 @@ join(string: "hello", toString: "world", withJoiner: ", ")
 
 ### 簡寫外部參數名（Shorthand External Parameter Names）
 
-如果你需要提供外部參數名，但是局部參數名已經定義好了，那麼你不需要寫兩次這些參數名。相反，只寫一次參數名，並用`井號（#）`作為前綴就可以了。這告訴 Swift 使用這個參數名作為局部和外部參數名。
+如果你需要提供外部參數名，但是局部參數名已經定義好了，那麼你不需要寫兩次這些參數名。相反，只寫一次參數名，並用`井字號（#）`作為前綴就可以了。這告訴 Swift 使用這個參數名作為局部和外部參數名。
 
-下面這個範例定義了一個叫 `containsCharacter` 的函式，使用`井號（#）`的方式定義了外部參數名：
+下面這個範例定義了一個叫 `containsCharacter` 的函式，使用`井字號（#）`的方式定義了外部參數名：
 
 ```swift
 func containsCharacter(#string: String, #characterToFind: Character) -> Bool {
@@ -254,7 +255,7 @@ func containsCharacter(#string: String, #characterToFind: Character) -> Bool {
 
 ```swift
 let containsAVee = containsCharacter(string: "aardvark", characterToFind: "v")
-// containsAVee equals true, because "aardvark" contains a "v”
+// containsAVee equals true, because "aardvark" contains a "v」
 ```
 
 ### 預設參數值（Default Parameter Values）
@@ -288,9 +289,9 @@ join(string: "hello", toString:"world")
 
 ### 預設值參數的外部參數名（External Names for Parameters with Default Values）
 
-在大多數情況下，給帶預設值的參數起一個外部參數名是很有用的。這樣可以保證當函式被呼叫且帶預設值的參數被提供值時，參數的意圖是明顯的。
+在大多數情況下，給帶預設值的參數起一個外部參數名是很有用的。這樣可以保證當函式被呼叫且帶預設值的參數被提供值時，實參的意圖是明顯的。
 
-為了使定義外部參數名更加簡單，當你未給帶預設值的參數提供外部參數名時，Swift 會自動提供外部名字。此時外部參數名與局部名字是一樣的，就像你已經在局部參數名前寫了`井號（#）`一樣。
+為了使定義外部參數名更加簡單，當你未給帶預設值的參數提供外部參數名時，Swift 會自動提供外部名字。此時外部參數名與局部名字是一樣的，就像你已經在局部參數名前寫了`井字號（#）`一樣。
 
 下面是 `join` 函式的另一個版本，這個版本中並沒有為它的參數提供外部參數名，但是 `joiner` 參數依然有外部參數名：
 
@@ -308,7 +309,7 @@ join("hello", "world", joiner: "-")
 ```
 
 > 注意：  
-> 你可以使用`下劃線（_）`作為預設值參數的外部參數名，這樣可以在呼叫時不用提供外部參數名。但是給帶預設值的參數命名總是更加合適的。  
+> 你可以使用`底線（_）`作為預設值參數的外部參數名，這樣可以在呼叫時不用提供外部參數名。但是給帶預設值的參數命名總是更加合適的。  
 
 ### 可變參數（Variadic Parameters）
 
@@ -398,7 +399,7 @@ var someInt = 3
 var anotherInt = 107
 swapTwoInts(&someInt, &anotherInt)
 println("someInt is now \(someInt), and anotherInt is now \(anotherInt)")
-// prints "someInt is now 107, and anotherInt is now 3”
+// prints "someInt is now 107, and anotherInt is now 3」
 ```
 
 從上面這個範例中，我們可以看到 `someInt` 和 `anotherInt` 的原始值在 `swapTwoInts` 函式中被修改，儘管它們的定義在函式體外。
@@ -424,7 +425,7 @@ func multiplyTwoInts(a: Int, b: Int) -> Int {
 
 這個範例中定義了兩個簡單的數學函式：`addTwoInts` 和 `multiplyTwoInts`。這兩個函式都傳入兩個 `Int` 型別， 回傳一個合適的`Int`值。
 
-這兩個函式的型別是 `(Int, Int) -> Int`，可以讀作“這個函式型別，它有兩個 `Int` 型的參數並回傳一個 `Int` 型的值。”。
+這兩個函式的型別是 `(Int, Int) -> Int`，可以讀作「這個函式型別，它有兩個 `Int` 型的參數並回傳一個 `Int` 型的值。」。
 
 下面是另一個範例，一個沒有參數，也沒有回傳值的函式：
 
@@ -434,7 +435,7 @@ func printHelloWorld() {
 }
 ```
 
-這個函式的型別是：`() -> ()`，或者叫“沒有參數，並回傳 `Void` 型別的函式。”。沒有指定回傳型別的函式總回傳 `Void`。在Swift中，`Void` 與空的元組是一樣的。
+這個函式的型別是：`() -> ()`，或者叫「沒有參數，並回傳 `Void` 型別的函式。」。沒有指定回傳型別的函式總回傳 `Void`。在Swift中，`Void` 與空的元組是一樣的。
 
 ### 使用函式型別（Using Function Types）
 
@@ -446,7 +447,7 @@ var mathFunction: (Int, Int) -> Int = addTwoInts
 
 這個可以讀作：
 
-“定義一個叫做 `mathFunction` 的變數，型別是‘一個有兩個 `Int` 型的參數並回傳一個 `Int` 型的值的函式’，並讓這個新變數指向 `addTwoInts` 函式”。
+「定義一個叫做 `mathFunction` 的變數，型別是『一個有兩個 `Int` 型的參數並回傳一個 `Int` 型的值的函式』，並讓這個新變數指向 `addTwoInts` 函式」。
 
 `addTwoInts` 和 `mathFunction` 有同樣的型別，所以這個賦值過程在 Swift 型別檢查中是允許的。
 
@@ -483,7 +484,7 @@ func printMathResult(mathFunction: (Int, Int) -> Int, a: Int, b: Int) {
     println("Result: \(mathFunction(a, b))")
 }
 printMathResult(addTwoInts, 3, 5)
-// prints "Result: 8”
+// prints "Result: 8」
 ```
 
 這個範例定義了 `printMathResult` 函式，它有三個參數：第一個參數叫 `mathFunction`，型別是`(Int, Int) -> Int`，你可以傳入任何這種型別的函式；第二個和第三個參數叫 `a` 和 `b`，它們的型別都是 `Int`，這兩個值作為已給的函式的輸入值。

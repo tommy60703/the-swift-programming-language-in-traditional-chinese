@@ -9,7 +9,7 @@
 - [析構過程原理](#how_deinitialization_works)
 - [析構函式操作](#deinitializers_in_action)
 
-在一個類別的實例被釋放之前，析構函式被立即呼叫。用關鍵字`deinit`來標示析構函式，類別似於初始化函式用`init`來標示。析構函式只適用於類別型別。
+在一個類別的實例被釋放之前，析構函式被立即呼叫。用關鍵字`deinit`來標示析構函式，類似於初始化函式用`init`來標示。析構函式只適用於類型別。
 
 <a name="how_deinitialization_works"></a>
 ##析構過程原理
@@ -31,7 +31,7 @@ deinit {
 <a name="deinitializers_in_action"></a>
 ##析構函式操作
 
-這裡是一個析構函式操作的範例。這個範例是一個簡單的游戲，定義了兩種新型別，`Bank`和`Player`。`Bank`結構管理一個虛擬貨幣的流通，在這個流通中`Bank`永遠不可能擁有超過 10,000 的硬幣。在這個游戲中有且只能有一個`Bank`存在，因此`Bank`由帶有靜態屬性和靜態方法的結構實作，從而儲存和管理其當前的狀態。
+這裡是一個析構函式操作的範例。這個範例是一個簡單的遊戲，定義了兩種新型別，`Bank`和`Player`。`Bank`結構管理一個虛擬貨幣的流通，在這個流通中`Bank`永遠不可能擁有超過 10,000 的硬幣。在這個遊戲中有且只能有一個`Bank`存在，因此`Bank`由帶有靜態屬性和靜態方法的結構實作，從而儲存和管理其當前的狀態。
 
 ```swift
 struct Bank {
@@ -53,7 +53,7 @@ struct Bank {
 
 `receiveCoins`方法只是將 bank 的硬幣儲存和接收到的硬幣數目相加，再保存回 bank。
 
-`Player`類別描述了游戲中的一個玩家。每一個 player 在任何時刻都有一定數量的硬幣儲存在他們的錢包中。這通過 player 的`coinsInPurse`屬性來體現：
+`Player`類別描述了遊戲中的一個玩家。每一個 player 在任何時刻都有一定數量的硬幣儲存在他們的錢包中。這通過 player 的`coinsInPurse`屬性來體現：
 
 ```swift
 class Player {
@@ -83,7 +83,7 @@ println("There are now \(Bank.coinsInBank) coins left   in the bank")
 // 輸出 "There are now 9900 coins left in the bank"
 ```
 
-一個新的`Player`實例隨著一個 100 個硬幣（如果有）的請求而被創建。這`個Player`實例儲存在一個名為`playerOne`的可選`Player`變數中。這裡使用一個可選變數，是因為玩家可以隨時離開游戲。設置為可選使得你可以跟蹤當前是否有玩家在游戲中。
+一個新的`Player`實例隨著一個 100 個硬幣（如果有）的請求而被創建。這`個Player`實例儲存在一個名為`playerOne`的可選`Player`變數中。這裡使用一個可選變數，是因為玩家可以隨時離開遊戲。設置為可選使得你可以跟蹤當前是否有玩家在遊戲中。
 
 因為`playerOne`是可選的，所以由一個感嘆號（`!`）來修飾，每當其`winCoins`方法被呼叫時，`coinsInPurse`屬性被存取並列印出它的預設硬幣數目。
 
@@ -105,4 +105,4 @@ println("The bank now has \(Bank.coinsInBank) coins")
 // 輸出 "The bank now has 10000 coins"
 ```
 
-玩家現在已經離開了游戲。這表明是要將可選的`playerOne`變數設置為`nil`，意思是“沒有`Player`實例”。當這種情況發生的時候，`playerOne`變數對`Player`實例的參考被破壞了。沒有其它屬性或者變數參考`Player`實例，因此為了清空它占用的內存從而釋放它。在這發生前一步，其析構函式被自動呼叫，其硬幣被回傳到銀行。
+玩家現在已經離開了遊戲。這表明是要將可選的`playerOne`變數設置為`nil`，意思是「沒有`Player`實例」。當這種情況發生的時候，`playerOne`變數對`Player`實例的參考被破壞了。沒有其它屬性或者變數參考`Player`實例，因此為了清空它占用的內存從而釋放它。在這發生前一步，其析構函式被自動呼叫，其硬幣被回傳到銀行。

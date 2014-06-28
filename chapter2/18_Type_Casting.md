@@ -14,7 +14,7 @@
 
 _型別檢查_是一種檢查類別實例的方式，並且或者也是讓實例作為它的父類別或者子類別的一種方式。
 
-型別檢查在 Swift 中使用`is` 和 `as`操作符實作。這兩個操作符提供了一種簡單達意的方式去檢查值的型別或者轉換它的型別。
+型別檢查在 Swift 中使用`is` 和 `as`運算子實作。這兩個運算子提供了一種簡單達意的方式去檢查值的型別或者轉換它的型別。
 
 你也可以用來檢查一個類別是否實作了某個協定，就像在 [Checking for Protocol Conformance](Protocols.html#//apple_ref/doc/uid/TP40014097-CH25-XID_363)部分講述的一樣。
 
@@ -72,7 +72,7 @@ let library = [
 <a name="checking_type"></a>
 ## 檢查型別（Checking Type）
 
-用型別檢查操作符(`is`)來檢查一個實例是否屬於特定子型別。若實例屬於那個子型別，型別檢查操作符回傳 `true` ，否則回傳 `false` 。
+用型別檢查運算子(`is`)來檢查一個實例是否屬於特定子型別。若實例屬於那個子型別，型別檢查運算子回傳 `true` ，否則回傳 `false` 。
 
 下面的範例定義了兩個變數，`movieCount` 和 `songCount`，用來計算陣列`library` 中 `Movie` 和 `Song` 型別的實例數量。
 
@@ -102,9 +102,9 @@ Song`檢查item是否為`Song`型別的實例。在迴圈結束後，`movieCount
 <a name="downcasting"></a>
 ## 向下轉型（Downcasting）
 
-某型別的一個常數或變數可能在幕後實際上屬於一個子類別。你可以相信，上面就是這種情況。你可以嘗試向下轉到它的子型別，用型別檢查操作符(`as`)
+某型別的一個常數或變數可能在幕後實際上屬於一個子類別。你可以相信，上面就是這種情況。你可以嘗試向下轉到它的子型別，用型別檢查運算子(`as`)
 
-因為向下轉型可能會失敗，型別轉型操作符帶有兩種不同形式。可選形式（ optional form） `as?` 回傳一個你試圖下轉成的型別的可選值（optional value）。強制形式 `as` 把試圖向下轉型和強制解包（force-unwraps）結果作為一個混合動作。
+因為向下轉型可能會失敗，型別轉型運算子帶有兩種不同形式。可選形式（ optional form） `as?` 回傳一個你試圖下轉成的型別的可選值（optional value）。強制形式 `as` 把試圖向下轉型和強制解包（force-unwraps）結果作為一個混合動作。
 
 當你不確定向下轉型可以成功時，用型別檢查的可選形式(`as?`)。可選形式的型別檢查總是回傳一個可選值（optional value），並且若下轉是不可能的，可選值將是 `nil` 。這使你能夠檢查向下轉型是否成功。
 
@@ -132,12 +132,12 @@ for item in library {
 
 示例首先試圖將 `item` 下轉為 `Movie`。因為 `item` 是一個 `MediaItem`
 型別的實例，它可能是一個`Movie`；同樣，它可能是一個 `Song`，或者僅僅是基類別
-`MediaItem`。因為不確定，`as?`形式在試圖下轉時將返還一個可選值。 `item as Movie` 的回傳值是`Movie?`型別或 “optional `Movie`”。
+`MediaItem`。因為不確定，`as?`形式在試圖下轉時將返還一個可選值。 `item as Movie` 的回傳值是`Movie?`型別或 「optional `Movie`」。
 
 當向下轉型為 `Movie` 應用在兩個 `Song`
-實例時將會失敗。為了處理這種情況，上面的範例使用了可選綁定（optional binding）來檢查可選 `Movie`真的包含一個值（這個是為了判斷下轉是否成功。）可選綁定是這樣寫的“`if let movie = item as? Movie`”，可以這樣解讀：
+實例時將會失敗。為了處理這種情況，上面的範例使用了可選綁定（optional binding）來檢查可選 `Movie`真的包含一個值（這個是為了判斷下轉是否成功。）可選綁定是這樣寫的「`if let movie = item as? Movie`」，可以這樣解讀：
 
-“嘗試將 `item` 轉為 `Movie`型別。若成功，設置一個新的臨時常數 `movie`  來儲存回傳的可選`Movie`”
+「嘗試將 `item` 轉為 `Movie`型別。若成功，設置一個新的臨時常數 `movie`  來儲存回傳的可選`Movie`」
 
 若向下轉型成功，然後`movie`的屬性將用於列印一個`Movie`實例的描述，包括它的導演的名字`director`。當`Song`被找到時，一個相近的原理被用來檢測 `Song` 實例和列印它的描述。
 
@@ -158,7 +158,7 @@ Swift為不確定型別提供了兩種特殊型別別名：
 ### `AnyObject`型別
 
 當需要在工作中使用 Cocoa
-APIs，它一般接收一個`AnyObject[]`型別的陣列，或者說“一個任何物件型別的陣列”。這是因為 Objective-C 沒有明確的型別化陣列。但是，你常常可以確定包含在僅從你知道的 API 資訊提供的這樣一個陣列中的物件的型別。
+APIs，它一般接收一個`AnyObject[]`型別的陣列，或者說「一個任何物件型別的陣列」。這是因為 Objective-C 沒有明確的型別化陣列。但是，你常常可以確定包含在僅從你知道的 API 資訊提供的這樣一個陣列中的物件的型別。
 
 在這些情況下，你可以使用強制形式的型別檢查(`as`)來下轉在陣列中的每一項到比 `AnyObject` 更明確的型別，不需要可選解析（optional unwrapping）。
 
@@ -211,9 +211,9 @@ things.append((3.0, 5.0))
 things.append(Movie(name: "Ghostbusters", director: "Ivan Reitman"))
 ```
 
-`things` 陣列包含兩個 `Int` 值，2個 `Double` 值，1個 `String` 值，一個元組 `(Double, Double)` ，Ivan Reitman 導演的電影“Ghostbusters”。
+`things` 陣列包含兩個 `Int` 值，2個 `Double` 值，1個 `String` 值，一個元組 `(Double, Double)` ，Ivan Reitman 導演的電影「Ghostbusters」。
 
-你可以在 `switch` `cases`裡用`is` 和 `as` 操作符來發覺只知道是 `Any` 或 `AnyObject`的常數或變數的型別。 下面的示例迭代 `things`陣列中的每一項的並用`switch`語句查找每一項的型別。這幾種`switch`語句的情形綁定它們匹配的值到一個規定型別的常數，讓它們可以列印它們的值：
+你可以在 `switch` `cases`裡用`is` 和 `as` 運算子來發覺只知道是 `Any` 或 `AnyObject`的常數或變數的型別。 下面的示例迭代 `things`陣列中的每一項的並用`switch`語句查找每一項的型別。這幾種`switch`語句的情形綁定它們匹配的值到一個規定型別的常數，讓它們可以列印它們的值：
 
 ```swift
 for thing in things {
@@ -250,4 +250,4 @@ for thing in things {
 
 
 > 注意：  
-在一個switch語句的case中使用強制形式的型別檢查操作符（as, 而不是 as?）來檢查和轉換到一個明確的型別。在 switch case 語句的內容中這種檢查總是安全的。
+在一個switch語句的case中使用強制形式的型別檢查運算子（as, 而不是 as?）來檢查和轉換到一個明確的型別。在 switch case 語句的內容中這種檢查總是安全的。

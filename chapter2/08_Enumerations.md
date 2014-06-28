@@ -13,13 +13,13 @@
 
 列舉定義了一個通用型別的一組相關的值，使你可以在你的程式碼中以一個安全的方式來使用這些值。
 
-如果你熟悉 C 語言，你就會知道，在 C 語言中列舉指定相關名稱為一組整型值。Swift 中的列舉更加靈活，不必給每一個列舉成員提供一個值。如果一個值（被認為是“原始”值）被提供給每個列舉成員，則該值可以是一個字串，一個字元，或是一個整型值或浮點值。
+如果你熟悉 C 語言，你就會知道，在 C 語言中列舉指定相關名稱為一組整型值。Swift 中的列舉更加靈活，不必給每一個列舉成員提供一個值。如果一個值（被認為是「原始」值）被提供給每個列舉成員，則該值可以是一個字串，一個字元，或是一個整型值或浮點值。
 
 此外，列舉成員可以指定任何型別的實例值儲存到列舉成員值中，就像其他語言中的聯合體（unions）和變體（variants）。你可以定義一組通用的相關成員作為列舉的一部分，每一組都有不同的一組與它相關的適當型別的數值。
 
-在 Swift 中，列舉型別是一等（first-class）型別。它們采用了很多傳統上只被類別（class)所支援的特征，例如計算型屬性（computed properties)，用於提供關於列舉當前值的附加資訊， 實例方法（instance methods），用於提供和列舉所代表的值相關聯的功能。列舉也可以定義構造函式（initializers）來提供一個初始成員值；可以在原始的實作基礎上擴展它們的功能；可以遵守協定（protocols）來提供標準的功能。
+在 Swift 中，列舉型別是一等（first-class）型別。它們采用了很多傳統上只被類別（class)所支援的特征，例如計算型屬性（computed properties)，用於提供關於列舉當前值的附加資訊， 實例方法（instance methods），用於提供和列舉所代表的值相關聯的功能。列舉也可以定義建構函式（initializers）來提供一個初始成員值；可以在原始的實作基礎上擴展它們的功能；可以遵守協定（protocols）來提供標準的功能。
 
-欲了解更多相關功能，請參見[屬性（Properties）](10_Properties.html)，[方法（Methods）](11_Methods.html)，[構造過程（Initialization）](14_Initialization.html)，[擴展（Extensions）](20_Extensions.html)和[協定（Protocols）](21_Protocols.html)。
+欲了解更多相關功能，請參見[屬性（Properties）](10_Properties.html)，[方法（Methods）](11_Methods.html)，[建構過程（Initialization）](14_Initialization.html)，[擴展（Extensions）](20_Extensions.html)和[協定（Protocols）](21_Protocols.html)。
 
 <a name="enumeration_syntax"></a>
 ## 列舉語法
@@ -87,12 +87,12 @@ case .East:
 case .West:
     println("Where the skies are blue")
 }
-// 輸出 "Watch out for penguins”
+// 輸出 "Watch out for penguins」
 ```
 
 你可以如此理解這段程式碼：
 
-“考慮`directionToHead`的值。當它等於`.North`，列印`“Lots of planets have a north”`。當它等於`.South`，列印`“Watch out for penguins”`。”
+「考慮`directionToHead`的值。當它等於`.North`，列印`「Lots of planets have a north」`。當它等於`.South`，列印`「Watch out for penguins」`。」
 
 等等依次類別推。
 
@@ -108,7 +108,7 @@ case .Earth:
 default:
     println("Not a safe place for humans")
 }
-// 輸出 "Mostly harmless”
+// 輸出 "Mostly harmless」
 ```
 
 <a name="associated_values"></a>
@@ -118,7 +118,7 @@ default:
 
 你可以定義 Swift 的列舉儲存任何型別的實例值，如果需要的話，每個成員的資料型別可以是各不相同的。列舉的這種特性跟其他語言中的可辨識聯合（discriminated unions），標簽聯合（tagged unions），或者變體（variants）相似。
 
-例如，假設一個函式庫存跟蹤系統需要利用兩種不同型別的條形碼來跟蹤商品。有些商品上標有 UPC-A 格式的一維碼，它使用數字 0 到 9。每一個條形碼都有一個代表“數字系統”的數字，該數字後接 10 個代表“標識符”的數字。最後一個數字是“檢查”位，用來驗證程式碼是否被正確掃描：
+例如，假設一個函式庫存跟蹤系統需要利用兩種不同型別的條形碼來跟蹤商品。有些商品上標有 UPC-A 格式的一維碼，它使用數字 0 到 9。每一個條形碼都有一個代表「數字系統」的數字，該數字後接 10 個代表「識別符號」的數字。最後一個數字是「檢查」位，用來驗證程式碼是否被正確掃描：
 
 <img width="252" height="120" alt="" src="https://developer.apple.com/library/prerelease/ios/documentation/Swift/Conceptual/Swift_Programming_Language/Art/barcode_UPC_2x.png">
 
@@ -139,7 +139,7 @@ enum Barcode {
 
 以上程式碼可以這麼理解：
 
-“定義一個名為`Barcode`的列舉型別，它可以是`UPCA`的一個實例值（`Int`，`Int`，`Int`），或者`QRCode`的一個字串型別（`String`）實例值。”
+「定義一個名為`Barcode`的列舉型別，它可以是`UPCA`的一個實例值（`Int`，`Int`，`Int`），或者`QRCode`的一個字串型別（`String`）實例值。」
 
 這個定義不提供任何`Int`或`String`的實際值，它只是定義了，當`Barcode`常數和變數等於`Barcode.UPCA`或`Barcode.QRCode`時，實例值的型別。
 
@@ -149,7 +149,7 @@ enum Barcode {
 var productBarcode = Barcode.UPCA(8, 85909_51226, 3)
 ```
 
-以上範例創建了一個名為`productBarcode`的新變數，並且賦給它一個`Barcode.UPCA`的實例元組值`(8, 8590951226, 3)`。提供的“標識符”值在整數字中有一個下劃線，使其便於閱讀條形碼。
+以上範例創建了一個名為`productBarcode`的新變數，並且賦給它一個`Barcode.UPCA`的實例元組值`(8, 8590951226, 3)`。提供的「識別符號」值在整數字中有一個底線，使其便於閱讀條形碼。
 
 同一個商品可以被分配給一個不同型別的條形碼，如：
 
@@ -168,7 +168,7 @@ case .UPCA(let numberSystem, let identifier, let check):
 case .QRCode(let productCode):
     println("QR code with value of \(productCode).")
 }
-// 輸出 "QR code with value of ABCDEFGHIJKLMNOP.”
+// 輸出 "QR code with value of ABCDEFGHIJKLMNOP.」
 ```
 
 如果一個列舉成員的所有實例值被提取為常數，或者它們全部被提取為變數，為了簡潔，你可以只放置一個`var`或者`let`標注在成員名稱前：
@@ -228,7 +228,7 @@ let possiblePlanet = Planet.fromRaw(7)
 // possiblePlanet is of type Planet? and equals Planet.Uranus
 ```
 
-然而，並非所有可能的`Int`值都可以找到一個匹配的行星。正因為如此，`fromRaw`方法可以回傳一個***可選***的列舉成員。在上面的範例中，`possiblePlanet`是`Planet?`型別，或“可選的`Planet`”。
+然而，並非所有可能的`Int`值都可以找到一個匹配的行星。正因為如此，`fromRaw`方法可以回傳一個***可選***的列舉成員。在上面的範例中，`possiblePlanet`是`Planet?`型別，或「可選的`Planet`」。
 
 如果你試圖尋找一個位置為9的行星，通過`fromRaw`回傳的可選`Planet`值將是`nil`：
 

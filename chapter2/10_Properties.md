@@ -23,7 +23,7 @@
 
 簡單來說，一個儲存屬性就是儲存在特定類別或結構的實例裡的一個常數或變數，儲存屬性可以是*變數儲存屬性*（用關鍵字`var`定義），也可以是*常數儲存屬性*（用關鍵字`let`定義）。
 
-可以在定義儲存屬性的時候指定預設值，請參考[構造過程](../chapter2/14_Initialization.html)一章的[預設屬性值](../chapter2/14_Initialization.html#default_property_values)一節。也可以在構造過程中設置或修改儲存屬性的值，甚至修改常數儲存屬性的值，請參考[構造過程](../chapter2/14_Initialization.html)一章的[在初始化階段修改常數儲存屬性](../chapter2/14_Initialization.html#modifying_constant_properties_during_initialization)一節。
+可以在定義儲存屬性的時候指定預設值，請參考[建構過程](../chapter2/14_Initialization.html)一章的[預設屬性值](../chapter2/14_Initialization.html#default_property_values)一節。也可以在建構過程中設置或修改儲存屬性的值，甚至修改常數儲存屬性的值，請參考[建構過程](../chapter2/14_Initialization.html)一章的[在初始化階段修改常數儲存屬性](../chapter2/14_Initialization.html#modifying_constant_properties_during_initialization)一節。
 
 下面的範例定義了一個名為`FixedLengthRange`的結構，它描述了一個在創建後無法修改值域寬度的區間：
 
@@ -64,9 +64,9 @@ rangeOfFourItems.firstValue = 6
 延遲儲存屬性是指當第一次被呼叫的時候才會計算其初始值的屬性。在屬性宣告前使用`@lazy`來標示一個延遲儲存屬性。
 
 > 注意：  
-> 必須將延遲儲存屬性宣告成變數（使用`var`關鍵字），因為屬性的值在實例構造完成之前可能無法得到。而常數屬性在構造過程完成之前必須要有初始值，因此無法宣告成延遲屬性。  
+> 必須將延遲儲存屬性宣告成變數（使用`var`關鍵字），因為屬性的值在實例建構完成之前可能無法得到。而常數屬性在建構過程完成之前必須要有初始值，因此無法宣告成延遲屬性。  
 
-延遲屬性很有用，當屬性的值依賴於在實例的構造過程結束前無法知道具體值的外部因素時，或者當屬性的值需要複雜或大量計算時，可以只在需要的時候來計算它。
+延遲屬性很有用，當屬性的值依賴於在實例的建構過程結束前無法知道具體值的外部因素時，或者當屬性的值需要複雜或大量計算時，可以只在需要的時候來計算它。
 
 下面的範例使用了延遲儲存屬性來避免複雜類別的不必要的初始化。範例中定義了`DataImporter`和`DataManager`兩個類別，下面是部分程式碼：
 
@@ -103,7 +103,7 @@ manager.data += "Some more data"
 ```swift
 println(manager.importer.fileName)
 // DataImporter 實例的 importer 屬性現在被創建了
-// 輸出 "data.txt”
+// 輸出 "data.txt」
 ```
 
 <a name="stored_properties_and_instance_variables"></a>
@@ -146,7 +146,7 @@ var square = Rect(origin: Point(x: 0.0, y: 0.0),
 let initialSquareCenter = square.center
 square.center = Point(x: 15.0, y: 15.0)
 println("square.origin is now at (\(square.origin.x), \(square.origin.y))")
-// 輸出 "square.origin is now at (10.0, 10.0)”
+// 輸出 "square.origin is now at (10.0, 10.0)」
 ```
 
 這個範例定義了 3 個幾何形狀的結構：
@@ -189,20 +189,20 @@ struct AlternativeRect {
 ```
 
 <a name="readonly_computed_properties"></a>
-### 只讀計算屬性
+### 唯讀計算屬性
 
-只有 getter 沒有 setter 的計算屬性就是*只讀計算屬性*。只讀計算屬性總是回傳一個值，可以通過點運算子存取，但不能設置新的值。
+只有 getter 沒有 setter 的計算屬性就是*唯讀計算屬性*。唯讀計算屬性總是回傳一個值，可以通過點運算子存取，但不能設置新的值。
 
 <<<<<<< HEAD
 > 注意：  
-> 必須使用`var`關鍵字定義計算屬性，包括只讀計算屬性，因為他們的值不是固定的。`let`關鍵字只用來宣告常數屬性，表示初始化後再也無法修改的值。  
+> 必須使用`var`關鍵字定義計算屬性，包括唯讀計算屬性，因為他們的值不是固定的。`let`關鍵字只用來宣告常數屬性，表示初始化後再也無法修改的值。  
 =======
 > 注意：
 >
-> 必須使用`var`關鍵字定義計算屬性，包括只讀計算屬性，因為它們的值不是固定的。`let`關鍵字只用來宣告常數屬性，表示初始化後再也無法修改的值。
+> 必須使用`var`關鍵字定義計算屬性，包括唯讀計算屬性，因為它們的值不是固定的。`let`關鍵字只用來宣告常數屬性，表示初始化後再也無法修改的值。
 >>>>>>> a516af6a531a104ec88da0d236ecf389a5ec72af
 
-只讀計算屬性的宣告可以去掉`get`關鍵字和花括號：
+唯讀計算屬性的宣告可以去掉`get`關鍵字和花括號：
 
 ```swift
 struct Cuboid {
@@ -216,7 +216,7 @@ println("the volume of fourByFiveByTwo is \(fourByFiveByTwo.volume)")
 // 輸出 "the volume of fourByFiveByTwo is 40.0"
 ```
 
-這個範例定義了一個名為`Cuboid`的結構，表示三維空間的立方體，包含`width`、`height`和`depth`屬性，還有一個名為`volume`的只讀計算屬性用來回傳立方體的體積。設置`volume`的值毫無意義，因為通過`width`、`height`和`depth`就能算出`volume`。然而，`Cuboid`提供一個只讀計算屬性來讓外部用戶直接獲取體積是很有用的。
+這個範例定義了一個名為`Cuboid`的結構，表示三維空間的立方體，包含`width`、`height`和`depth`屬性，還有一個名為`volume`的唯讀計算屬性用來回傳立方體的體積。設置`volume`的值毫無意義，因為通過`width`、`height`和`depth`就能算出`volume`。然而，`Cuboid`提供一個唯讀計算屬性來讓外部使用者直接獲取體積是很有用的。
 
 <a name="property_observers"></a>
 ## 屬性監視器
@@ -235,7 +235,7 @@ println("the volume of fourByFiveByTwo is \(fourByFiveByTwo.volume)")
 
 `willSet`監視器會將新的屬性值作為固定參數傳入，在`willSet`的實作程式碼中可以為這個參數指定一個名稱，如果不指定則參數仍然可用，這時使用預設名稱`newValue`表示。
 
-類別似地，`didSet`監視器會將舊的屬性值作為參數傳入，可以為該參數命名或者使用預設參數名`oldValue`。
+類似地，`didSet`監視器會將舊的屬性值作為參數傳入，可以為該參數命名或者使用預設參數名`oldValue`。
 
 <<<<<<< HEAD
 > 注意：  
@@ -279,7 +279,7 @@ stepCounter.totalSteps = 896
 
 範例中的`willSet`監視器將表示新值的參數自定義為`newTotalSteps`，這個監視器只是簡單的將新的值輸出。
 
-`didSet`監視器在`totalSteps`的值改變後被呼叫，它把新的值和舊的值進行對比，如果總的步數增加了，就輸出一個消息表示增加了多少步。`didSet`沒有提供自定義名稱，所以預設值`oldValue`表示舊值的參數名。
+`didSet`監視器在`totalSteps`的值改變後被呼叫，它把新的值和舊的值進行對比，如果總的步數增加了，就輸出一個訊息表示增加了多少步。`didSet`沒有提供自定義名稱，所以預設值`oldValue`表示舊值的參數名。
 
 > 注意：  
 > 如果在`didSet`監視器裡為屬性賦值，這個值會替換監視器之前設置的值。  
@@ -289,7 +289,7 @@ stepCounter.totalSteps = 896
 
 計算屬性和屬性監視器所描述的模式也可以用於*全域變數*和*局部變數*，全域變數是在函式、方法、閉包或任何型別之外定義的變數，局部變數是在函式、方法或閉包內部定義的變數。
 
-前面章節提到的全域或局部變數都屬於儲存型變數，跟儲存屬性類別似，它提供特定型別的儲存空間，並允許讀取和寫入。
+前面章節提到的全域或局部變數都屬於儲存型變數，跟儲存屬性類似，它提供特定型別的儲存空間，並允許讀取和寫入。
 
 另外，在全域或局部範圍都可以定義計算型變數和為儲存型變數定義監視器，計算型變數跟計算屬性一樣，回傳一個計算的值而不是儲存值，宣告格式也完全一樣。
 
@@ -311,7 +311,7 @@ stepCounter.totalSteps = 896
 值型別的儲存型型別屬性可以是變數或常數，計算型型別屬性跟實例的計算屬性一樣定義成變數屬性。
 
 > 注意：  
-> 跟實例的儲存屬性不同，必須給儲存型型別屬性指定預設值，因為型別本身無法在初始化過程中使用構造器給型別屬性賦值。  
+> 跟實例的儲存屬性不同，必須給儲存型型別屬性指定預設值，因為型別本身無法在初始化過程中使用建構器給型別屬性賦值。  
 
 <a name="type_property_syntax"></a>
 ###型別屬性語法
@@ -341,7 +341,7 @@ class SomeClass {
 ```
 
 > 注意：  
-> 範例中的計算型型別屬性是只讀的，但也可以定義可讀可寫的計算型型別屬性，跟實例計算屬性的語法類別似。  
+> 範例中的計算型型別屬性是唯讀的，但也可以定義可讀可寫的計算型型別屬性，跟實例計算屬性的語法類似。  
 
 <a name="querying_and_setting_type_properties"></a>
 ###獲取和設置型別屬性的值
@@ -356,7 +356,7 @@ println(SomeStructure.storedTypeProperty)
 // 輸出 "Some value."
 SomeStructure.storedTypeProperty = "Another value."
 println(SomeStructure.storedTypeProperty)
-// 輸出 "Another value.”
+// 輸出 "Another value.」
 ```
 
 下面的範例定義了一個結構，使用兩個儲存型型別屬性來表示多個聲道的聲音電平值，每個聲道有一個 0 到 10 之間的整數表示聲音電平值。

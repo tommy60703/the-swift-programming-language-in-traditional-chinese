@@ -41,25 +41,25 @@ class Vehicle {
 }
 ```
 
-`Vehicle`類別定義了*構造器（initializer）*來設置屬性的值。構造器會在[構造過程](../chapter2/_14Initialization.html)一節中詳細介紹，這裡我們做一下簡單介紹，以便於講解子類別中繼承來的屬性如何被修改。
+`Vehicle`類別定義了*建構器（initializer）*來設置屬性的值。建構器會在[建構過程](../chapter2/_14Initialization.html)一節中詳細介紹，這裡我們做一下簡單介紹，以便於講解子類別中繼承來的屬性如何被修改。
 
-構造器用於創建某個型別的一個新實例。儘管構造器並不是方法，但在語法上，兩者很相似。構造器的工作是准備新實例以供使用，並確保實例中的所有屬性都擁有有效的初始化值。
+建構器用於創建某個型別的一個新實例。儘管建構器並不是方法，但在語法上，兩者很相似。建構器的工作是準備新實例以供使用，並確保實例中的所有屬性都擁有有效的初始化值。
 
-構造器的最簡單形式就像一個沒有參數的實例方法，使用`init`關鍵字：
+建構器的最簡單形式就像一個沒有參數的實例方法，使用`init`關鍵字：
 
 ```swift
 init() {
-    // 執行構造過程
+    // 執行建構過程
 }
 ```
 
-如果要創建一個`Vehicle`類別的新實例，使用*構造器*語法呼叫上面的初始化器，即類別名後面跟一個空的小括號：
+如果要創建一個`Vehicle`類別的新實例，使用*建構器*語法呼叫上面的初始化器，即類別名後面跟一個空的小括號：
 
 ```swift
 let someVehicle = Vehicle()
 ```
 
-這個`Vehicle`類別的構造器為任意的一輛車設置一些初始化屬性值（`numberOfWheels = 0 `和`maxPassengers = 1`）。
+這個`Vehicle`類別的建構器為任意的一輛車設置一些初始化屬性值（`numberOfWheels = 0 `和`maxPassengers = 1`）。
 
 `Vehicle`類別定義了車輛的共同特性，但這個類別本身並沒太大用處。為了使它更為實用，你需要進一步細化它來描述更具體的車輛。
 
@@ -80,7 +80,7 @@ class SomeClass: SomeSuperclass {
 
 我們可以將這讀作：
 
-“定義一個新的類別叫`Bicycle `，它繼承了`Vehicle`的特性”；
+「定義一個新的類別叫`Bicycle `，它繼承了`Vehicle`的特性」；
 
 ```swift
 class Bicycle: Vehicle {
@@ -93,12 +93,12 @@ class Bicycle: Vehicle {
 preview
  `Bicycle`是`Vehicle`的子類別，`Vehicle`是`Bicycle`的超類別。新的`Bicycle`類別自動獲得`Vehicle`類別的特性，比如 `maxPassengers`和`numberOfWheels`屬性。你可以在子類別中定制這些特性，或添加新的特性來更好地描述`Bicycle`類別。
 
-`Bicycle`類別定義了一個構造器來設置它定制的特性（自行車只有2個輪子）。`Bicycle`的構造器呼叫了它父類別`Vehicle`的構造器 `super.init()`，以此確保在`Bicycle`類別試圖修改那些繼承來的屬性前`Vehicle`類別已經初始化過它們了。
+`Bicycle`類別定義了一個建構器來設置它定制的特性（自行車只有2個輪子）。`Bicycle`的建構器呼叫了它父類別`Vehicle`的建構器 `super.init()`，以此確保在`Bicycle`類別試圖修改那些繼承來的屬性前`Vehicle`類別已經初始化過它們了。
 
 > 注意：  
 不像 Objective-C，在 Swift 中，初始化器預設是不繼承的，見[初始化器的繼承與重寫](../chapter2/_14Initialization.html#initializer_inheritance_and_ overriding)
 
-`Vehicle`類別中`maxPassengers`的預設值對自行車來說已經是正確的，因此在`Bicycle`的構造器中並沒有改變它。而`numberOfWheels`原來的值對自行車來說是不正確的，因此在初始化器中將它更改為 2。
+`Vehicle`類別中`maxPassengers`的預設值對自行車來說已經是正確的，因此在`Bicycle`的建構器中並沒有改變它。而`numberOfWheels`原來的值對自行車來說是不正確的，因此在初始化器中將它更改為 2。
 
 `Bicycle`不僅可以繼承`Vehicle`的屬性，還可以繼承它的方法。如果你創建了一個`Bicycle`類別的實例，你就可以呼叫它繼承來的`description`方法，並且可以看到，它輸出的屬性值已經發生了變化：
 
@@ -174,7 +174,7 @@ class Car: Vehicle {
 }
 ```
 
-`Car`宣告了一個新的儲存型屬性`speed`，它是`Double`型別的，預設值是`0.0`，表示“時速是0英裡”。`Car`有自己的初始化器，它將乘客的最大數量設為5，輪子數量設為4。
+`Car`宣告了一個新的儲存型屬性`speed`，它是`Double`型別的，預設值是`0.0`，表示「時速是0英裡」。`Car`有自己的初始化器，它將乘客的最大數量設為5，輪子數量設為4。
 
 `Car`重寫了繼承來的`description`方法，它的宣告與`Vehicle`中的`description`方法一致，宣告前面加上了`override`關鍵字。
 
@@ -196,7 +196,7 @@ println("Car: \(car.description())")
 
 你可以提供定制的 getter（或 setter）來重寫任意繼承來的屬性，無論繼承來的屬性是儲存型的還是計算型的屬性。子類別並不知道繼承來的屬性是儲存型的還是計算型的，它只知道繼承來的屬性會有一個名字和型別。你在重寫一個屬性時，必需將它的名字和型別都寫出來。這樣才能使編譯器去檢查你重寫的屬性是與超類別中同名同型別的屬性相匹配的。
 
-你可以將一個繼承來的只讀屬性重寫為一個讀寫屬性，只需要你在重寫版本的屬性裡提供 getter 和 setter 即可。但是，你不可以將一個繼承來的讀寫屬性重寫為一個只讀屬性。
+你可以將一個繼承來的唯讀屬性重寫為一個讀寫屬性，只需要你在重寫版本的屬性裡提供 getter 和 setter 即可。但是，你不可以將一個繼承來的讀寫屬性重寫為一個唯讀屬性。
 
 > 注意：  
 如果你在重寫屬性中提供了 setter，那麼你也一定要提供 getter。如果你不想在重寫版本中的 getter 裡修改繼承來的屬性值，你可以直接回傳`super.someProperty`來回傳繼承來的值。正如下面的`SpeedLimitedCar`的範例所示。
@@ -232,7 +232,7 @@ println("SpeedLimitedCar: \(limitedCar.description())")
 你可以在屬性重寫中為一個繼承來的屬性添加屬性觀察器。這樣一來，當繼承來的屬性值發生改變時，你就會被通知到，無論那個屬性原本是如何實作的。關於屬性觀察器的更多內容，請看[屬性觀察器](../chapter2/_10Properties.html#property_observer)。
 
 > 注意：  
-你不可以為繼承來的常數儲存型屬性或繼承來的只讀計算型屬性添加屬性觀察器。這些屬性的值是不可以被設置的，所以，為它們提供`willSet`或`didSet`實作是不恰當。此外還要注意，你不可以同時提供重寫的 setter 和重寫的屬性觀察器。如果你想觀察屬性值的變化，並且你已經為那個屬性提供了定制的 setter，那麼你在 setter 中就可以觀察到任何值變化了。
+你不可以為繼承來的常數儲存型屬性或繼承來的唯讀計算型屬性添加屬性觀察器。這些屬性的值是不可以被設置的，所以，為它們提供`willSet`或`didSet`實作是不恰當。此外還要注意，你不可以同時提供重寫的 setter 和重寫的屬性觀察器。如果你想觀察屬性值的變化，並且你已經為那個屬性提供了定制的 setter，那麼你在 setter 中就可以觀察到任何值變化了。
 
 下面的範例定義了一個新類別叫`AutomaticCar`，它是`Car`的子類別。`AutomaticCar`表示自動擋汽車，它可以根據當前的速度自動選擇合適的擋位。`AutomaticCar`也提供了定制的`description`方法，可以輸出當前擋位。
 

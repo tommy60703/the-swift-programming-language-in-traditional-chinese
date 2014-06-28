@@ -1,37 +1,37 @@
-> 翻译：[dabing1022](https://github.com/dabing1022)
-> 校对：[numbbbbb](https://github.com/numbbbbb)
+> 翻譯：[dabing1022](https://github.com/dabing1022)
+> 校對：[numbbbbb](https://github.com/numbbbbb)
 
 
-# 关于语言附注
+# 關於語言附註
 -----------------
 
-本页内容包括：
+本頁內容包括：
 
-- [如何阅读语法](#how_to_read_the_grammar)
+- [如何閱讀語法](#how_to_read_the_grammar)
 
-本书的这一节描述了Swift编程语言的形式语法。这里描述的语法是为了帮助您更详细的了解该语言，而不是让您直接实现一个解析器或编译器。
+本書的這一節描述了Swift程式語言的形式語法。這裡描述的語法是為了幫助你更詳細的了解該語言，而不是讓你直接實作一個直譯器或編譯器。
 
 
-Swift语言相对小点，这是由于在Swift代码中几乎无处不在的许多常见的的类型，函数以及运算符都由Swift标准库来定义。虽然这些类型，函数和运算符不是Swift语言本身的一部分，但是它们被广泛用于这本书的讨论和代码范例。
+Swift語言相對小點，這是由於在Swift程式碼中幾乎無處不在的許多常見的的型別，函式以及運算子都由Swift標準函式庫來定義。雖然這些型別，函式和運算子不是Swift語言本身的一部分，但是它們被廣泛用於這本書的討論和程式碼範例。
 
 <a name="how_to_read_the_grammar"></a>
-## 如何阅读语法
+## 如何閱讀語法
 
-用来描述Swift编程语言形式语法的记法遵循下面几个约定：
+用來描述Swift程式語言形式語法的記法遵循下面幾個約定：
 
--](https://github.com/numbbbbb)箭头（→）用来标记语法产式，可以被理](https://github.com/numbbbbb)解为“可以包含”。
--  句法范畴由*斜体*文字表示，并出现在一个语法产式规则两侧。
--  义词和标点符号由粗体固定宽度的文本显示和只出现在一个语法产式规则的右边。
--  选择性的语法产式由竖线（|）分隔。当可选用的语法产式太多时，为了阅读方便，它们将被拆分为多行语法产式规则。
--  在少数情况下，常规字体文字用来描述语法产式规则的右边。
--  可选的句法范畴和文字用尾标`opt`来标记。
+-[(https://github.com/numbbbbb)箭頭（→）用來標記語法產式，可以被理](https://github.com/numbbbbb)解為“可以包含”。
+-  句法範疇由*斜體*文字表示，並出現在一個語法產式規則兩側。
+-  義詞和標點符號由粗體固定寬度的文字顯示和只出現在一個語法產式規則的右邊。
+-  選擇性的語法產式由豎線（|）分隔。當可選用的語法產式太多時，為了閱讀方便，它們將被拆分為多行語法產式規則。
+-  在少數情況下，常見字體文字用來描述語法產式規則的右邊。
+-  可選的句法範疇和文字用尾標`opt`來標記。
 
-举个例子，getter-setter的语法块的定义如下：
+舉個範例，getter-setter的語法塊的定義如下：
 
 > GRAMMAR OF A GETTER-SETTER BLOCK  
 > *getter-setter-block* → {­ [*getter-clause*](https://developer.apple.com/library/prerelease/ios/documentation/Swift/Conceptual/Swift_Programming_Language/Declarations.html#//apple_ref/swift/grammar/getter-clause) [­*setter-clause*­](https://developer.apple.com/library/prerelease/ios/documentation/Swift/Conceptual/Swift_Programming_Language/Declarations.html#//apple_ref/swift/grammar/setter-clause)*opt* ­}­ | {­ [*setter-clause*](https://developer.apple.com/library/prerelease/ios/documentation/Swift/Conceptual/Swift_Programming_Language/Declarations.html#//apple_ref/swift/grammar/setter-clause) [­*getter-clause*](https://developer.apple.com/library/prerelease/ios/documentation/Swift/Conceptual/Swift_Programming_Language/Declarations.html#//apple_ref/swift/grammar/getter-clause)­}­
 
-这个定义表明，一个getter-setter方法​​块可以由一个getter子句后跟一个可选的setter子句构成，用大括号括起来，或者由一个setter子句后跟一个getter子句构成，用大括号括起来。上述的文法产生等价于下面的两个产生，明确阐明如何二中择一：
+這個定義表明，一個getter-setter方法​​塊可以由一個getter子句後跟一個可選的setter子句構成，用大括號括起來，或者由一個setter子句後跟一個getter子句構成，用大括號括起來。上述的文法產生等價於下面的兩個產生，明確闡明如何二中擇一：
 
 > GRAMMAR OF A GETTER-SETTER BLOCK  
 > getter-setter-block → {­ [*getter-clause*](https://developer.apple.com/library/prerelease/ios/documentation/Swift/Conceptual/Swift_Programming_Language/Declarations.html#//apple_ref/swift/grammar/getter-clause) [*­setter-clause*­](https://developer.apple.com/library/prerelease/ios/documentation/Swift/Conceptual/Swift_Programming_Language/Declarations.html#//apple_ref/swift/grammar/setter-clause)*opt* ­}­­  

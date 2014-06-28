@@ -1,37 +1,37 @@
-> 翻译：[bruce0505](https://github.com/bruce0505)
-> 校对：[fd5788](https://github.com/fd5788)
+> 翻譯：[bruce0505](https://github.com/bruce0505)
+> 校對：[fd5788](https://github.com/fd5788)
 
-# 析构过程（Deinitialization）
+# 析構過程（Deinitialization）
 ---------------------------
 
-本页包含内容：
+本頁包含內容：
 
-- [析构过程原理](#how_deinitialization_works)
-- [析构函数操作](#deinitializers_in_action)
+- [析構過程原理](#how_deinitialization_works)
+- [析構函數操作](#deinitializers_in_action)
 
-在一个类的实例被释放之前，析构函数被立即调用。用关键字`deinit`来标示析构函数，类似于初始化函数用`init`来标示。析构函数只适用于类类型。
+在一個類的實例被釋放之前，析構函數被立即調用。用關鍵字`deinit`來標示析構函數，類似於初始化函數用`init`來標示。析構函數只適用於類類型。
 
 <a name="how_deinitialization_works"></a>
-##析构过程原理
+##析構過程原理
 
-Swift 会自动释放不再需要的实例以释放资源。如[自动引用计数](16_Automatic_Reference_Counting.html)那一章描述，Swift 通过_自动引用计数_（ARC）处理实例的内存管理。通常当你的实例被释放时不需要手动地去清理。但是，当使用自己的资源时，你可能需要进行一些额外的清理。例如，如果创建了一个自定义的类来打开一个文件，并写入一些数据，你可能需要在类实例被释放之前关闭该文件。
+Swift 會自動釋放不再需要的實例以釋放資源。如[自動引用計數](16_Automatic_Reference_Counting.html)那一章描述，Swift 通過_自動引用計數_（ARC）處理實例的內存管理。通常當你的實例被釋放時不需要手動地去清理。但是，當使用自己的資源時，你可能需要進行一些額外的清理。例如，如果創建了一個自定義的類來打開一個文件，並寫入一些數據，你可能需要在類實例被釋放之前關閉該文件。
 
-在类的定义中，每个类最多只能有一个析构函数。析构函数不带任何参数，在写法上不带括号：
+在類的定義中，每個類最多只能有一個析構函數。析構函數不帶任何參數，在寫法上不帶括號：
 
 ```swift
 deinit {
-    // 执行析构过程
+    // 執行析構過程
 }
 ```
 
-析构函数是在实例释放发生前一步被自动调用。不允许主动调用自己的析构函数。子类继承了父类的析构函数，并且在子类析构函数实现的最后，父类的析构函数被自动调用。即使子类没有提供自己的析构函数，父类的析构函数也总是被调用。
+析構函數是在實例釋放發生前一步被自動調用。不允許主動調用自己的析構函數。子類繼承了父類的析構函數，並且在子類析構函數實現的最後，父類的析構函數被自動調用。即使子類沒有提供自己的析構函數，父類的析構函數也總是被調用。
 
-因为直到实例的析构函数被调用时，实例才会被释放，所以析构函数可以访问所有请求实例的属性，并且根据那些属性可以修改它的行为（比如查找一个需要被关闭的文件的名称）。
+因為直到實例的析構函數被調用時，實例才會被釋放，所以析構函數可以訪問所有請求實例的屬性，並且根據那些屬性可以修改它的行為（比如查找一個需要被關閉的文件的名稱）。
 
 <a name="deinitializers_in_action"></a>
-##析构函数操作
+##析構函數操作
 
-这里是一个析构函数操作的例子。这个例子是一个简单的游戏，定义了两种新类型，`Bank`和`Player`。`Bank`结构体管理一个虚拟货币的流通，在这个流通中`Bank`永远不可能拥有超过 10,000 的硬币。在这个游戏中有且只能有一个`Bank`存在，因此`Bank`由带有静态属性和静态方法的结构体实现，从而存储和管理其当前的状态。
+這裡是一個析構函數操作的例子。這個例子是一個簡單的游戲，定義了兩種新類型，`Bank`和`Player`。`Bank`結構體管理一個虛擬貨幣的流通，在這個流通中`Bank`永遠不可能擁有超過 10,000 的硬幣。在這個游戲中有且只能有一個`Bank`存在，因此`Bank`由帶有靜態屬性和靜態方法的結構體實現，從而存儲和管理其當前的狀態。
 
 ```swift
 struct Bank {
@@ -47,13 +47,13 @@ struct Bank {
 }
 ```
 
-`Bank`根据它的`coinsInBank`属性来跟踪当前它拥有的硬币数量。银行还提供两个方法——`vendCoins`和`receiveCoins`——用来处理硬币的分发和收集。
+`Bank`根據它的`coinsInBank`屬性來跟蹤當前它擁有的硬幣數量。銀行還提供兩個方法——`vendCoins`和`receiveCoins`——用來處理硬幣的分發和收集。
 
-`vendCoins`方法在 bank 分发硬币之前检查是否有足够的硬币。如果没有足够多的硬币，`Bank`返回一个比请求时小的数字(如果没有硬币留在 bank 中就返回 0)。`vendCoins`方法声明`numberOfCoinsToVend`为一个变量参数，这样就可以在方法体的内部修改数字，而不需要定义一个新的变量。`vendCoins`方法返回一个整型值，表明了提供的硬币的实际数目。
+`vendCoins`方法在 bank 分發硬幣之前檢查是否有足夠的硬幣。如果沒有足夠多的硬幣，`Bank`返回一個比請求時小的數字(如果沒有硬幣留在 bank 中就返回 0)。`vendCoins`方法聲明`numberOfCoinsToVend`為一個變量參數，這樣就可以在方法體的內部修改數字，而不需要定義一個新的變量。`vendCoins`方法返回一個整型值，表明了提供的硬幣的實際數目。
 
-`receiveCoins`方法只是将 bank 的硬币存储和接收到的硬币数目相加，再保存回 bank。
+`receiveCoins`方法只是將 bank 的硬幣存儲和接收到的硬幣數目相加，再保存回 bank。
 
-`Player`类描述了游戏中的一个玩家。每一个 player 在任何时刻都有一定数量的硬币存储在他们的钱包中。这通过 player 的`coinsInPurse`属性来体现：
+`Player`類描述了游戲中的一個玩家。每一個 player 在任何時刻都有一定數量的硬幣存儲在他們的錢包中。這通過 player 的`coinsInPurse`屬性來體現：
 
 ```swift
 class Player {
@@ -71,38 +71,38 @@ class Player {
 ```
 
 
-每个`Player`实例都由一个指定数目硬币组成的启动额度初始化，这些硬币在 bank 初始化的过程中得到。如果没有足够的硬币可用，`Player`实例可能收到比指定数目少的硬币。
+每個`Player`實例都由一個指定數目硬幣組成的啟動額度初始化，這些硬幣在 bank 初始化的過程中得到。如果沒有足夠的硬幣可用，`Player`實例可能收到比指定數目少的硬幣。
 
-`Player`类定义了一个`winCoins`方法，该方法从银行获取一定数量的硬币，并把它们添加到玩家的钱包。`Player`类还实现了一个析构函数，这个析构函数在`Player`实例释放前一步被调用。这里析构函数只是将玩家的所有硬币都返回给银行：
+`Player`類定義了一個`winCoins`方法，該方法從銀行獲取一定數量的硬幣，並把它們添加到玩家的錢包。`Player`類還實現了一個析構函數，這個析構函數在`Player`實例釋放前一步被調用。這裡析構函數只是將玩家的所有硬幣都返回給銀行：
 
 ```swift
 var playerOne: Player? = Player(coins: 100)
 println("A new player has joined the game with \(playerOne!.coinsInPurse) coins")
-// 输出 "A new player has joined the game with 100  coins"
+// 輸出 "A new player has joined the game with 100  coins"
 println("There are now \(Bank.coinsInBank) coins left   in the bank")
-// 输出 "There are now 9900 coins left in the bank"
+// 輸出 "There are now 9900 coins left in the bank"
 ```
 
-一个新的`Player`实例随着一个 100 个硬币（如果有）的请求而被创建。这`个Player`实例存储在一个名为`playerOne`的可选`Player`变量中。这里使用一个可选变量，是因为玩家可以随时离开游戏。设置为可选使得你可以跟踪当前是否有玩家在游戏中。
+一個新的`Player`實例隨著一個 100 個硬幣（如果有）的請求而被創建。這`個Player`實例存儲在一個名為`playerOne`的可選`Player`變量中。這裡使用一個可選變量，是因為玩家可以隨時離開游戲。設置為可選使得你可以跟蹤當前是否有玩家在游戲中。
 
-因为`playerOne`是可选的，所以由一个感叹号（`!`）来修饰，每当其`winCoins`方法被调用时，`coinsInPurse`属性被访问并打印出它的默认硬币数目。
+因為`playerOne`是可選的，所以由一個感嘆號（`!`）來修飾，每當其`winCoins`方法被調用時，`coinsInPurse`屬性被訪問並打印出它的默認硬幣數目。
 
 ```swift
 playerOne!.winCoins(2_000)
 println("PlayerOne won 2000 coins & now has \ (playerOne!.coinsInPurse) coins")
-// 输出 "PlayerOne won 2000 coins & now has 2100 coins"
+// 輸出 "PlayerOne won 2000 coins & now has 2100 coins"
 println("The bank now only has \(Bank.coinsInBank) coins left")
-// 输出 "The bank now only has 7900 coins left"
+// 輸出 "The bank now only has 7900 coins left"
 ```
 
-这里，player 已经赢得了 2,000 硬币。player 的钱包现在有 2,100 硬币，bank 只剩余 7,900 硬币。
+這裡，player 已經贏得了 2,000 硬幣。player 的錢包現在有 2,100 硬幣，bank 只剩余 7,900 硬幣。
 
 ```swift
 playerOne = nil
 println("PlayerOne has left the game")
-// 输出 "PlayerOne has left the game"
+// 輸出 "PlayerOne has left the game"
 println("The bank now has \(Bank.coinsInBank) coins")
-// 输出 "The bank now has 10000 coins"
+// 輸出 "The bank now has 10000 coins"
 ```
 
-玩家现在已经离开了游戏。这表明是要将可选的`playerOne`变量设置为`nil`，意思是“没有`Player`实例”。当这种情况发生的时候，`playerOne`变量对`Player`实例的引用被破坏了。没有其它属性或者变量引用`Player`实例，因此为了清空它占用的内存从而释放它。在这发生前一步，其析构函数被自动调用，其硬币被返回到银行。
+玩家現在已經離開了游戲。這表明是要將可選的`playerOne`變量設置為`nil`，意思是“沒有`Player`實例”。當這種情況發生的時候，`playerOne`變量對`Player`實例的引用被破壞了。沒有其它屬性或者變量引用`Player`實例，因此為了清空它占用的內存從而釋放它。在這發生前一步，其析構函數被自動調用，其硬幣被返回到銀行。

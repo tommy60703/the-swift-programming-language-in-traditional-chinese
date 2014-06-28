@@ -1,29 +1,29 @@
-> 翻译：[xiehurricane](https://github.com/xiehurricane)
-> 校对：[happyming](https://github.com/happyming)
+> 翻譯：[xiehurricane](https://github.com/xiehurricane)
+> 校對：[happyming](https://github.com/happyming)
 
-# 类型检查（Type Casting）
+# 類型檢查（Type Casting）
 -----------------
 
-本页包含内容：
+本頁包含內容：
 
-- [定义一个类层次作为例子](#defining_a_class_hierarchy_for_type_casting)
-- [检查类型](#checking_type)
-- [向下转型（Downcasting）](#downcasting)
-- [`Any`和`AnyObject`的类型检查](#type_casting_for_any_and_anyobject)
+- [定義一個類層次作為例子](#defining_a_class_hierarchy_for_type_casting)
+- [檢查類型](#checking_type)
+- [向下轉型（Downcasting）](#downcasting)
+- [`Any`和`AnyObject`的類型檢查](#type_casting_for_any_and_anyobject)
 
 
-_类型检查_是一种检查类实例的方式，并且或者也是让实例作为它的父类或者子类的一种方式。
+_類型檢查_是一種檢查類實例的方式，並且或者也是讓實例作為它的父類或者子類的一種方式。
 
-类型检查在 Swift 中使用`is` 和 `as`操作符实现。这两个操作符提供了一种简单达意的方式去检查值的类型或者转换它的类型。
+類型檢查在 Swift 中使用`is` 和 `as`操作符實現。這兩個操作符提供了一種簡單達意的方式去檢查值的類型或者轉換它的類型。
 
-你也可以用来检查一个类是否实现了某个协议，就像在 [Checking for Protocol Conformance](Protocols.html#//apple_ref/doc/uid/TP40014097-CH25-XID_363)部分讲述的一样。
+你也可以用來檢查一個類是否實現了某個協議，就像在 [Checking for Protocol Conformance](Protocols.html#//apple_ref/doc/uid/TP40014097-CH25-XID_363)部分講述的一樣。
 
 <a name="defining_a_class_hierarchy_for_type_casting"></a>
-## 定义一个类层次作为例子
+## 定義一個類層次作為例子
 
-你可以将它用在类和子类的层次结构上，检查特定类实例的类型并且转换这个类实例的类型成为这个层次结构中的其他类型。这下面的三个代码段定义了一个类层次和一个包含了几个这些类实例的数组，作为类型检查的例子。
+你可以將它用在類和子類的層次結構上，檢查特定類實例的類型並且轉換這個類實例的類型成為這個層次結構中的其他類型。這下面的三個代碼段定義了一個類層次和一個包含了幾個這些類實例的數組，作為類型檢查的例子。
 
-第一个代码片段定义了一个新的基础类`MediaItem`。这个类为任何出现在数字媒体库的媒体项提供基础功能。特别的，它声明了一个 `String` 类型的 `name` 属性，和一个`init name`初始化器。（它假定所有的媒体项都有个名称。）
+第一個代碼片段定義了一個新的基礎類`MediaItem`。這個類為任何出現在數字媒體庫的媒體項提供基礎功能。特別的，它聲明了一個 `String` 類型的 `name` 屬性，和一個`init name`初始化器。（它假定所有的媒體項都有個名稱。）
 
 ```swift
 class MediaItem {
@@ -34,7 +34,7 @@ class MediaItem {
 }
 ```
 
-下一个代码段定义了 `MediaItem` 的两个子类。第一个子类`Movie`，在父类（或者说基类）的基础上增加了一个 `director`（导演） 属性，和相应的初始化器。第二个类在父类的基础上增加了一个 `artist`（艺术家） 属性，和相应的初始化器：
+下一個代碼段定義了 `MediaItem` 的兩個子類。第一個子類`Movie`，在父類（或者說基類）的基礎上增加了一個 `director`（導演） 屬性，和相應的初始化器。第二個類在父類的基礎上增加了一個 `artist`（藝術家） 屬性，和相應的初始化器：
 
 ```swift
 class Movie: MediaItem {
@@ -54,7 +54,7 @@ class Song: MediaItem {
 }
 ```
 
-最后一个代码段创建了一个数组常量 `library`，包含两个`Movie`实例和三个`Song`实例。`library`的类型是在它被初始化时根据它数组中所包含的内容推断来的。Swift 的类型检测器能够演绎出`Movie` 和 `Song` 有共同的父类 `MediaItem` ，所以它推断出 `MediaItem[]` 类作为 `library` 的类型。
+最後一個代碼段創建了一個數組常量 `library`，包含兩個`Movie`實例和三個`Song`實例。`library`的類型是在它被初始化時根據它數組中所包含的內容推斷來的。Swift 的類型檢測器能夠演繹出`Movie` 和 `Song` 有共同的父類 `MediaItem` ，所以它推斷出 `MediaItem[]` 類作為 `library` 的類型。
 
 ```swift
 let library = [
@@ -67,14 +67,14 @@ let library = [
 // the type of "library" is inferred to be MediaItem[]
 ```
 
-在幕后`library` 里存储的媒体项依然是 `Movie` 和 `Song` 类型的，但是，若你迭代它，取出的实例会是 `MediaItem` 类型的，而不是 `Movie` 和 `Song` 类型的。为了让它们作为它们本来的类型工作，你需要检查它们的类型或者向下转换它们的类型到其它类型，就像下面描述的一样。
+在幕後`library` 裡存儲的媒體項依然是 `Movie` 和 `Song` 類型的，但是，若你迭代它，取出的實例會是 `MediaItem` 類型的，而不是 `Movie` 和 `Song` 類型的。為了讓它們作為它們本來的類型工作，你需要檢查它們的類型或者向下轉換它們的類型到其它類型，就像下面描述的一樣。
 
 <a name="checking_type"></a>
-## 检查类型（Checking Type）
+## 檢查類型（Checking Type）
 
-用类型检查操作符(`is`)来检查一个实例是否属于特定子类型。若实例属于那个子类型，类型检查操作符返回 `true` ，否则返回 `false` 。
+用類型檢查操作符(`is`)來檢查一個實例是否屬於特定子類型。若實例屬於那個子類型，類型檢查操作符返回 `true` ，否則返回 `false` 。
 
-下面的例子定义了两个变量，`movieCount` 和 `songCount`，用来计算数组`library` 中 `Movie` 和 `Song` 类型的实例数量。
+下面的例子定義了兩個變量，`movieCount` 和 `songCount`，用來計算數組`library` 中 `Movie` 和 `Song` 類型的實例數量。
 
 ```swift
 var movieCount = 0
@@ -92,27 +92,27 @@ println("Media library contains \(movieCount) movies and \(songCount) songs")
 // prints "Media library contains 2 movies and 3 songs"
 ```
 
-示例迭代了数组 `library` 中的所有项。每一次， `for`-`in` 循环设置
-`item` 为数组中的下一个 `MediaItem`。
+示例迭代了數組 `library` 中的所有項。每一次， `for`-`in` 循環設置
+`item` 為數組中的下一個 `MediaItem`。
 
-若当前 `MediaItem` 是一个 `Movie` 类型的实例， `item is Movie` 返回
-`true`，相反返回 `false`。同样的，`item is
-Song`检查item是否为`Song`类型的实例。在循环结束后，`movieCount` 和 `songCount`的值就是被找到属于各自的类型的实例数量。
+若當前 `MediaItem` 是一個 `Movie` 類型的實例， `item is Movie` 返回
+`true`，相反返回 `false`。同樣的，`item is
+Song`檢查item是否為`Song`類型的實例。在循環結束後，`movieCount` 和 `songCount`的值就是被找到屬於各自的類型的實例數量。
 
 <a name="downcasting"></a>
-## 向下转型（Downcasting）
+## 向下轉型（Downcasting）
 
-某类型的一个常量或变量可能在幕后实际上属于一个子类。你可以相信，上面就是这种情况。你可以尝试向下转到它的子类型，用类型检查操作符(`as`)
+某類型的一個常量或變量可能在幕後實際上屬於一個子類。你可以相信，上面就是這種情況。你可以嘗試向下轉到它的子類型，用類型檢查操作符(`as`)
 
-因为向下转型可能会失败，类型转型操作符带有两种不同形式。可选形式（ optional form） `as?` 返回一个你试图下转成的类型的可选值（optional value）。强制形式 `as` 把试图向下转型和强制解包（force-unwraps）结果作为一个混合动作。
+因為向下轉型可能會失敗，類型轉型操作符帶有兩種不同形式。可選形式（ optional form） `as?` 返回一個你試圖下轉成的類型的可選值（optional value）。強制形式 `as` 把試圖向下轉型和強制解包（force-unwraps）結果作為一個混合動作。
 
-当你不确定向下转型可以成功时，用类型检查的可选形式(`as?`)。可选形式的类型检查总是返回一个可选值（optional value），并且若下转是不可能的，可选值将是 `nil` 。这使你能够检查向下转型是否成功。
+當你不確定向下轉型可以成功時，用類型檢查的可選形式(`as?`)。可選形式的類型檢查總是返回一個可選值（optional value），並且若下轉是不可能的，可選值將是 `nil` 。這使你能夠檢查向下轉型是否成功。
 
-只有你可以确定向下转型一定会成功时，才使用强制形式。当你试图向下转型为一个不正确的类型时，强制形式的类型检查会触发一个运行时错误。
+只有你可以確定向下轉型一定會成功時，才使用強制形式。當你試圖向下轉型為一個不正確的類型時，強制形式的類型檢查會觸發一個運行時錯誤。
 
-下面的例子，迭代了`library`里的每一个 `MediaItem` ，并打印出适当的描述。要这样做，`item`需要真正作为`Movie` 或 `Song`的类型来使用。不仅仅是作为 `MediaItem`。为了能够使用`Movie` 或 `Song`的 `director` 或 `artist`属性，这是必要的。
+下面的例子，迭代了`library`裡的每一個 `MediaItem` ，並打印出適當的描述。要這樣做，`item`需要真正作為`Movie` 或 `Song`的類型來使用。不僅僅是作為 `MediaItem`。為了能夠使用`Movie` 或 `Song`的 `director` 或 `artist`屬性，這是必要的。
 
-在这个示例中，数组中的每一个`item`可能是 `Movie` 或 `Song`。   事前你不知道每个`item`的真实类型，所以这里使用可选形式的类型检查 （`as?`）去检查循环里的每次下转。
+在這個示例中，數組中的每一個`item`可能是 `Movie` 或 `Song`。   事前你不知道每個`item`的真實類型，所以這裡使用可選形式的類型檢查 （`as?`）去檢查循環裡的每次下轉。
 
 ```swift
 for item in library {
@@ -130,39 +130,39 @@ for item in library {
 // Song: 'Never Gonna Give You Up', by Rick Astley
 ```
 
-示例首先试图将 `item` 下转为 `Movie`。因为 `item` 是一个 `MediaItem`
-类型的实例，它可能是一个`Movie`；同样，它可能是一个 `Song`，或者仅仅是基类
-`MediaItem`。因为不确定，`as?`形式在试图下转时将返还一个可选值。 `item as Movie` 的返回值是`Movie?`类型或 “optional `Movie`”。
+示例首先試圖將 `item` 下轉為 `Movie`。因為 `item` 是一個 `MediaItem`
+類型的實例，它可能是一個`Movie`；同樣，它可能是一個 `Song`，或者僅僅是基類
+`MediaItem`。因為不確定，`as?`形式在試圖下轉時將返還一個可選值。 `item as Movie` 的返回值是`Movie?`類型或 “optional `Movie`”。
 
-当向下转型为 `Movie` 应用在两个 `Song`
-实例时将会失败。为了处理这种情况，上面的例子使用了可选绑定（optional binding）来检查可选 `Movie`真的包含一个值（这个是为了判断下转是否成功。）可选绑定是这样写的“`if let movie = item as? Movie`”，可以这样解读：
+當向下轉型為 `Movie` 應用在兩個 `Song`
+實例時將會失敗。為了處理這種情況，上面的例子使用了可選綁定（optional binding）來檢查可選 `Movie`真的包含一個值（這個是為了判斷下轉是否成功。）可選綁定是這樣寫的“`if let movie = item as? Movie`”，可以這樣解讀：
 
-“尝试将 `item` 转为 `Movie`类型。若成功，设置一个新的临时常量 `movie`  来存储返回的可选`Movie`”
+“嘗試將 `item` 轉為 `Movie`類型。若成功，設置一個新的臨時常量 `movie`  來存儲返回的可選`Movie`”
 
-若向下转型成功，然后`movie`的属性将用于打印一个`Movie`实例的描述，包括它的导演的名字`director`。当`Song`被找到时，一个相近的原理被用来检测 `Song` 实例和打印它的描述。
+若向下轉型成功，然後`movie`的屬性將用於打印一個`Movie`實例的描述，包括它的導演的名字`director`。當`Song`被找到時，一個相近的原理被用來檢測 `Song` 實例和打印它的描述。
 
 > 注意：  
-转换没有真的改变实例或它的值。潜在的根本的实例保持不变；只是简单地把它作为它被转换成的类来使用。
+轉換沒有真的改變實例或它的值。潛在的根本的實例保持不變；只是簡單地把它作為它被轉換成的類來使用。
 
 <a name="type_casting_for_any_and_anyobject"></a>
-## `Any`和`AnyObject`的类型检查
+## `Any`和`AnyObject`的類型檢查
 
-Swift为不确定类型提供了两种特殊类型别名：
+Swift為不確定類型提供了兩種特殊類型別名：
 
-* `AnyObject`可以代表任何class类型的实例。
-* `Any`可以表示任何类型，除了方法类型（function types）。
+* `AnyObject`可以代表任何class類型的實例。
+* `Any`可以表示任何類型，除了方法類型（function types）。
 
 > 注意：  
-只有当你明确的需要它的行为和功能时才使用`Any`和`AnyObject`。在你的代码里使用你期望的明确的类型总是更好的。
+只有當你明確的需要它的行為和功能時才使用`Any`和`AnyObject`。在你的代碼裡使用你期望的明確的類型總是更好的。
 
-### `AnyObject`类型
+### `AnyObject`類型
 
-当需要在工作中使用 Cocoa
-APIs，它一般接收一个`AnyObject[]`类型的数组，或者说“一个任何对象类型的数组”。这是因为 Objective-C 没有明确的类型化数组。但是，你常常可以确定包含在仅从你知道的 API 信息提供的这样一个数组中的对象的类型。
+當需要在工作中使用 Cocoa
+APIs，它一般接收一個`AnyObject[]`類型的數組，或者說“一個任何對像類型的數組”。這是因為 Objective-C 沒有明確的類型化數組。但是，你常常可以確定包含在僅從你知道的 API 信息提供的這樣一個數組中的對像的類型。
 
-在这些情况下，你可以使用强制形式的类型检查(`as`)来下转在数组中的每一项到比 `AnyObject` 更明确的类型，不需要可选解析（optional unwrapping）。
+在這些情況下，你可以使用強制形式的類型檢查(`as`)來下轉在數組中的每一項到比 `AnyObject` 更明確的類型，不需要可選解析（optional unwrapping）。
 
-下面的示例定义了一个 `AnyObject[]` 类型的数组并填入三个`Movie`类型的实例：
+下面的示例定義了一個 `AnyObject[]` 類型的數組並填入三個`Movie`類型的實例：
 
 ```swift
 let someObjects: AnyObject[] = [
@@ -172,7 +172,7 @@ let someObjects: AnyObject[] = [
 ]
 ```
 
-因为知道这个数组只包含 `Movie` 实例，你可以直接用(`as`)下转并解包到不可选的`Movie`类型（ps：其实就是我们常用的正常类型，这里是为了和可选类型相对比）。
+因為知道這個數組只包含 `Movie` 實例，你可以直接用(`as`)下轉並解包到不可選的`Movie`類型（ps：其實就是我們常用的正常類型，這裡是為了和可選類型相對比）。
 
 ```swift
 for object in someObjects {
@@ -184,7 +184,7 @@ for object in someObjects {
 // Movie: 'Alien', dir. Ridley Scott
 ```
 
-为了变为一个更短的形式，下转`someObjects`数组为`Movie[]`类型来代替下转每一项方式。
+為了變為一個更短的形式，下轉`someObjects`數組為`Movie[]`類型來代替下轉每一項方式。
 
 ```swift
 for movie in someObjects as Movie[] {
@@ -195,9 +195,9 @@ for movie in someObjects as Movie[] {
 // Movie: 'Alien', dir. Ridley Scott
 ```
 
-### `Any`类型
+### `Any`類型
 
-这里有个示例，使用 `Any` 类型来和混合的不同类型一起工作，包括非`class`类型。它创建了一个可以存储`Any`类型的数组 `things`。
+這裡有個示例，使用 `Any` 類型來和混合的不同類型一起工作，包括非`class`類型。它創建了一個可以存儲`Any`類型的數組 `things`。
 
 ```swift
 var things = Any[]()
@@ -211,9 +211,9 @@ things.append((3.0, 5.0))
 things.append(Movie(name: "Ghostbusters", director: "Ivan Reitman"))
 ```
 
-`things` 数组包含两个 `Int` 值，2个 `Double` 值，1个 `String` 值，一个元组 `(Double, Double)` ，Ivan Reitman 导演的电影“Ghostbusters”。
+`things` 數組包含兩個 `Int` 值，2個 `Double` 值，1個 `String` 值，一個元組 `(Double, Double)` ，Ivan Reitman 導演的電影“Ghostbusters”。
 
-你可以在 `switch` `cases`里用`is` 和 `as` 操作符来发觉只知道是 `Any` 或 `AnyObject`的常量或变量的类型。 下面的示例迭代 `things`数组中的每一项的并用`switch`语句查找每一项的类型。这几种`switch`语句的情形绑定它们匹配的值到一个规定类型的常量，让它们可以打印它们的值：
+你可以在 `switch` `cases`裡用`is` 和 `as` 操作符來發覺只知道是 `Any` 或 `AnyObject`的常量或變量的類型。 下面的示例迭代 `things`數組中的每一項的並用`switch`語句查找每一項的類型。這幾種`switch`語句的情形綁定它們匹配的值到一個規定類型的常量，讓它們可以打印它們的值：
 
 ```swift
 for thing in things {
@@ -250,4 +250,4 @@ for thing in things {
 
 
 > 注意：  
-在一个switch语句的case中使用强制形式的类型检查操作符（as, 而不是 as?）来检查和转换到一个明确的类型。在 switch case 语句的内容中这种检查总是安全的。
+在一個switch語句的case中使用強制形式的類型檢查操作符（as, 而不是 as?）來檢查和轉換到一個明確的類型。在 switch case 語句的內容中這種檢查總是安全的。

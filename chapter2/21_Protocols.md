@@ -1,64 +1,64 @@
-> 翻译：[geek5nan](https://github.com/geek5nan)
-> 校对：[dabing1022](https://github.com/dabing1022)
+> 翻譯：[geek5nan](https://github.com/geek5nan)
+> 校對：[dabing1022](https://github.com/dabing1022)
 
-# 协议
+# 協議
 -----------------
 
-本页包含内容：
+本頁包含內容：
 
-- [协议的语法（Protocol Syntax）](#protocol_syntax)
-- [属性要求（Property Requirements）](#property_requirements)
+- [協議的語法（Protocol Syntax）](#protocol_syntax)
+- [屬性要求（Property Requirements）](#property_requirements)
 - [方法要求（Method Requirements）](#method_requirements)
-- [突变方法要求（Mutating Method Requirements）](#mutating_method_requirements)
-- [协议类型（Protocols as Types）](#protocols_as_types)
+- [突變方法要求（Mutating Method Requirements）](#mutating_method_requirements)
+- [協議類型（Protocols as Types）](#protocols_as_types)
 - [委托(代理)模式（Delegation）](#delegation)
-- [在扩展中添加协议成员（Adding Protocol Conformance with an Extension）](#adding_protocol_conformance_with_an_extension)
-- [通过扩展补充协议声明（Declaring Protocol Adoption with an Extension）](#declaring_protocol_adoption_with_an_extension)
-- [集合中的协议类型（Collections of Protocol Types）](#collections_of_protocol_types)
-- [协议的继承（Protocol Inheritance）](#protocol_inheritance)
-- [协议合成（Protocol Composition）](#protocol_composition)
-- [检验协议的一致性（Checking for Protocol Conformance）](#checking_for_protocol_conformance)
-- [可选协议要求（Optional Protocol Requirements）](#optional_protocol_requirements)
+- [在擴展中添加協議成員（Adding Protocol Conformance with an Extension）](#adding_protocol_conformance_with_an_extension)
+- [通過擴展補充協議聲明（Declaring Protocol Adoption with an Extension）](#declaring_protocol_adoption_with_an_extension)
+- [集合中的協議類型（Collections of Protocol Types）](#collections_of_protocol_types)
+- [協議的繼承（Protocol Inheritance）](#protocol_inheritance)
+- [協議合成（Protocol Composition）](#protocol_composition)
+- [檢驗協議的一致性（Checking for Protocol Conformance）](#checking_for_protocol_conformance)
+- [可選協議要求（Optional Protocol Requirements）](#optional_protocol_requirements)
 
-`Protocol(协议)`用于**统一**方法和属性的名称，而不实现任何功能。`协议`能够被类，枚举，结构体实现，满足协议要求的类，枚举，结构体被称为协议的`遵循者`。
+`Protocol(協議)`用於**統一**方法和屬性的名稱，而不實現任何功能。`協議`能夠被類，枚舉，結構體實現，滿足協議要求的類，枚舉，結構體被稱為協議的`遵循者`。
 
-`遵循者`需要提供`协议`指定的成员，如属性，方法，操作符，下标等。
+`遵循者`需要提供`協議`指定的成員，如屬性，方法，操作符，下標等。
 
 <a name="protocol_syntax"></a>
-## 协议的语法
+## 協議的語法
 
-`协议`的定义与类，结构体，枚举的定义非常相似，如下所示：
+`協議`的定義與類，結構體，枚舉的定義非常相似，如下所示：
 
 ```swift
 protocol SomeProtocol {
-	// 协议内容
+	// 協議內容
 }
 ```
 
-在类，结构体，枚举的名称后加上`协议名称`，中间以冒号`:`分隔即可实现协议；实现多个协议时，各协议之间用逗号`,`分隔，如下所示：
+在類，結構體，枚舉的名稱後加上`協議名稱`，中間以冒號`:`分隔即可實現協議；實現多個協議時，各協議之間用逗號`,`分隔，如下所示：
 
 ```swift
 struct SomeStructure: FirstProtocol, AnotherProtocol {
-	// 结构体内容
+	// 結構體內容
 }
 ```
 
-当某个类含有父类的同时并实现了协议，应当把父类放在所有的协议之前，如下所示：
+當某個類含有父類的同時並實現了協議，應當把父類放在所有的協議之前，如下所示：
 
 ```swift
 class SomeClass: SomeSuperClass, FirstProtocol, AnotherProtocol {
-	// 类的内容
+	// 類的內容
 }
 ```
 
 <a name="property_requirements"></a>
-## 属性要求
+## 屬性要求
 
-`协议`能够要求其`遵循者`必须含有一些**特定名称和类型**的`实例属性(instance property)`或`类属性 (type property)`，也能够要求属性具有`(设置权限)settable` 和`(访问权限)gettable`，但它不要求`属性`是`存储型属性(stored property)`还是`计算型属性(calculate property)`。
+`協議`能夠要求其`遵循者`必須含有一些**特定名稱和類型**的`實例屬性(instance property)`或`類屬性 (type property)`，也能夠要求屬性具有`(設置權限)settable` 和`(訪問權限)gettable`，但它不要求`屬性`是`存儲型屬性(stored property)`還是`計算型屬性(calculate property)`。
 
-如果协议要求属性具有设置权限和访问权限，那常量存储型属性或者只读计算型属性都无法满足此要求。如果协议只要求属性具有访问权限，那任何类型的属性都可以满足此要求，无论这些属性是否具有设置权限。
+如果協議要求屬性具有設置權限和訪問權限，那常量存儲型屬性或者只讀計算型屬性都無法滿足此要求。如果協議只要求屬性具有訪問權限，那任何類型的屬性都可以滿足此要求，無論這些屬性是否具有設置權限。
 
-通常前置`var`关键字将属性声明为变量。在属性声明后写上`{ get set }`表示属性为可读写的。`{ get }`用来表示属性为可读的。即使你为可读的属性实现了`setter`方法，它也不会出错。
+通常前置`var`關鍵字將屬性聲明為變量。在屬性聲明後寫上`{ get set }`表示屬性為可讀寫的。`{ get }`用來表示屬性為可讀的。即使你為可讀的屬性實現了`setter`方法，它也不會出錯。
 
 ```swift
 protocol SomeProtocol {
@@ -67,7 +67,7 @@ protocol SomeProtocol {
 }
 ```
 
-用类来实现协议时，使用`class`关键字来表示该属性为类成员；用结构体或枚举实现协议时，则使用`static`关键字来表示：
+用類來實現協議時，使用`class`關鍵字來表示該屬性為類成員；用結構體或枚舉實現協議時，則使用`static`關鍵字來表示：
 
 ```swift
 protocol AnotherProtocol {
@@ -79,19 +79,19 @@ protocol FullyNamed {
 }
 ```
 
-`FullyNamed`协议含有`fullName`属性。因此其`遵循者`必须含有一个名为`fullName`，类型为`String`的可读属性。
+`FullyNamed`協議含有`fullName`屬性。因此其`遵循者`必須含有一個名為`fullName`，類型為`String`的可讀屬性。
 
 ```swift
 struct Person: FullyNamed{
 	var fullName: String
 }
 let john = Person(fullName: "John Appleseed")
-//john.fullName 为 "John Appleseed"
+//john.fullName 為 "John Appleseed"
 ```
 
-`Person`结构体含有一个名为`fullName`的`存储型属性`，完整的`遵循`了协议。(*若协议未被完整遵循，编译时则会报错*)。
+`Person`結構體含有一個名為`fullName`的`存儲型屬性`，完整的`遵循`了協議。(*若協議未被完整遵循，編譯時則會報錯*)。
 
-如下所示，`Startship`类`遵循`了`FullyNamed`协议：
+如下所示，`Startship`類`遵循`了`FullyNamed`協議：
 
 ```swift
 class Starship: FullyNamed {
@@ -109,17 +109,17 @@ var ncc1701 = Starship(name: "Enterprise", prefix: "USS")
 // ncc1701.fullName == "USS Enterprise"
 ```
 
-`Starship`类将`fullName`实现为可读的`计算型属性`。它的每一个实例都有一个名为`name`的必备属性和一个名为`prefix`的可选属性。 当`prefix`存在时，将`prefix`插入到`name`之前来为`Starship`构建`fullName`。
+`Starship`類將`fullName`實現為可讀的`計算型屬性`。它的每一個實例都有一個名為`name`的必備屬性和一個名為`prefix`的可選屬性。 當`prefix`存在時，將`prefix`插入到`name`之前來為`Starship`構建`fullName`。
 
 <a name="method_requirements"></a>
 ## 方法要求
 
-`协议`能够要求其`遵循者`必备某些特定的`实例方法`和`类方法`。协议方法的声明与普通方法声明相似，但它不需要`方法`内容。
+`協議`能夠要求其`遵循者`必備某些特定的`實例方法`和`類方法`。協議方法的聲明與普通方法聲明相似，但它不需要`方法`內容。
 
 > 注意：
-协议方法支持`变长参数(variadic parameter)`，不支持`默认参数(default parameter)`。
+協議方法支持`變長參數(variadic parameter)`，不支持`默認參數(default parameter)`。
 
-前置`class`关键字表示协议中的成员为`类成员`；当协议用于被`枚举`或`结构体`遵循时，则使用`static`关键字。如下所示：
+前置`class`關鍵字表示協議中的成員為`類成員`；當協議用於被`枚舉`或`結構體`遵循時，則使用`static`關鍵字。如下所示：
 
 ```swift
 protocol SomeProtocol {
@@ -131,9 +131,9 @@ protocol RandomNumberGenerator {
 }
 ```
 
-`RandomNumberGenerator`协议要求其`遵循者`必须拥有一个名为`random`， 返回值类型为`Double`的实例方法。(我们假设随机数在[0，1]区间内)。
+`RandomNumberGenerator`協議要求其`遵循者`必須擁有一個名為`random`， 返回值類型為`Double`的實例方法。(我們假設隨機數在[0，1]區間內)。
 
-`LinearCongruentialGenerator`类`遵循`了`RandomNumberGenerator`协议，并提供了一个叫做*线性同余生成器(linear congruential generator)*的伪随机数算法。
+`LinearCongruentialGenerator`類`遵循`了`RandomNumberGenerator`協議，並提供了一個叫做*線性同余生成器(linear congruential generator)*的偽隨機數算法。
 
 ```swift
 class LinearCongruentialGenerator: RandomNumberGenerator {
@@ -148,22 +148,22 @@ class LinearCongruentialGenerator: RandomNumberGenerator {
 }
 let generator = LinearCongruentialGenerator()
 println("Here's a random number: \(generator.random())")
-// 输出 : "Here's a random number: 0.37464991998171"
+// 輸出 : "Here's a random number: 0.37464991998171"
 println("And another one: \(generator.random())")
-// 输出 : "And another one: 0.729023776863283"
+// 輸出 : "And another one: 0.729023776863283"
 ```
 
 <a name="mutating_method_requirements"></a>
-## 突变方法要求
+## 突變方法要求
 
-能在`方法`或`函数`内部改变实例类型的方法称为`突变方法`。在`值类型(Value Type)`(*译者注：特指结构体和枚举*)中的的`函数`前缀加上`mutating`关键字来表示该函数允许改变该实例和其属性的类型。 这一变换过程在[实例方法(Instance Methods)](11_Methods.html#instance_methods)章节中有详细描述。
+能在`方法`或`函數`內部改變實例類型的方法稱為`突變方法`。在`值類型(Value Type)`(*譯者注：特指結構體和枚舉*)中的的`函數`前綴加上`mutating`關鍵字來表示該函數允許改變該實例和其屬性的類型。 這一變換過程在[實例方法(Instance Methods)](11_Methods.html#instance_methods)章節中有詳細描述。
 
-(*译者注：类中的成员为`引用类型(Reference Type)`，可以方便的修改实例及其属性的值而无需改变类型；而`结构体`和`枚举`中的成员均为`值类型(Value Type)`，修改变量的值就相当于修改变量的类型，而`Swift`默认不允许修改类型，因此需要前置`mutating`关键字用来表示该`函数`中能够修改类型*)
+(*譯者注：類中的成員為`引用類型(Reference Type)`，可以方便的修改實例及其屬性的值而無需改變類型；而`結構體`和`枚舉`中的成員均為`值類型(Value Type)`，修改變量的值就相當於修改變量的類型，而`Swift`默認不允許修改類型，因此需要前置`mutating`關鍵字用來表示該`函數`中能夠修改類型*)
 
 > 注意：
-用`class`实现协议中的`mutating`方法时，不用写`mutating`关键字；用`结构体`，`枚举`实现协议中的`mutating`方法时，必须写`mutating`关键字。
+用`class`實現協議中的`mutating`方法時，不用寫`mutating`關鍵字；用`結構體`，`枚舉`實現協議中的`mutating`方法時，必須寫`mutating`關鍵字。
 
-如下所示，`Togglable`协议含有`toggle`函数。根据函数名称推测，`toggle`可能用于**切换或恢复**某个属性的状态。`mutating`关键字表示它为`突变方法`：
+如下所示，`Togglable`協議含有`toggle`函數。根據函數名稱推測，`toggle`可能用於**切換或恢復**某個屬性的狀態。`mutating`關鍵字表示它為`突變方法`：
 
 ```swift
 protocol Togglable {
@@ -171,9 +171,9 @@ protocol Togglable {
 }
 ```
 
-当使用`枚举`或`结构体`来实现`Togglabl`协议时，必须在`toggle`方法前加上`mutating`关键字。
+當使用`枚舉`或`結構體`來實現`Togglabl`協議時，必須在`toggle`方法前加上`mutating`關鍵字。
 
-如下所示，`OnOffSwitch`枚举`遵循`了`Togglable`协议，`On`，`Off`两个成员用于表示当前状态
+如下所示，`OnOffSwitch`枚舉`遵循`了`Togglable`協議，`On`，`Off`兩個成員用於表示當前狀態
 
 ```swift
 enum OnOffSwitch: Togglable {
@@ -189,22 +189,22 @@ enum OnOffSwitch: Togglable {
 }
 var lightSwitch = OnOffSwitch.Off
 lightSwitch.toggle()
-//lightSwitch 现在的值为 .On
+//lightSwitch 現在的值為 .On
 ```
 
 <a name="protocols_as_types"></a>
-## 协议类型
+## 協議類型
 
-`协议`本身不实现任何功能，但你可以将它当做`类型`来使用。
+`協議`本身不實現任何功能，但你可以將它當做`類型`來使用。
 
-使用场景：
+使用場景：
 
-* 作为函数，方法或构造器中的参数类型，返回值类型
-* 作为常量，变量，属性的类型
-* 作为数组，字典或其他容器中的元素类型
+* 作為函數，方法或構造器中的參數類型，返回值類型
+* 作為常量，變量，屬性的類型
+* 作為數組，字典或其他容器中的元素類型
 
 > 注意：
-协议类型应与其他类型(Int，Double，String)的写法相同，使用驼峰式
+協議類型應與其他類型(Int，Double，String)的寫法相同，使用駝峰式
 
 ```swift
 class Dice {
@@ -220,22 +220,22 @@ class Dice {
 }
 ```
 
-这里定义了一个名为 `Dice`的类，用来代表桌游中的N个面的骰子。
+這裡定義了一個名為 `Dice`的類，用來代表桌游中的N個面的骰子。
 
-`Dice`含有`sides`和`generator`两个属性，前者用来表示骰子有几个面，后者为骰子提供一个随机数生成器。由于后者为`RandomNumberGenerator`的协议类型。所以它能够被赋值为任意`遵循`该协议的类型。
+`Dice`含有`sides`和`generator`兩個屬性，前者用來表示骰子有幾個面，後者為骰子提供一個隨機數生成器。由於後者為`RandomNumberGenerator`的協議類型。所以它能夠被賦值為任意`遵循`該協議的類型。
 
-此外，使用`构造器(init)`来代替之前版本中的`setup`操作。构造器中含有一个名为`generator`，类型为`RandomNumberGenerator`的形参，使得它可以接收任意遵循`RandomNumberGenerator`协议的类型。
+此外，使用`構造器(init)`來代替之前版本中的`setup`操作。構造器中含有一個名為`generator`，類型為`RandomNumberGenerator`的形參，使得它可以接收任意遵循`RandomNumberGenerator`協議的類型。
 
-`roll`方法用来模拟骰子的面值。它先使用`generator`的`random`方法来创建一个[0-1]区间内的随机数种子，然后加工这个随机数种子生成骰子的面值。
+`roll`方法用來模擬骰子的面值。它先使用`generator`的`random`方法來創建一個[0-1]區間內的隨機數種子，然後加工這個隨機數種子生成骰子的面值。
 
-如下所示，`LinearCongruentialGenerator`的实例作为随机数生成器传入`Dice`的`构造器`
+如下所示，`LinearCongruentialGenerator`的實例作為隨機數生成器傳入`Dice`的`構造器`
 
 ```swift
 var d6 = Dice(sides: 6,generator: LinearCongruentialGenerator())
 for _ in 1...5 {
 	println("Random dice roll is \(d6.roll())")
 }
-//输出结果
+//輸出結果
 //Random dice roll is 3
 //Random dice roll is 5
 //Random dice roll is 4
@@ -246,13 +246,13 @@ for _ in 1...5 {
 <a name="delegation"></a>
 ## 委托(代理)模式
 
-委托是一种设计模式，它允许类或结构体将一些需要它们负责的功能`交由(委托)`给其他的类型。
+委托是一種設計模式，它允許類或結構體將一些需要它們負責的功能`交由(委托)`給其他的類型。
 
-委托模式的实现很简单： 定义`协议`来`封装`那些需要被委托的`函数和方法`， 使其`遵循者`拥有这些被委托的`函数和方法`。
+委托模式的實現很簡單： 定義`協議`來`封裝`那些需要被委托的`函數和方法`， 使其`遵循者`擁有這些被委托的`函數和方法`。
 
-委托模式可以用来响应特定的动作或接收外部数据源提供的数据，而无需要知道外部数据源的类型。
+委托模式可以用來響應特定的動作或接收外部數據源提供的數據，而無需要知道外部數據源的類型。
 
-下文是两个基于骰子游戏的协议：
+下文是兩個基於骰子游戲的協議：
 
 ```swift
 protocol DiceGame {
@@ -267,9 +267,9 @@ protocol DiceGameDelegate {
 }
 ```
 
-`DiceGame`协议可以在任意含有骰子的游戏中实现，`DiceGameDelegate`协议可以用来追踪`DiceGame`的游戏过程。
+`DiceGame`協議可以在任意含有骰子的游戲中實現，`DiceGameDelegate`協議可以用來追蹤`DiceGame`的游戲過程。
 
-如下所示，`SnakesAndLadders`是`Snakes and Ladders`(译者注：[控制流](05_Control_Flow.html)章节有该游戏的详细介绍)游戏的新版本。新版本使用`Dice`作为骰子，并且实现了`DiceGame`和`DiceGameDelegate`协议
+如下所示，`SnakesAndLadders`是`Snakes and Ladders`(譯者注：[控制流](05_Control_Flow.html)章節有該游戲的詳細介紹)游戲的新版本。新版本使用`Dice`作為骰子，並且實現了`DiceGame`和`DiceGameDelegate`協議
 
 ```swift
 class SnakesAndLadders: DiceGame {
@@ -304,16 +304,16 @@ class SnakesAndLadders: DiceGame {
 }
 ```
 
-游戏的`初始化设置(setup)`被`SnakesAndLadders`类的`构造器(initializer)`实现。所有的游戏逻辑被转移到了`play`方法中。
+游戲的`初始化設置(setup)`被`SnakesAndLadders`類的`構造器(initializer)`實現。所有的游戲邏輯被轉移到了`play`方法中。
 
 > 注意：
-因为`delegate`并不是该游戏的必备条件，`delegate`被定义为遵循`DiceGameDelegate`协议的可选属性
+因為`delegate`並不是該游戲的必備條件，`delegate`被定義為遵循`DiceGameDelegate`協議的可選屬性
 
-`DicegameDelegate`协议提供了三个方法用来追踪游戏过程。被放置于游戏的逻辑中，即`play()`方法内。分别在游戏开始时，新一轮开始时，游戏结束时被调用。
+`DicegameDelegate`協議提供了三個方法用來追蹤游戲過程。被放置於游戲的邏輯中，即`play()`方法內。分別在游戲開始時，新一輪開始時，游戲結束時被調用。
 
-因为`delegate`是一个遵循`DiceGameDelegate`的可选属性，因此在`play()`方法中使用了`可选链`来调用委托方法。 若`delegate`属性为`nil`， 则委托调用*优雅地*失效。若`delegate`不为`nil`，则委托方法被调用
+因為`delegate`是一個遵循`DiceGameDelegate`的可選屬性，因此在`play()`方法中使用了`可選鏈`來調用委托方法。 若`delegate`屬性為`nil`， 則委托調用*優雅地*失效。若`delegate`不為`nil`，則委托方法被調用
 
-如下所示，`DiceGameTracker`遵循了`DiceGameDelegate`协议
+如下所示，`DiceGameTracker`遵循了`DiceGameDelegate`協議
 
 ```swift
 class DiceGameTracker: DiceGameDelegate {
@@ -335,11 +335,11 @@ class DiceGameTracker: DiceGameDelegate {
 }
 ```
 
-`DiceGameTracker`实现了`DiceGameDelegate`协议的方法要求，用来记录游戏已经进行的轮数。 当游戏开始时，`numberOfTurns`属性被赋值为0；在每新一轮中递加；游戏结束后，输出打印游戏的总轮数。
+`DiceGameTracker`實現了`DiceGameDelegate`協議的方法要求，用來記錄游戲已經進行的輪數。 當游戲開始時，`numberOfTurns`屬性被賦值為0；在每新一輪中遞加；游戲結束後，輸出打印游戲的總輪數。
 
-`gameDidStart`方法从`game`参数获取游戏信息并输出。`game`在方法中被当做`DiceGame`类型而不是`SnakeAndLadders`类型，所以方法中只能访问`DiceGame`协议中的成员。
+`gameDidStart`方法從`game`參數獲取游戲信息並輸出。`game`在方法中被當做`DiceGame`類型而不是`SnakeAndLadders`類型，所以方法中只能訪問`DiceGame`協議中的成員。
 
-`DiceGameTracker`的运行情况，如下所示：
+`DiceGameTracker`的運行情況，如下所示：
 
 ```swift
 let tracker = DiceGameTracker()
@@ -356,14 +356,14 @@ game.play()
 ```
 
 <a name="adding_protocol_conformance_with_an_extension"></a>
-## 在扩展中添加协议成员
+## 在擴展中添加協議成員
 
-即便无法修改源代码，依然可以通过`扩展(Extension)`来扩充已存在类型(*译者注： 类，结构体，枚举等*)。`扩展`可以为已存在的类型添加`属性`，`方法`，`下标`，`协议`等成员。详情请在[扩展](20_Extensions.html)章节中查看。
+即便無法修改源代碼，依然可以通過`擴展(Extension)`來擴充已存在類型(*譯者注： 類，結構體，枚舉等*)。`擴展`可以為已存在的類型添加`屬性`，`方法`，`下標`，`協議`等成員。詳情請在[擴展](20_Extensions.html)章節中查看。
 
 > 注意：
-通过`扩展`为已存在的类型`遵循`协议时，该类型的所有实例也会随之添加协议中的方法
+通過`擴展`為已存在的類型`遵循`協議時，該類型的所有實例也會隨之添加協議中的方法
 
-`TextRepresentable`协议含有一个`asText`，如下所示：
+`TextRepresentable`協議含有一個`asText`，如下所示：
 
 ```swift
 protocol TextRepresentable {
@@ -371,7 +371,7 @@ protocol TextRepresentable {
 }
 ```
 
-通过`扩展`为上一节中提到的`Dice`类遵循`TextRepresentable`协议
+通過`擴展`為上一節中提到的`Dice`類遵循`TextRepresentable`協議
 
 ```swift
 extension Dice: TextRepresentable {
@@ -381,15 +381,15 @@ extension Dice: TextRepresentable {
 }
 ```
 
-从现在起，`Dice`类型的实例可被当作`TextRepresentable`类型：
+從現在起，`Dice`類型的實例可被當作`TextRepresentable`類型：
 
 ```swift
 let d12 = Dice(sides: 12,generator: LinearCongruentialGenerator())
 println(d12.asText())
-// 输出 "A 12-sided dice"
+// 輸出 "A 12-sided dice"
 ```
 
-`SnakesAndLadders`类也可以通过`扩展`的方式来遵循协议：
+`SnakesAndLadders`類也可以通過`擴展`的方式來遵循協議：
 
 ```swift
 extension SnakeAndLadders: TextRepresentable {
@@ -398,13 +398,13 @@ extension SnakeAndLadders: TextRepresentable {
 	}
 }
 println(game.asText())
-// 输出 "A game of Snakes and Ladders with 25 squares"
+// 輸出 "A game of Snakes and Ladders with 25 squares"
 ```
 
 <a name="declaring_protocol_adoption_with_an_extension"></a>
-## 通过扩展补充协议声明
+## 通過擴展補充協議聲明
 
-当一个类型已经实现了协议中的所有要求，却没有声明时，可以通过`扩展`来补充协议声明：
+當一個類型已經實現了協議中的所有要求，卻沒有聲明時，可以通過`擴展`來補充協議聲明：
 
 ```swift
 struct Hamster {
@@ -416,28 +416,28 @@ struct Hamster {
 extension Hamster: TextRepresentabl {}
 ```
 
-从现在起，`Hamster`的实例可以作为`TextRepresentable`类型使用
+從現在起，`Hamster`的實例可以作為`TextRepresentable`類型使用
 
 ```swift
 let simonTheHamster = Hamster(name: "Simon")
 let somethingTextRepresentable: TextRepresentabl = simonTheHamester
 println(somethingTextRepresentable.asText())
-// 输出 "A hamster named Simon"
+// 輸出 "A hamster named Simon"
 ```
 
 > 注意：
-即时满足了协议的所有要求，类型也不会自动转变，因此你必须为它做出明显的协议声明
+即時滿足了協議的所有要求，類型也不會自動轉變，因此你必須為它做出明顯的協議聲明
 
 <a name="collections_of_protocol_types"></a>
-## 集合中的协议类型
+## 集合中的協議類型
 
-协议类型可以被集合使用，表示集合中的元素均为协议类型：
+協議類型可以被集合使用，表示集合中的元素均為協議類型：
 
 ```swift
 let things: TextRepresentable[] = [game,d12,simoTheHamster]
 ```
 
-如下所示，`things`数组可以被直接遍历，并调用其中元素的`asText()`函数：
+如下所示，`things`數組可以被直接遍歷，並調用其中元素的`asText()`函數：
 
 ```swift
 for thing in things {
@@ -448,20 +448,20 @@ for thing in things {
 // A hamster named Simon
 ```
 
-`thing`被当做是`TextRepresentable`类型而不是`Dice`，`DiceGame`，`Hamster`等类型。因此能且仅能调用`asText`方法
+`thing`被當做是`TextRepresentable`類型而不是`Dice`，`DiceGame`，`Hamster`等類型。因此能且僅能調用`asText`方法
 
 <a name="protocol_inheritance"></a>
-## 协议的继承
+## 協議的繼承
 
-协议能够*继承*一到多个其他协议。语法与类的继承相似，多个协议间用逗号`,`分隔
+協議能夠*繼承*一到多個其他協議。語法與類的繼承相似，多個協議間用逗號`,`分隔
 
 ```swift
 protocol InheritingProtocol: SomeProtocol, AnotherProtocol {
-	// 协议定义
+	// 協議定義
 }
 ```
 
-如下所示，`PrettyTextRepresentable`协议继承了`TextRepresentable`协议
+如下所示，`PrettyTextRepresentable`協議繼承了`TextRepresentable`協議
 
 ```swift
 protocol PrettyTextRepresentable: TextRepresentable {
@@ -469,9 +469,9 @@ protocol PrettyTextRepresentable: TextRepresentable {
 }
 ```
 
-`遵循``PrettyTextRepresentable`协议的同时，也需要`遵循`TextRepresentable`协议。
+`遵循``PrettyTextRepresentable`協議的同時，也需要`遵循`TextRepresentable`協議。
 
-如下所示，用`扩展`为`SnakesAndLadders`遵循`PrettyTextRepresentable`协议：
+如下所示，用`擴展`為`SnakesAndLadders`遵循`PrettyTextRepresentable`協議：
 
 ```swift
 extension SnakesAndLadders: PrettyTextRepresentable {
@@ -492,13 +492,13 @@ extension SnakesAndLadders: PrettyTextRepresentable {
 }
 ```
 
-在`for in`中迭代出了`board`数组中的每一个元素：
+在`for in`中迭代出了`board`數組中的每一個元素：
 
-* 当从数组中迭代出的元素的值大于0时，用`▲`表示
-* 当从数组中迭代出的元素的值小于0时，用`▼`表示
-* 当从数组中迭代出的元素的值等于0时，用`○`表示
+* 當從數組中迭代出的元素的值大於0時，用`▲`表示
+* 當從數組中迭代出的元素的值小於0時，用`▼`表示
+* 當從數組中迭代出的元素的值等於0時，用`○`表示
 
-任意`SankesAndLadders`的实例都可以使用`asPrettyText()`方法。
+任意`SankesAndLadders`的實例都可以使用`asPrettyText()`方法。
 
 ```swift
 println(game.asPrettyText())
@@ -507,11 +507,11 @@ println(game.asPrettyText())
 ```
 
 <a name="protocol_composition"></a>
-## 协议合成
+## 協議合成
 
-一个协议可由多个协议采用`protocol<SomeProtocol, AnotherProtocol>`这样的格式进行组合，称为`协议合成(protocol composition)`。
+一個協議可由多個協議采用`protocol<SomeProtocol, AnotherProtocol>`這樣的格式進行組合，稱為`協議合成(protocol composition)`。
 
-举个例子：
+舉個例子：
 
 ```swift
 protocol Named {
@@ -529,24 +529,24 @@ func wishHappyBirthday(celebrator: protocol<Named, Aged>) {
 }
 let birthdayPerson = Person(name: "Malcolm", age: 21)
 wishHappyBirthday(birthdayPerson)
-// 输出 "Happy birthday Malcolm - you're 21!
+// 輸出 "Happy birthday Malcolm - you're 21!
 ```
 
-`Named`协议包含`String`类型的`name`属性；`Aged`协议包含`Int`类型的`age`属性。`Person`结构体`遵循`了这两个协议。
+`Named`協議包含`String`類型的`name`屬性；`Aged`協議包含`Int`類型的`age`屬性。`Person`結構體`遵循`了這兩個協議。
 
-`wishHappyBirthday`函数的形参`celebrator`的类型为`protocol<Named,Aged>`。可以传入任意`遵循`这两个协议的类型的实例
+`wishHappyBirthday`函數的形參`celebrator`的類型為`protocol<Named,Aged>`。可以傳入任意`遵循`這兩個協議的類型的實例
 
 > 注意：
-`协议合成`并不会生成一个新协议类型，而是将多个协议合成为一个临时的协议，超出范围后立即失效。
+`協議合成`並不會生成一個新協議類型，而是將多個協議合成為一個臨時的協議，超出範圍後立即失效。
 
 <a name="checking_for_protocol_conformance"></a>
-## 检验协议的一致性
+## 檢驗協議的一致性
 
-使用`is`检验协议一致性，使用`as`将协议类型`向下转换(downcast)`为的其他协议类型。检验与转换的语法和之前相同(*详情查看[类型检查](18_Type_Casting.html)*)：
+使用`is`檢驗協議一致性，使用`as`將協議類型`向下轉換(downcast)`為的其他協議類型。檢驗與轉換的語法和之前相同(*詳情查看[類型檢查](18_Type_Casting.html)*)：
 
-* `is`操作符用来检查实例是否`遵循`了某个`协议`。
-* `as?`返回一个可选值，当实例`遵循`协议时，返回该协议类型；否则返回`nil`
-* `as`用以强制向下转换型。
+* `is`操作符用來檢查實例是否`遵循`了某個`協議`。
+* `as?`返回一個可選值，當實例`遵循`協議時，返回該協議類型；否則返回`nil`
+* `as`用以強制向下轉換型。
 
 ```swift
 @objc protocol HasArea {
@@ -556,7 +556,7 @@ wishHappyBirthday(birthdayPerson)
 
 
 > 注意：
-`@objc`用来表示协议是可选的，也可以用来表示暴露给`Objective-C`的代码，此外，`@objc`型协议只对`类`有效，因此只能在`类`中检查协议的一致性。详情查看*[Using Siwft with Cocoa and Objectivei-c](https://developer.apple.com/library/prerelease/ios/documentation/Swift/Conceptual/BuildingCocoaApps/index.html#//apple_ref/doc/uid/TP40014216)*。
+`@objc`用來表示協議是可選的，也可以用來表示暴露給`Objective-C`的代碼，此外，`@objc`型協議只對`類`有效，因此只能在`類`中檢查協議的一致性。詳情查看*[Using Siwft with Cocoa and Objectivei-c](https://developer.apple.com/library/prerelease/ios/documentation/Swift/Conceptual/BuildingCocoaApps/index.html#//apple_ref/doc/uid/TP40014216)*。
 
 ```swift
 class Circle: HasArea {
@@ -571,9 +571,9 @@ class Country: HasArea {
 }
 ```
 
-`Circle`和`Country`都遵循了`HasArea`协议，前者把`area`写为计算型属性（computed property），后者则把`area`写为存储型属性（stored property）。
+`Circle`和`Country`都遵循了`HasArea`協議，前者把`area`寫為計算型屬性（computed property），後者則把`area`寫為存儲型屬性（stored property）。
 
-如下所示，`Animal`类没有实现任何协议
+如下所示，`Animal`類沒有實現任何協議
 
 ```swift
 class Animal {
@@ -582,7 +582,7 @@ class Animal {
 }
 ```
 
-`Circle,Country,Animal`并没有一个相同的基类，所以采用`AnyObject`类型的数组来装载在它们的实例，如下所示：
+`Circle,Country,Animal`並沒有一個相同的基類，所以采用`AnyObject`類型的數組來裝載在它們的實例，如下所示：
 
 ```swift
 let objects: AnyObject[] = [
@@ -592,7 +592,7 @@ let objects: AnyObject[] = [
 ]
 ```
 
-如下所示，在迭代时检查`object`数组的元素是否`遵循`了`HasArea`协议：
+如下所示，在迭代時檢查`object`數組的元素是否`遵循`了`HasArea`協議：
 
 ```swift
 for object in objects {
@@ -607,23 +607,23 @@ for object in objects {
 // Something that doesn't have an area
 ```
 
-当数组中的元素遵循`HasArea`协议时，通过`as?`操作符将其`可选绑定(optional binding)`到`objectWithArea`常量上。
+當數組中的元素遵循`HasArea`協議時，通過`as?`操作符將其`可選綁定(optional binding)`到`objectWithArea`常量上。
 
-`objects`数组中元素的类型并不会因为`向下转型`而改变，当它们被赋值给`objectWithArea`时只被视为`HasArea`类型，因此只有`area`属性能够被访问。
+`objects`數組中元素的類型並不會因為`向下轉型`而改變，當它們被賦值給`objectWithArea`時只被視為`HasArea`類型，因此只有`area`屬性能夠被訪問。
 
 <a name="optional_protocol_requirements"></a>
-## 可选协议要求
+## 可選協議要求
 
-可选协议含有可选成员，其`遵循者`可以选择是否实现这些成员。在协议中使用`@optional`关键字作为前缀来定义可选成员。
+可選協議含有可選成員，其`遵循者`可以選擇是否實現這些成員。在協議中使用`@optional`關鍵字作為前綴來定義可選成員。
 
-可选协议在调用时使用`可选链`，详细内容在[可选链](17_Optional_Chaining.html)章节中查看。
+可選協議在調用時使用`可選鏈`，詳細內容在[可選鏈](17_Optional_Chaining.html)章節中查看。
 
-像`someOptionalMethod?(someArgument)`一样，你可以在可选方法名称后加上`?`来检查该方法是否被实现。`可选方法`和`可选属性`都会返回一个`可选值(optional value)`，当其不可访问时，`?`之后语句不会执行，并返回`nil`。
+像`someOptionalMethod?(someArgument)`一樣，你可以在可選方法名稱後加上`?`來檢查該方法是否被實現。`可選方法`和`可選屬性`都會返回一個`可選值(optional value)`，當其不可訪問時，`?`之後語句不會執行，並返回`nil`。
 
 > 注意：
-可选协议只能在含有`@objc`前缀的协议中生效。且`@objc`的协议只能被`类`遵循。
+可選協議只能在含有`@objc`前綴的協議中生效。且`@objc`的協議只能被`類`遵循。
 
-`Counter`类使用`CounterDataSource`类型的外部数据源来提供`增量值(increment amount)`，如下所示：
+`Counter`類使用`CounterDataSource`類型的外部數據源來提供`增量值(increment amount)`，如下所示：
 
 ```swift
 @objc protocol CounterDataSource {
@@ -632,12 +632,12 @@ for object in objects {
 }
 ```
 
-`CounterDataSource`含有`incrementForCount`的`可选方法`和`fiexdIncrement`的`可选属性`。
+`CounterDataSource`含有`incrementForCount`的`可選方法`和`fiexdIncrement`的`可選屬性`。
 
 > 注意：
-`CounterDataSource`中的属性和方法都是可选的，因此可以在类中声明但不实现这些成员，尽管技术上允许这样做，不过最好不要这样写。
+`CounterDataSource`中的屬性和方法都是可選的，因此可以在類中聲明但不實現這些成員，盡管技術上允許這樣做，不過最好不要這樣寫。
 
-`Counter`类含有`CounterDataSource?`类型的可选属性`dataSource`，如下所示：
+`Counter`類含有`CounterDataSource?`類型的可選屬性`dataSource`，如下所示：
 
 ```swift
 @objc class Counter {
@@ -653,18 +653,18 @@ for object in objects {
 }
 ```
 
-`count`属性用于存储当前的值，`increment`方法用来为`count`赋值。
+`count`屬性用於存儲當前的值，`increment`方法用來為`count`賦值。
 
-`increment`方法通过`可选链`，尝试从两种`可选成员`中获取`count`。
+`increment`方法通過`可選鏈`，嘗試從兩種`可選成員`中獲取`count`。
 
-1. 由于`dataSource`可能为`nil`，因此在`dataSource`后边加上了`?`标记来表明只在`dataSource`非空时才去调用incrementForCount`方法。
-2. 即使`dataSource`存在，但是也无法保证其是否实现了`incrementForCount`方法，因此在`incrementForCount`方法后边也加有`?`标记。
+1. 由於`dataSource`可能為`nil`，因此在`dataSource`後邊加上了`?`標記來表明只在`dataSource`非空時才去調用incrementForCount`方法。
+2. 即使`dataSource`存在，但是也無法保證其是否實現了`incrementForCount`方法，因此在`incrementForCount`方法後邊也加有`?`標記。
 
-在调用`incrementForCount`方法后，`Int`型`可选值`通过`可选绑定(optional binding)`自动拆包并赋值给常量`amount`。
+在調用`incrementForCount`方法後，`Int`型`可選值`通過`可選綁定(optional binding)`自動拆包並賦值給常量`amount`。
 
-当`incrementForCount`不能被调用时，尝试使用`可选属性``fixedIncrement`来代替。
+當`incrementForCount`不能被調用時，嘗試使用`可選屬性``fixedIncrement`來代替。
 
-`ThreeSource`实现了`CounterDataSource`协议，如下所示：
+`ThreeSource`實現了`CounterDataSource`協議，如下所示：
 
 ```swift
 class ThreeSource: CounterDataSource {
@@ -672,7 +672,7 @@ class ThreeSource: CounterDataSource {
 }
 ```
 
-使用`ThreeSource`作为数据源开实例化一个`Counter`：
+使用`ThreeSource`作為數據源開實例化一個`Counter`：
 
 ```swift
 var counter = Counter()
@@ -687,7 +687,7 @@ for _ in 1...4 {
 // 12
 ```
 
-`TowardsZeroSource`实现了`CounterDataSource`协议中的`incrementForCount`方法，如下所示：
+`TowardsZeroSource`實現了`CounterDataSource`協議中的`incrementForCount`方法，如下所示：
 
 ```swift
 class TowardsZeroSource: CounterDataSource {
@@ -703,7 +703,7 @@ func incrementForCount(count: Int) -> Int {
 }
 ```
 
-下边是执行的代码：
+下邊是執行的代碼：
 
 ```swift
 counter.count = -4

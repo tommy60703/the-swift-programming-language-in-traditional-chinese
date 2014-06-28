@@ -1,52 +1,52 @@
-> 翻译：[JaySurplus](https://github.com/JaySurplus)
-> 校对：[sg552](https://github.com/sg552)
+> 翻譯：[JaySurplus](https://github.com/JaySurplus)
+> 校對：[sg552](https://github.com/sg552)
 
-# 类和结构体
+# 類和結構體
 
-本页包含内容：
+本頁包含內容：
 
-- [类和结构体对比](#comparing_classes_and_structures)
-- [结构体和枚举是值类型](#structures_and_enumerations_are_value_types)
-- [类是引用类型](#classes_are_reference_types)
-- [类和结构体的选择](#choosing_between_classes_and_structures)
-- [集合（collection）类型的赋值与复制行为](#assignment_and_copy_behavior_for_collection_types)
+- [類和結構體對比](#comparing_classes_and_structures)
+- [結構體和枚舉是值類型](#structures_and_enumerations_are_value_types)
+- [類是引用類型](#classes_are_reference_types)
+- [類和結構體的選擇](#choosing_between_classes_and_structures)
+- [集合（collection）類型的賦值與復制行為](#assignment_and_copy_behavior_for_collection_types)
 
-类和结构体是人们构建代码所用的一种通用且灵活的构造体。为了在类和结构体中实现各种功能，我们必须要严格按照对于常量，变量以及函数所规定的语法规则来定义属性和添加方法。
+類和結構體是人們構建代碼所用的一種通用且靈活的構造體。為了在類和結構體中實現各種功能，我們必須要嚴格按照對於常量，變量以及函數所規定的語法規則來定義屬性和添加方法。
 
-与其他编程语言所不同的是，Swift 并不要求你为自定义类和结构去创建独立的接口和实现文件。你所要做的是在一个单一文件中定义一个类或者结构体，系统将会自动生成面向其它代码的外部接口。
+與其他編程語言所不同的是，Swift 並不要求你為自定義類和結構去創建獨立的接口和實現文件。你所要做的是在一個單一文件中定義一個類或者結構體，系統將會自動生成面向其它代碼的外部接口。
 
 >  注意：  
-通常一个`类`的实例被称为`对象`。然而在Swift 中，类和结构体的关系要比在其他语言中更加的密切，本章中所讨论的大部分功能都可以用在类和结构体上。因此，我们会主要使用`实例`而不是`对象`。
+通常一個`類`的實例被稱為`對像`。然而在Swift 中，類和結構體的關系要比在其他語言中更加的密切，本章中所討論的大部分功能都可以用在類和結構體上。因此，我們會主要使用`實例`而不是`對像`。
 
 <a name="comparing_classes_and_structures"></a>
-###类和结构体对比
+###類和結構體對比
 
-Swift 中类和结构体有很多共同点。共同处在于：
+Swift 中類和結構體有很多共同點。共同處在於：
 
-* 定义属性用于储存值
-* 定义方法用于提供功能
-* 定义附属脚本用于访问值
-* 定义构造器用于生成初始化值
-* 通过扩展以增加默认实现的功能
-* 符合协议以对某类提供标准功能
+* 定義屬性用於儲存值
+* 定義方法用於提供功能
+* 定義附屬腳本用於訪問值
+* 定義構造器用於生成初始化值
+* 通過擴展以增加默認實現的功能
+* 符合協議以對某類提供標准功能
 
-更多信息请参见 [属性](10_Properties.html)，[方法](11_Methods.html)，[下标脚本](12_Subscripts.html)，[初始过程](14_Initialization.html)，[扩展](20_Extensions.html)，和[协议](21_Protocols.html)。
+更多信息請參見 [屬性](10_Properties.html)，[方法](11_Methods.html)，[下標腳本](12_Subscripts.html)，[初始過程](14_Initialization.html)，[擴展](20_Extensions.html)，和[協議](21_Protocols.html)。
 
-与结构体相比，类还有如下的附加功能：
+與結構體相比，類還有如下的附加功能：
 
-* 继承允许一个类继承另一个类的特征
-* 类型转换允许在运行时检查和解释一个类实例的类型
-* 解构器允许一个类实例释放任何其所被分配的资源
-* 引用计数允许对一个类的多次引用
+* 繼承允許一個類繼承另一個類的特征
+* 類型轉換允許在運行時檢查和解釋一個類實例的類型
+* 解構器允許一個類實例釋放任何其所被分配的資源
+* 引用計數允許對一個類的多次引用
 
-更多信息请参见[继承](http://)，[类型转换](http://)，[初始化](http://)，和[自动引用计数](http://)。
+更多信息請參見[繼承](http://)，[類型轉換](http://)，[初始化](http://)，和[自動引用計數](http://)。
 
 > 注意：  
-结构体总是通过被复制的方式在代码中传递，因此请不要使用引用计数。
+結構體總是通過被復制的方式在代碼中傳遞，因此請不要使用引用計數。
 
-### 定义
+### 定義
 
-类和结构体有着类似的定义方式。我们通过关键字`class`和`struct`来分别表示类和结构体，并在一对大括号中定义它们的具体内容：
+類和結構體有著類似的定義方式。我們通過關鍵字`class`和`struct`來分別表示類和結構體，並在一對大括號中定義它們的具體內容：
 
 ```swift
 class SomeClass {
@@ -58,9 +58,9 @@ struct SomeStructure {
 ```
 
 >  注意：  
-在你每次定义一个新类或者结构体的时候，实际上你是有效地定义了一个新的 Swift 类型。因此请使用 `UpperCamelCase` 这种方式来命名（如 `SomeClass` 和`SomeStructure`等），以便符合标准Swift 类型的大写命名风格（如`String`，`Int`和`Bool`）。相反的，请使用`lowerCamelCase`这种方式为属性和方法命名（如`framerate`和`incrementCount`），以便和类区分。
+在你每次定義一個新類或者結構體的時候，實際上你是有效地定義了一個新的 Swift 類型。因此請使用 `UpperCamelCase` 這種方式來命名（如 `SomeClass` 和`SomeStructure`等），以便符合標准Swift 類型的大寫命名風格（如`String`，`Int`和`Bool`）。相反的，請使用`lowerCamelCase`這種方式為屬性和方法命名（如`framerate`和`incrementCount`），以便和類區分。
 
-以下是定义结构体和定义类的示例：
+以下是定義結構體和定義類的示例：
 
 ```swift
 struct Resolution {
@@ -75,105 +75,105 @@ class VideoMode {
 }
 ```
 
-在上面的示例中我们定义了一个名为`Resolution`的结构体，用来描述一个显示器的像素分辨率。这个结构体包含了两个名为`width`和`height`的储存属性。储存属性是捆绑和储存在类或结构体中的常量或变量。当这两个属性被初始化为整数`0`的时候，它们会被推断为`Int`类型。
+在上面的示例中我們定義了一個名為`Resolution`的結構體，用來描述一個顯示器的像素分辨率。這個結構體包含了兩個名為`width`和`height`的儲存屬性。儲存屬性是捆綁和儲存在類或結構體中的常量或變量。當這兩個屬性被初始化為整數`0`的時候，它們會被推斷為`Int`類型。
 
-在上面的示例中我们还定义了一个名为`VideoMode`的类，用来描述一个视频显示器的特定模式。这个类包含了四个储存属性变量。第一个是`分辨率`，它被初始化为一个新的`Resolution`结构体的实例，具有`Resolution`的属性类型。新`VideoMode`实例同时还会初始化其它三个属性，它们分别是，初始值为`false`(意为“non-interlaced video”)的`inteflaced`，回放帧率初始值为`0.0`的`frameRate`和值为可选`String`的`name`。`name`属性会被自动赋予一个默认值`nil`，意为“没有`name`值”，因它是一个可选类型。
+在上面的示例中我們還定義了一個名為`VideoMode`的類，用來描述一個視頻顯示器的特定模式。這個類包含了四個儲存屬性變量。第一個是`分辨率`，它被初始化為一個新的`Resolution`結構體的實例，具有`Resolution`的屬性類型。新`VideoMode`實例同時還會初始化其它三個屬性，它們分別是，初始值為`false`(意為“non-interlaced video”)的`inteflaced`，回放幀率初始值為`0.0`的`frameRate`和值為可選`String`的`name`。`name`屬性會被自動賦予一個默認值`nil`，意為“沒有`name`值”，因它是一個可選類型。
 
-### 类和结构体实例
+### 類和結構體實例
 
-`Resolution`结构体和`VideoMode`类的定义仅描述了什么是`Resolution`和`VideoMode`。它们并没有描述一个特定的分辨率（resolution）或者视频模式（video mode）。为了描述一个特定的分辨率或者视频模式，我们需要生成一个它们的实例。
+`Resolution`結構體和`VideoMode`類的定義僅描述了什麼是`Resolution`和`VideoMode`。它們並沒有描述一個特定的分辨率（resolution）或者視頻模式（video mode）。為了描述一個特定的分辨率或者視頻模式，我們需要生成一個它們的實例。
 
-生成结构体和类实例的语法非常相似：
+生成結構體和類實例的語法非常相似：
 
 ```swift
 let someResolution = Resolution()
 let someVideoMode = VideoMode()
 ```
 
-结构体和类都使用构造器语法来生成新的实例。构造器语法的最简单形式是在结构体或者类的类型名称后跟随一个空括弧，如`Resolution()`或`VideoMode()`。通过这种方式所创建的类或者结构体实例，其属均会被初始化为默认值。[构造过程](14_Initialization.html)章节会对类和结构体的初始化进行更详细的讨论。
+結構體和類都使用構造器語法來生成新的實例。構造器語法的最簡單形式是在結構體或者類的類型名稱後跟隨一個空括弧，如`Resolution()`或`VideoMode()`。通過這種方式所創建的類或者結構體實例，其屬均會被初始化為默認值。[構造過程](14_Initialization.html)章節會對類和結構體的初始化進行更詳細的討論。
 
-### 属性访问
+### 屬性訪問
 
-通过使用*点语法*（*dot syntax*）,你可以访问实例中所含有的属性。其语法规则是，实例名后面紧跟属性名，两者通过点号(.)连接：
+通過使用*點語法*（*dot syntax*）,你可以訪問實例中所含有的屬性。其語法規則是，實例名後面緊跟屬性名，兩者通過點號(.)連接：
 
 ```swift
 println("The width of someResolution is \(someResolution.width)")
-// 输出 "The width of someResolution is 0"
+// 輸出 "The width of someResolution is 0"
 ```
 
-在上面的例子中，`someResolution.width`引用`someResolution`的`width`属性，返回`width`的初始值`0`。
+在上面的例子中，`someResolution.width`引用`someResolution`的`width`屬性，返回`width`的初始值`0`。
 
-你也可以访问子属性，如何`VideoMode`中`Resolution`属性的`width`属性：
+你也可以訪問子屬性，如何`VideoMode`中`Resolution`屬性的`width`屬性：
 
 ```swift
 println("The width of someVideoMode is \(someVideoMode.resolution.width)")
-// 输出 "The width of someVideoMode is 0"
+// 輸出 "The width of someVideoMode is 0"
 ```
 
-你也可以使用点语法为属性变量赋值：
+你也可以使用點語法為屬性變量賦值：
 
 ```swift
 someVideoMode.resolution.width = 12880
 println("The width of someVideoMode is now \(someVideoMode.resolution.width)")
-// 输出 "The width of someVideoMode is now 1280"
+// 輸出 "The width of someVideoMode is now 1280"
 ```
 
 >  注意：  
-与 Objective-C 语言不同的是，Swift 允许直接设置结构体属性的子属性。上面的最后一个例子，就是直接设置了`someVideoMode`中`resolution`属性的`width`这个子属性，以上操作并不需要从新设置`resolution`属性。
+與 Objective-C 語言不同的是，Swift 允許直接設置結構體屬性的子屬性。上面的最後一個例子，就是直接設置了`someVideoMode`中`resolution`屬性的`width`這個子屬性，以上操作並不需要從新設置`resolution`屬性。
 
-### 结构体类型的成员逐一构造器(Memberwise Initializers for structure Types)
+### 結構體類型的成員逐一構造器(Memberwise Initializers for structure Types)
 
-所有结构体都有一个自动生成的成员逐一构造器，用于初始化新结构体实例中成员的属性。新实例中各个属性的初始值可以通过属性的名称传递到成员逐一构造器之中：
+所有結構體都有一個自動生成的成員逐一構造器，用於初始化新結構體實例中成員的屬性。新實例中各個屬性的初始值可以通過屬性的名稱傳遞到成員逐一構造器之中：
 
 ```swift
 let vga = resolution(width:640, heigth: 480)
 ```
 
-与结构体不同，类实例没有默认的成员逐一构造器。[构造过程](14_Initialization.html)章节会对构造器进行更详细的讨论。
+與結構體不同，類實例沒有默認的成員逐一構造器。[構造過程](14_Initialization.html)章節會對構造器進行更詳細的討論。
 
 <a name="structures_and_enumerations_are_value_types"></a>
-## 结构体和枚举是值类型
+## 結構體和枚舉是值類型
 
-值类型被赋予给一个变量，常数或者本身被传递给一个函数的时候，实际上操作的是其的拷贝。
+值類型被賦予給一個變量，常數或者本身被傳遞給一個函數的時候，實際上操作的是其的拷貝。
 
-在之前的章节中，我们已经大量使用了值类型。实际上，在 Swift 中，所有的基本类型：整数（Integer）、浮点数（floating-point）、布尔值（Booleans）、字符串（string)、数组（array）和字典（dictionaries），都是值类型，并且都是以结构体的形式在后台所实现。
+在之前的章節中，我們已經大量使用了值類型。實際上，在 Swift 中，所有的基本類型：整數（Integer）、浮點數（floating-point）、布爾值（Booleans）、字符串（string)、數組（array）和字典（dictionaries），都是值類型，並且都是以結構體的形式在後台所實現。
 
-在 Swift 中，所有的结构体和枚举都是值类型。这意味着它们的实例，以及实例中所包含的任何值类型属性，在代码中传递的时候都会被复制。
+在 Swift 中，所有的結構體和枚舉都是值類型。這意味著它們的實例，以及實例中所包含的任何值類型屬性，在代碼中傳遞的時候都會被復制。
 
-请看下面这个示例，其使用了前一个示例中`Resolution`结构体：
+請看下面這個示例，其使用了前一個示例中`Resolution`結構體：
 
 ```swift
 let hd = Resolution(width: 1920, height: 1080)
 var cinema = hd
 ```
 
-在以上示例中，声明了一个名为`hd`的常量，其值为一个初始化为全高清视频分辨率（1920 像素宽，1080 像素高）的`Resolution`实例。
+在以上示例中，聲明了一個名為`hd`的常量，其值為一個初始化為全高清視頻分辨率（1920 像素寬，1080 像素高）的`Resolution`實例。
 
-然后示例中又声明了一个名为`cinema`的变量，其值为之前声明的`hd`。因为`Resolution`是一个结构体，所以`cinema`的值其实是`hd`的一个拷贝副本，而不是`hd`本身。尽管`hd`和`cinema`有着相同的宽（width）和高（height）属性，但是在后台中，它们是两个完全不同的实例。
+然後示例中又聲明了一個名為`cinema`的變量，其值為之前聲明的`hd`。因為`Resolution`是一個結構體，所以`cinema`的值其實是`hd`的一個拷貝副本，而不是`hd`本身。盡管`hd`和`cinema`有著相同的寬（width）和高（height）屬性，但是在後台中，它們是兩個完全不同的實例。
 
-下面，为了符合数码影院放映的需求（2048 像素宽，1080 像素高），`cinema`的`width`属性需要作如下修改：
+下面，為了符合數碼影院放映的需求（2048 像素寬，1080 像素高），`cinema`的`width`屬性需要作如下修改：
 
 ```swift
 cinema.width = 2048
 ```
 
-这里，将会显示`cinema`的`width`属性确已改为了`2048`：
+這裡，將會顯示`cinema`的`width`屬性確已改為了`2048`：
 
 ```swift
 println("cinema is now  \(cinema.width) pixels wide")
-// 输出 "cinema is now 2048 pixels wide"
+// 輸出 "cinema is now 2048 pixels wide"
 ```
 
-然而，初始的`hd`实例中`width`属性还是`1920`：
+然而，初始的`hd`實例中`width`屬性還是`1920`：
 
 ```swift
 println("hd is still \(hd.width	) pixels wide")
-// 输出 "hd is still 1920 pixels wide"
+// 輸出 "hd is still 1920 pixels wide"
 ```
 
-在将`hd`赋予给`cinema`的时候，实际上是将`hd`中所储存的`值（values）`进行拷贝，然后将拷贝的数据储存到新的`cinema`实例中。结果就是两个完全独立的实例碰巧包含有相同的数值。由于两者相互独立，因此将`cinema`的`width`修改为`2048`并不会影响`hd`中的宽（width）。
+在將`hd`賦予給`cinema`的時候，實際上是將`hd`中所儲存的`值（values）`進行拷貝，然後將拷貝的數據儲存到新的`cinema`實例中。結果就是兩個完全獨立的實例碰巧包含有相同的數值。由於兩者相互獨立，因此將`cinema`的`width`修改為`2048`並不會影響`hd`中的寬（width）。
 
-枚举也遵循相同的行为准则：
+枚舉也遵循相同的行為准則：
 
 ```swift
 enum CompassPoint {
@@ -185,17 +185,17 @@ currentDirection = .East
 if rememberDirection == .West {
 	println("The remembered direction is still .West")
 }
-// 输出 "The remembered direction is still .West"
+// 輸出 "The remembered direction is still .West"
 ```
 
-上例中`rememberedDirection`被赋予了`currentDirection`的值（value），实际上它被赋予的是值（value）的一个拷贝。赋值过程结束后再修改`currentDirection`的值并不影响`rememberedDirection`所储存的原始值（value）的拷贝。
+上例中`rememberedDirection`被賦予了`currentDirection`的值（value），實際上它被賦予的是值（value）的一個拷貝。賦值過程結束後再修改`currentDirection`的值並不影響`rememberedDirection`所儲存的原始值（value）的拷貝。
 
 <a name="classes_are_reference_types"></a>
-## 类是引用类型
+## 類是引用類型
 
-与值类型不同，引用类型在被赋予到一个变量，常量或者被传递到一个函数时，操作的并不是其拷贝。因此，引用的是已存在的实例本身而不是其拷贝。
+與值類型不同，引用類型在被賦予到一個變量，常量或者被傳遞到一個函數時，操作的並不是其拷貝。因此，引用的是已存在的實例本身而不是其拷貝。
 
-请看下面这个示例，其使用了之前定义的`VideoMode`类：
+請看下面這個示例，其使用了之前定義的`VideoMode`類：
 
 ```swift
 let tenEighty = VideoMode()
@@ -205,120 +205,120 @@ tenEighty.name = "1080i"
 tenEighty.frameRate = 25.0
 ```
 
-以上示例中，声明了一个名为`tenEighty`的常量，其引用了一个`VideoMode`类的新实例。在之前的示例中，这个视频模式（video mode）被赋予了HD分辨率（1920*1080）的一个拷贝（`hd`）。同时设置为交错（interlaced）,命名为`“1080i”`。最后，其帧率是`25.0`帧每秒。
+以上示例中，聲明了一個名為`tenEighty`的常量，其引用了一個`VideoMode`類的新實例。在之前的示例中，這個視頻模式（video mode）被賦予了HD分辨率（1920*1080）的一個拷貝（`hd`）。同時設置為交錯（interlaced）,命名為`“1080i”`。最後，其幀率是`25.0`幀每秒。
 
-然后，`tenEighty` 被赋予名为`alsoTenEighty`的新常量，同时对`alsoTenEighty`的帧率进行修改：
+然後，`tenEighty` 被賦予名為`alsoTenEighty`的新常量，同時對`alsoTenEighty`的幀率進行修改：
 
 ```swift
 let alsoTenEighty = tenEighty
 alsoTenEighty.frameRate = 30.0
 ```
 
-因为类是引用类型，所以`tenEight`和`alsoTenEight`实际上引用的是相同的`VideoMode`实例。换句话说，它们只是同一个实例的两种叫法。
+因為類是引用類型，所以`tenEight`和`alsoTenEight`實際上引用的是相同的`VideoMode`實例。換句話說，它們只是同一個實例的兩種叫法。
 
-下面，通过查看`tenEighty`的`frameRate`属性，我们会发现它正确的显示了基本`VideoMode`实例的新帧率，其值为`30.0`：
+下面，通過查看`tenEighty`的`frameRate`屬性，我們會發現它正確的顯示了基本`VideoMode`實例的新幀率，其值為`30.0`：
 
 ```swift
 println("The frameRate property of tenEighty is now \(tenEighty.frameRate)")
-// 输出 "The frameRate property of theEighty is now 30.0"
+// 輸出 "The frameRate property of theEighty is now 30.0"
 ```
 
-需要注意的是`tenEighty`和`alsoTenEighty`被声明为*常量（（constants）*而不是变量。然而你依然可以改变`tenEighty.frameRate`和`alsoTenEighty.frameRate`,因为这两个常量本身不会改变。它们并不`储存`这个`VideoMode`实例，在后台仅仅是对`VideoMode`实例的引用。所以，改变的是被引用的基础`VideoMode`的`frameRate`参数，而不改变常量的值。
+需要注意的是`tenEighty`和`alsoTenEighty`被聲明為*常量（（constants）*而不是變量。然而你依然可以改變`tenEighty.frameRate`和`alsoTenEighty.frameRate`,因為這兩個常量本身不會改變。它們並不`儲存`這個`VideoMode`實例，在後台僅僅是對`VideoMode`實例的引用。所以，改變的是被引用的基礎`VideoMode`的`frameRate`參數，而不改變常量的值。
 
-### 恒等运算符
+### 恆等運算符
 
-因为类是引用类型，有可能有多个常量和变量在后台同时引用某一个类实例。（对于结构体和枚举来说，这并不成立。因为它们作值类型，在被赋予到常量，变量或者传递到函数时，总是会被拷贝。）
+因為類是引用類型，有可能有多個常量和變量在後台同時引用某一個類實例。（對於結構體和枚舉來說，這並不成立。因為它們作值類型，在被賦予到常量，變量或者傳遞到函數時，總是會被拷貝。）
 
-如果能够判定两个常量或者变量是否引用同一个类实例将会很有帮助。为了达到这个目的，Swift 内建了两个恒等运算符：
+如果能夠判定兩個常量或者變量是否引用同一個類實例將會很有幫助。為了達到這個目的，Swift 內建了兩個恆等運算符：
 
-* 等价于 （ === ）
-* 不等价于 （ !== ）
+* 等價於 （ === ）
+* 不等價於 （ !== ）
 
-以下是运用这两个运算符检测两个常量或者变量是否引用同一个实例：
+以下是運用這兩個運算符檢測兩個常量或者變量是否引用同一個實例：
 
 ```swift
 if tenEighty === alsoTenTighty {
 	println("tenTighty and alsoTenEighty refer to the same Resolution instance.")
 }
-//输出 "tenEighty and alsoTenEighty refer to the same Resolution instance."
+//輸出 "tenEighty and alsoTenEighty refer to the same Resolution instance."
 ```
 
-请注意“等价于”（用三个等号表示，===） 与“等于”（用两个等号表示，==）的不同：
+請注意“等價於”（用三個等號表示，===） 與“等於”（用兩個等號表示，==）的不同：
 
-* “等价于”表示两个类类型（class type）的常量或者变量引用同一个类实例。
-* “等于”表示两个实例的值“相等”或“相同”，判定时要遵照类设计者定义定义的评判标准，因此相比于“相等”，这是一种更加合适的叫法。
+* “等價於”表示兩個類類型（class type）的常量或者變量引用同一個類實例。
+* “等於”表示兩個實例的值“相等”或“相同”，判定時要遵照類設計者定義定義的評判標准，因此相比於“相等”，這是一種更加合適的叫法。
 
-当你在定义你的自定义类和结构体的时候，你有义务来决定判定两个实例“相等”的标准。在章节[运算符函数(Operator Functions)](23_Advanced_Operators.html#operator_functions)中将会详细介绍实现自定义“等于”和“不等于”运算符的流程。
+當你在定義你的自定義類和結構體的時候，你有義務來決定判定兩個實例“相等”的標准。在章節[運算符函數(Operator Functions)](23_Advanced_Operators.html#operator_functions)中將會詳細介紹實現自定義“等於”和“不等於”運算符的流程。
 
-### 指针
+### 指針
 
-如果你有 C，C++ 或者 Objective-C 语言的经验，那么你也许会知道这些语言使用指针来引用内存中的地址。一个 Swift 常量或者变量引用一个引用类型的实例与 C 语言中的指针类似，不同的是并不直接指向内存中的某个地址，而且也不要求你使用星号（*）来表明你在创建一个引用。Swift 中这些引用与其它的常量或变量的定义方式相同。
+如果你有 C，C++ 或者 Objective-C 語言的經驗，那麼你也許會知道這些語言使用指針來引用內存中的地址。一個 Swift 常量或者變量引用一個引用類型的實例與 C 語言中的指針類似，不同的是並不直接指向內存中的某個地址，而且也不要求你使用星號（*）來表明你在創建一個引用。Swift 中這些引用與其它的常量或變量的定義方式相同。
 
 <a name="choosing_between_classes_and_structures"></a>
-## 类和结构体的选择
+## 類和結構體的選擇
 
-在你的代码中，你可以使用类和结构体来定义你的自定义数据类型。
+在你的代碼中，你可以使用類和結構體來定義你的自定義數據類型。
 
-然而，结构体实例总是通过值传递，类实例总是通过引用传递。这意味两者适用不同的任务。当你的在考虑一个工程项目的数据构造和功能的时候，你需要决定每个数据构造是定义成类还是结构体。
+然而，結構體實例總是通過值傳遞，類實例總是通過引用傳遞。這意味兩者適用不同的任務。當你的在考慮一個工程項目的數據構造和功能的時候，你需要決定每個數據構造是定義成類還是結構體。
 
-按照通用的准则，当符合一条或多条以下条件时，请考虑构建结构体：
+按照通用的准則，當符合一條或多條以下條件時，請考慮構建結構體：
 
-* 结构体的主要目的是用来封装少量相关简单数据值。
-* 有理由预计一个结构体实例在赋值或传递时，封装的数据将会被拷贝而不是被引用。
-* 任何在结构体中储存的值类型属性，也将会被拷贝，而不是被引用。
-* 结构体不需要去继承另一个已存在类型的属性或者行为。
+* 結構體的主要目的是用來封裝少量相關簡單數據值。
+* 有理由預計一個結構體實例在賦值或傳遞時，封裝的數據將會被拷貝而不是被引用。
+* 任何在結構體中儲存的值類型屬性，也將會被拷貝，而不是被引用。
+* 結構體不需要去繼承另一個已存在類型的屬性或者行為。
 
-合适的结构体候选者包括：
+合適的結構體候選者包括：
 
-* 几何形状的大小，封装一个`width`属性和`height`属性，两者均为`Double`类型。
-* 一定范围内的路径，封装一个`start`属性和`length`属性，两者均为`Int`类型。
-* 三维坐标系内一点，封装`x`，`y`和`z`属性，三者均为`Double`类型。
+* 幾何形狀的大小，封裝一個`width`屬性和`height`屬性，兩者均為`Double`類型。
+* 一定範圍內的路徑，封裝一個`start`屬性和`length`屬性，兩者均為`Int`類型。
+* 三維坐標系內一點，封裝`x`，`y`和`z`屬性，三者均為`Double`類型。
 
-在所有其它案例中，定义一个类，生成一个它的实例，并通过引用来管理和传递。实际中，这意味着绝大部分的自定义数据构造都应该是类，而非结构体。
+在所有其它案例中，定義一個類，生成一個它的實例，並通過引用來管理和傳遞。實際中，這意味著絕大部分的自定義數據構造都應該是類，而非結構體。
 
 <a name="assignment_and_copy_behavior_for_collection_types"></a>
-## 集合（Collection）类型的赋值和拷贝行为
+## 集合（Collection）類型的賦值和拷貝行為
 
-Swift 中`数组（Array）`和`字典（Dictionary）`类型均以结构体的形式实现。然而当数组被赋予一个常量或变量，或被传递给一个函数或方法时，其拷贝行为与字典和其它结构体有些许不同。
+Swift 中`數組（Array）`和`字典（Dictionary）`類型均以結構體的形式實現。然而當數組被賦予一個常量或變量，或被傳遞給一個函數或方法時，其拷貝行為與字典和其它結構體有些許不同。
 
-以下对`数组`和`结构体`的行为描述与对`NSArray`和`NSDictionary`的行为描述在本质上不同，后者是以类的形式实现，前者是以结构体的形式实现。`NSArray`和`NSDictionary`实例总是以对已有实例引用,而不是拷贝的方式被赋值和传递。
+以下對`數組`和`結構體`的行為描述與對`NSArray`和`NSDictionary`的行為描述在本質上不同，後者是以類的形式實現，前者是以結構體的形式實現。`NSArray`和`NSDictionary`實例總是以對已有實例引用,而不是拷貝的方式被賦值和傳遞。
 
 > 注意：  
-以下是对于数组，字典，字符串和其它值的`拷贝`的描述。
-在你的代码中，拷贝好像是确实是在有拷贝行为的地方产生过。然而，在 Swift 的后台中，只有确有必要，`实际（actual）`拷贝才会被执行。Swift 管理所有的值拷贝以确保性能最优化的性能，所以你也没有必要去避免赋值以保证最优性能。（实际赋值由系统管理优化）
+以下是對於數組，字典，字符串和其它值的`拷貝`的描述。
+在你的代碼中，拷貝好像是確實是在有拷貝行為的地方產生過。然而，在 Swift 的後台中，只有確有必要，`實際（actual）`拷貝才會被執行。Swift 管理所有的值拷貝以確保性能最優化的性能，所以你也沒有必要去避免賦值以保證最優性能。（實際賦值由系統管理優化）
 
-### 字典类型的赋值和拷贝行为
+### 字典類型的賦值和拷貝行為
 
-无论何时将一个`字典`实例赋给一个常量或变量，或者传递给一个函数或方法，这个字典会即会在赋值或调用发生时被拷贝。在章节[结构体和枚举是值类型](#structures_and_enumerations_are_value_types)中将会对此过程进行详细介绍。
+無論何時將一個`字典`實例賦給一個常量或變量，或者傳遞給一個函數或方法，這個字典會即會在賦值或調用發生時被拷貝。在章節[結構體和枚舉是值類型](#structures_and_enumerations_are_value_types)中將會對此過程進行詳細介紹。
 
-如果`字典`实例中所储存的键（keys）和/或值（values）是值类型（结构体或枚举），当赋值或调用发生时，它们都会被拷贝。相反，如果键（keys）和/或值（values）是引用类型，被拷贝的将会是引用，而不是被它们引用的类实例或函数。`字典`的键和值的拷贝行为与结构体所储存的属性的拷贝行为相同。
+如果`字典`實例中所儲存的鍵（keys）和/或值（values）是值類型（結構體或枚舉），當賦值或調用發生時，它們都會被拷貝。相反，如果鍵（keys）和/或值（values）是引用類型，被拷貝的將會是引用，而不是被它們引用的類實例或函數。`字典`的鍵和值的拷貝行為與結構體所儲存的屬性的拷貝行為相同。
 
-下面的示例定义了一个名为`ages`的字典，其中储存了四个人的名字和年龄。`ages`字典被赋予了一个名为`copiedAges`的新变量，同时`ages`在赋值的过程中被拷贝。赋值结束后，`ages`和`copiedAges`成为两个相互独立的字典。
+下面的示例定義了一個名為`ages`的字典，其中儲存了四個人的名字和年齡。`ages`字典被賦予了一個名為`copiedAges`的新變量，同時`ages`在賦值的過程中被拷貝。賦值結束後，`ages`和`copiedAges`成為兩個相互獨立的字典。
 
 ```swift
 var ages = ["Peter": 23, "Wei": 35, "Anish": 65, "Katya": 19]
 var copiedAges = ages
 ```
 
-这个字典的键（keys）是`字符串（String）`类型，值（values）是`整（Int）`类型。这两种类型在Swift 中都是值类型（value types），所以当字典被拷贝时，两者都会被拷贝。
+這個字典的鍵（keys）是`字符串（String）`類型，值（values）是`整（Int）`類型。這兩種類型在Swift 中都是值類型（value types），所以當字典被拷貝時，兩者都會被拷貝。
 
-我们可以通过改变一个字典中的年龄值（age value），检查另一个字典中所对应的值，来证明`ages`字典确实是被拷贝了。如果在`copiedAges`字典中将`Peter`的值设为`24`，那么`ages`字典仍然会返回修改前的值`23`：
+我們可以通過改變一個字典中的年齡值（age value），檢查另一個字典中所對應的值，來證明`ages`字典確實是被拷貝了。如果在`copiedAges`字典中將`Peter`的值設為`24`，那麼`ages`字典仍然會返回修改前的值`23`：
 
 ```swift
 copiedAges["Peter"] = 24
 println(ages["Peter"])
-// 输出 "23"
+// 輸出 "23"
 ```
 
-### 数组的赋值和拷贝行为
+### 數組的賦值和拷貝行為
 
-在Swift 中，`数组（Arrays）`类型的赋值和拷贝行为要比`字典（Dictionary）`类型的复杂的多。当操作数组内容时，`数组（Array）`能提供接近C语言的的性能，并且拷贝行为只有在必要时才会发生。
+在Swift 中，`數組（Arrays）`類型的賦值和拷貝行為要比`字典（Dictionary）`類型的復雜的多。當操作數組內容時，`數組（Array）`能提供接近C語言的的性能，並且拷貝行為只有在必要時才會發生。
 
-如果你将一个`数组（Array）`实例赋给一个变量或常量，或者将其作为参数传递给函数或方法调用，在事件发生时数组的内容`不`会被拷贝。相反，数组公用相同的元素序列。当你在一个数组内修改某一元素，修改结果也会在另一数组显示。
+如果你將一個`數組（Array）`實例賦給一個變量或常量，或者將其作為參數傳遞給函數或方法調用，在事件發生時數組的內容`不`會被拷貝。相反，數組公用相同的元素序列。當你在一個數組內修改某一元素，修改結果也會在另一數組顯示。
 
-对数组来说，拷贝行为仅仅当操作有可能修改数组`长度`时才会发生。这种行为包括了附加（appending）,插入（inserting）,删除（removing）或者使用范围下标（ranged subscript）去替换这一范围内的元素。只有当数组拷贝确要发生时，数组内容的行为规则与字典中键值的相同，参见章节[集合（collection）类型的赋值与复制行为](#assignment_and_copy_behavior_for_collection_types。
+對數組來說，拷貝行為僅僅當操作有可能修改數組`長度`時才會發生。這種行為包括了附加（appending）,插入（inserting）,刪除（removing）或者使用範圍下標（ranged subscript）去替換這一範圍內的元素。只有當數組拷貝確要發生時，數組內容的行為規則與字典中鍵值的相同，參見章節[集合（collection）類型的賦值與復制行為](#assignment_and_copy_behavior_for_collection_types。
 
-下面的示例将一个`整数（Int）`数组赋给了一个名为`a`的变量，继而又被赋给了变量`b`和`c`：
+下面的示例將一個`整數（Int）`數組賦給了一個名為`a`的變量，繼而又被賦給了變量`b`和`c`：
 
 ```swift
 var a = [1, 2, 3]
@@ -326,7 +326,7 @@ var b = a
 var c = a
 ```
 
-我们可以在`a`,`b`,`c`上使用下标语法以得到数组的第一个元素：
+我們可以在`a`,`b`,`c`上使用下標語法以得到數組的第一個元素：
 
 ```swift
 println(a[0])
@@ -337,7 +337,7 @@ println(c[0])
 // 1
 ```
 
-如果通过下标语法修改数组中某一元素的值，那么`a`,`b`,`c`中的相应值都会发生改变。请注意当你用下标语法修改某一值时，并没有拷贝行为伴随发生，因为下表语法修改值时没有改变数组长度的可能：
+如果通過下標語法修改數組中某一元素的值，那麼`a`,`b`,`c`中的相應值都會發生改變。請注意當你用下標語法修改某一值時，並沒有拷貝行為伴隨發生，因為下表語法修改值時沒有改變數組長度的可能：
 
 ```swift
 a[0] = 42
@@ -349,10 +349,10 @@ println(c[0])
 // 42
 ```
 
-然而，当你给`a`附加新元素时，数组的长度`会`改变。
-当附加元素这一事件发生时，Swift 会创建这个数组的一个拷贝。从此以后，`a`将会是原数组的一个独立拷贝。
+然而，當你給`a`附加新元素時，數組的長度`會`改變。
+當附加元素這一事件發生時，Swift 會創建這個數組的一個拷貝。從此以後，`a`將會是原數組的一個獨立拷貝。
 
-拷贝发生后，如果再修改`a`中元素值的话，`a`将会返回与`b`，`c`不同的结果，因为后两者引用的是原来的数组：
+拷貝發生後，如果再修改`a`中元素值的話，`a`將會返回與`b`，`c`不同的結果，因為後兩者引用的是原來的數組：
 
 ```swift
 a.append(4)
@@ -365,19 +365,19 @@ println(c[0])
 // 42
 ```
 
-### 确保数组的唯一性
+### 確保數組的唯一性
 
-在操作一个数组，或将其传递给函数以及方法调用之前是很有必要先确定这个数组是有一个唯一拷贝的。通过在数组变量上调用`unshare`方法来确定数组引用的唯一性。（当数组赋给常量时，不能调用`unshare`方法）
+在操作一個數組，或將其傳遞給函數以及方法調用之前是很有必要先確定這個數組是有一個唯一拷貝的。通過在數組變量上調用`unshare`方法來確定數組引用的唯一性。（當數組賦給常量時，不能調用`unshare`方法）
 
-如果一个数组被多个变量引用，在其中的一个变量上调用`unshare`方法，则会拷贝此数组，此时这个变量将会有属于它自己的独立数组拷贝。当数组仅被一个变量引用时，则不会有拷贝发生。
+如果一個數組被多個變量引用，在其中的一個變量上調用`unshare`方法，則會拷貝此數組，此時這個變量將會有屬於它自己的獨立數組拷貝。當數組僅被一個變量引用時，則不會有拷貝發生。
 
-在上一个示例的最后，`b`和`c`都引用了同一个数组。此时在`b`上调用`unshare`方法则会将`b`变成一个唯一个拷贝：
+在上一個示例的最後，`b`和`c`都引用了同一個數組。此時在`b`上調用`unshare`方法則會將`b`變成一個唯一個拷貝：
 
 ```swift
 b.unshare()
 ```
 
-在`unshare`方法调用后再修改`b`中第一个元素的值，这三个数组（`a`,`b`,`c`）会返回不同的三个值：
+在`unshare`方法調用後再修改`b`中第一個元素的值，這三個數組（`a`,`b`,`c`）會返回不同的三個值：
 
 ```swift
 b[0] = -105
@@ -390,11 +390,11 @@ println(c[0])
 ```
 
 
-### 判定两个数组是否共用相同元素
+### 判定兩個數組是否共用相同元素
 
-我们通过使用恒等运算符（identity operators）（ === 和 !==）来判定两个数组或子数组共用相同的储存空间或元素。
+我們通過使用恆等運算符（identity operators）（ === 和 !==）來判定兩個數組或子數組共用相同的儲存空間或元素。
 
-下面这个示例使用了“等同（identical to）” 运算符（===） 来判定`b`和`c`是否共用相同的数组元素：
+下面這個示例使用了“等同（identical to）” 運算符（===） 來判定`b`和`c`是否共用相同的數組元素：
 
 ```swift
 if b === c {
@@ -405,10 +405,10 @@ if b === c {
 ```
 
 ```swift
-// 输出 "b and c now refer totwo independent sets of array elements."
+// 輸出 "b and c now refer totwo independent sets of array elements."
 ```
 
-此外，我们还可以使用恒等运算符来判定两个子数组是否共用相同的元素。下面这个示例中，比较了`b`的两个相等的子数组，并且确定了这两个子数组都引用相同的元素：
+此外，我們還可以使用恆等運算符來判定兩個子數組是否共用相同的元素。下面這個示例中，比較了`b`的兩個相等的子數組，並且確定了這兩個子數組都引用相同的元素：
 
 ```swift
 if b[0...1] === b[0...1] {
@@ -416,28 +416,28 @@ if b[0...1] === b[0...1] {
 } else {
 	println("These two subarrays do not share the same elements.")
 }
-// 输出 "These two subarrays share the same elements."
+// 輸出 "These two subarrays share the same elements."
 ```
 
-### 强制复制数组
+### 強制復制數組
 
-我们通过调用数组的`copy`方法进行强制显性复制。这个方法对数组进行了浅拷贝（shallow copy）,并且返回一个包含此拷贝的新数组。
+我們通過調用數組的`copy`方法進行強制顯性復制。這個方法對數組進行了淺拷貝（shallow copy）,並且返回一個包含此拷貝的新數組。
 
-下面这个示例中定义了一个`names`数组，其包含了七个人名。还定义了一个`copiedNames`变量，用以储存在`names`上调用`copy`方法所返回的结果：
+下面這個示例中定義了一個`names`數組，其包含了七個人名。還定義了一個`copiedNames`變量，用以儲存在`names`上調用`copy`方法所返回的結果：
 
 ```swift
 var names = ["Mohsen", "Hilary", "Justyn", "Amy", "Rich", "Graham", "Vic"]
 var copiedNames = names.copy()
 ```
 
-我们可以通过修改一个数组中某元素，并且检查另一个数组中对应元素的方法来判定`names`数组确已被复制。如果你将`copiedNames`中第一个元素从"`Mohsen`"修改为"`Mo`",则`names`数组返回的仍是拷贝发生前的"`Mohsen`"：
+我們可以通過修改一個數組中某元素，並且檢查另一個數組中對應元素的方法來判定`names`數組確已被復制。如果你將`copiedNames`中第一個元素從"`Mohsen`"修改為"`Mo`",則`names`數組返回的仍是拷貝發生前的"`Mohsen`"：
 
 ```swift
 copiedName[0] = "Mo"
 println(name[0])
-// 输出 "Mohsen"
+// 輸出 "Mohsen"
 ```
 
 > 注意：  
-如果你仅需要确保你对数组的引用是唯一引用，请调用`unshare`方法，而不是`copy`方法。`unshare`方法仅会在确有必要时才会创建数组拷贝。`copy`方法会在任何时候都创建一个新的拷贝，即使引用已经是唯一引用。
+如果你僅需要確保你對數組的引用是唯一引用，請調用`unshare`方法，而不是`copy`方法。`unshare`方法僅會在確有必要時才會創建數組拷貝。`copy`方法會在任何時候都創建一個新的拷貝，即使引用已經是唯一引用。
 

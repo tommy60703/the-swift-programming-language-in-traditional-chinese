@@ -1,58 +1,58 @@
-> 翻译：[lyuka](https://github.com/lyuka)
-> 校对：[Hawstein](https://github.com/Hawstein)
+> 翻譯：[lyuka](https://github.com/lyuka)
+> 校對：[Hawstein](https://github.com/Hawstein)
 
-#扩展（Extensions）
+#擴展（Extensions）
 ----
 
-本页包含内容：
+本頁包含內容：
 
-- [扩展语法](#extension_syntax)
-- [计算型属性](#computed_properties)
-- [构造器](#initializers)
+- [擴展語法](#extension_syntax)
+- [計算型屬性](#computed_properties)
+- [構造器](#initializers)
 - [方法](#methods)
-- [下标](#subscripts)
-- [嵌套类型](#nested_types)
+- [下標](#subscripts)
+- [嵌套類型](#nested_types)
 
-*扩展*就是向一个已有的类、结构体或枚举类型添加新功能（functionality）。这包括在没有权限获取原始源代码的情况下扩展类型的能力（即*逆向建模*）。扩展和 Objective-C 中的分类（categories）类似。（不过与Objective-C不同的是，Swift 的扩展没有名字。）
+*擴展*就是向一個已有的類、結構體或枚舉類型添加新功能（functionality）。這包括在沒有權限獲取原始源代碼的情況下擴展類型的能力（即*逆向建模*）。擴展和 Objective-C 中的分類（categories）類似。（不過與Objective-C不同的是，Swift 的擴展沒有名字。）
 
-Swift 中的扩展可以：
+Swift 中的擴展可以：
 
-- 添加计算型属性和计算静态属性
-- 定义实例方法和类型方法
-- 提供新的构造器
-- 定义下标
-- 定义和使用新的嵌套类型
-- 使一个已有类型符合某个协议
+- 添加計算型屬性和計算靜態屬性
+- 定義實例方法和類型方法
+- 提供新的構造器
+- 定義下標
+- 定義和使用新的嵌套類型
+- 使一個已有類型符合某個協議
 
 
 >注意：  
-如果你定义了一个扩展向一个已有类型添加新功能，那么这个新功能对该类型的所有已有实例中都是可用的，即使它们是在你的这个扩展的前面定义的。
+如果你定義了一個擴展向一個已有類型添加新功能，那麼這個新功能對該類型的所有已有實例中都是可用的，即使它們是在你的這個擴展的前面定義的。
 
 <a name="extension_syntax"></a>
-## 扩展语法（Extension Syntax）
+## 擴展語法（Extension Syntax）
 
-声明一个扩展使用关键字`extension`：
+聲明一個擴展使用關鍵字`extension`：
 
 ```swift
 extension SomeType {
-    // 加到SomeType的新功能写到这里
+    // 加到SomeType的新功能寫到這裡
 }
 ```
 
-一个扩展可以扩展一个已有类型，使其能够适配一个或多个协议（protocol）。当这种情况发生时，协议的名字应该完全按照类或结构体的名字的方式进行书写：
+一個擴展可以擴展一個已有類型，使其能夠適配一個或多個協議（protocol）。當這種情況發生時，協議的名字應該完全按照類或結構體的名字的方式進行書寫：
 
 ```swift
 extension SomeType: SomeProtocol, AnotherProctocol {
-    // 协议实现写到这里
+    // 協議實現寫到這裡
 }
 ```
 
-按照这种方式添加的协议遵循者（protocol conformance）被称之为[在扩展中添加协议遵循者](21_Protocols.html#adding_protocol_conformance_with_an_extension)
+按照這種方式添加的協議遵循者（protocol conformance）被稱之為[在擴展中添加協議遵循者](21_Protocols.html#adding_protocol_conformance_with_an_extension)
 
 <a name="computed_properties"></a>
-## 计算型属性（Computed Properties）
+## 計算型屬性（Computed Properties）
 
-扩展可以向已有类型添加计算型实例属性和计算型类型属性。下面的例子向 Swift 的内建`Double`类型添加了5个计算型实例属性，从而提供与距离单位协作的基本支持。
+擴展可以向已有類型添加計算型實例屬性和計算型類型屬性。下面的例子向 Swift 的內建`Double`類型添加了5個計算型實例屬性，從而提供與距離單位協作的基本支持。
 
 ```swift
 extension Double {
@@ -64,42 +64,42 @@ extension Double {
 }
 let oneInch = 25.4.mm
 println("One inch is \(oneInch) meters")
-// 打印输出："One inch is 0.0254 meters"
+// 打印輸出："One inch is 0.0254 meters"
 let threeFeet = 3.ft
 println("Three feet is \(threeFeet) meters")
-// 打印输出："Three feet is 0.914399970739201 meters"
+// 打印輸出："Three feet is 0.914399970739201 meters"
 ```
 
-这些计算属性表达的含义是把一个`Double`型的值看作是某单位下的长度值。即使它们被实现为计算型属性，但这些属性仍可以接一个带有dot语法的浮点型字面值，而这恰恰是使用这些浮点型字面量实现距离转换的方式。
+這些計算屬性表達的含義是把一個`Double`型的值看作是某單位下的長度值。即使它們被實現為計算型屬性，但這些屬性仍可以接一個帶有dot語法的浮點型字面值，而這恰恰是使用這些浮點型字面量實現距離轉換的方式。
 
-在上述例子中，一个`Double`型的值`1.0`被用来表示“1米”。这就是为什么`m`计算型属性返回`self`——表达式`1.m`被认为是计算`1.0`的`Double`值。
+在上述例子中，一個`Double`型的值`1.0`被用來表示“1米”。這就是為什麼`m`計算型屬性返回`self`——表達式`1.m`被認為是計算`1.0`的`Double`值。
 
-其它单位则需要一些转换来表示在米下测量的值。1千米等于1,000米，所以`km`计算型属性要把值乘以`1_000.00`来转化成单位米下的数值。类似地，1米有3.28024英尺，所以`ft`计算型属性要把对应的`Double`值除以`3.28024`来实现英尺到米的单位换算。
+其它單位則需要一些轉換來表示在米下測量的值。1千米等於1,000米，所以`km`計算型屬性要把值乘以`1_000.00`來轉化成單位米下的數值。類似地，1米有3.28024英尺，所以`ft`計算型屬性要把對應的`Double`值除以`3.28024`來實現英尺到米的單位換算。
 
-这些属性是只读的计算型属性，所有从简考虑它们不用`get`关键字表示。它们的返回值是`Double`型，而且可以用于所有接受`Double`的数学计算中：
+這些屬性是只讀的計算型屬性，所有從簡考慮它們不用`get`關鍵字表示。它們的返回值是`Double`型，而且可以用於所有接受`Double`的數學計算中：
 
 ```swift
 let aMarathon = 42.km + 195.m
 println("A marathon is \(aMarathon) meters long")
-// 打印输出："A marathon is 42495.0 meters long"
+// 打印輸出："A marathon is 42495.0 meters long"
 ```
 
 
 >注意：  
-扩展可以添加新的计算属性，但是不可以添加存储属性，也不可以向已有属性添加属性观测器(property observers)。
+擴展可以添加新的計算屬性，但是不可以添加存儲屬性，也不可以向已有屬性添加屬性觀測器(property observers)。
 
 <a name="initializers"></a>
-## 构造器（Initializers）
+## 構造器（Initializers）
 
-扩展可以向已有类型添加新的构造器。这可以让你扩展其它类型，将你自己的定制类型作为构造器参数，或者提供该类型的原始实现中没有包含的额外初始化选项。  
+擴展可以向已有類型添加新的構造器。這可以讓你擴展其它類型，將你自己的定制類型作為構造器參數，或者提供該類型的原始實現中沒有包含的額外初始化選項。  
 
-扩展能向类中添加新的便利构造器，但是它们不能向类中添加新的指定构造器或析构函数。指定构造器和析构函数必须总是由原始的类实现来提供。
+擴展能向類中添加新的便利構造器，但是它們不能向類中添加新的指定構造器或析構函數。指定構造器和析構函數必須總是由原始的類實現來提供。
 
 > 注意：  
-如果你使用扩展向一个值类型添加一个构造器，该构造器向所有的存储属性提供默认值，而且没有定义任何定制构造器（custom initializers），那么对于来自你的扩展构造器中的值类型，你可以调用默认构造器(default initializers)和逐一成员构造器(memberwise initializers)。  
-正如在值类型的构造器授权中描述的，如果你已经把构造器写成值类型原始实现的一部分，上述规则不再适用。
+如果你使用擴展向一個值類型添加一個構造器，該構造器向所有的存儲屬性提供默認值，而且沒有定義任何定制構造器（custom initializers），那麼對於來自你的擴展構造器中的值類型，你可以調用默認構造器(default initializers)和逐一成員構造器(memberwise initializers)。  
+正如在值類型的構造器授權中描述的，如果你已經把構造器寫成值類型原始實現的一部分，上述規則不再適用。
 
-下面的例子定义了一个用于描述几何矩形的定制结构体`Rect`。这个例子同时定义了两个辅助结构体`Size`和`Point`，它们都把`0.0`作为所有属性的默认值：
+下面的例子定義了一個用於描述幾何矩形的定制結構體`Rect`。這個例子同時定義了兩個輔助結構體`Size`和`Point`，它們都把`0.0`作為所有屬性的默認值：
 
 ```swift
 struct Size {
@@ -114,7 +114,7 @@ struct Rect {
 }
 ```
 
-因为结构体`Rect`提供了其所有属性的默认值，所以正如默认构造器中描述的，它可以自动接受一个默认的构造器和一个成员级构造器。这些构造器可以用于构造新的`Rect`实例：
+因為結構體`Rect`提供了其所有屬性的默認值，所以正如默認構造器中描述的，它可以自動接受一個默認的構造器和一個成員級構造器。這些構造器可以用於構造新的`Rect`實例：
 
 ```swift
 let defaultRect = Rect()
@@ -122,7 +122,7 @@ let memberwiseRect = Rect(origin: Point(x: 2.0, y: 2.0),
     size: Size(width: 5.0, height: 5.0))
 ```
 
-你可以提供一个额外的使用特殊中心点和大小的构造器来扩展`Rect`结构体：
+你可以提供一個額外的使用特殊中心點和大小的構造器來擴展`Rect`結構體：
 
 ```swift
 extension Rect {
@@ -134,22 +134,22 @@ extension Rect {
 }
 ```
 
-这个新的构造器首先根据提供的`center`和`size`值计算一个合适的原点。然后调用该结构体自动的成员构造器`init(origin:size:)`，该构造器将新的原点和大小存到了合适的属性中：
+這個新的構造器首先根據提供的`center`和`size`值計算一個合適的原點。然後調用該結構體自動的成員構造器`init(origin:size:)`，該構造器將新的原點和大小存到了合適的屬性中：
 
 ```swift
 let centerRect = Rect(center: Point(x: 4.0, y: 4.0),
     size: Size(width: 3.0, height: 3.0))
-// centerRect的原点是 (2.5, 2.5)，大小是 (3.0, 3.0)
+// centerRect的原點是 (2.5, 2.5)，大小是 (3.0, 3.0)
 ```
 
 
 >注意：  
-如果你使用扩展提供了一个新的构造器，你依旧有责任保证构造过程能够让所有实例完全初始化。
+如果你使用擴展提供了一個新的構造器，你依舊有責任保證構造過程能夠讓所有實例完全初始化。
 
 <a name="methods"></a>
 ## 方法（Methods）
 
-扩展可以向已有类型添加新的实例方法和类型方法。下面的例子向`Int`类型添加一个名为`repetitions`的新实例方法：
+擴展可以向已有類型添加新的實例方法和類型方法。下面的例子向`Int`類型添加一個名為`repetitions`的新實例方法：
 
 ```swift
 extension Int {
@@ -161,9 +161,9 @@ extension Int {
 }
 ```
 
-这个`repetitions`方法使用了一个`() -> ()`类型的单参数（single argument），表明函数没有参数而且没有返回值。
+這個`repetitions`方法使用了一個`() -> ()`類型的單參數（single argument），表明函數沒有參數而且沒有返回值。
 
-定义该扩展之后，你就可以对任意整数调用`repetitions`方法,实现的功能则是多次执行某任务：
+定義該擴展之後，你就可以對任意整數調用`repetitions`方法,實現的功能則是多次執行某任務：
 
 ```swift
 3.repetitions({
@@ -174,7 +174,7 @@ extension Int {
 // Hello!
 ```
 
-可以使用 trailing 闭包使调用更加简洁：
+可以使用 trailing 閉包使調用更加簡潔：
 
 ```swift
 3.repetitions{
@@ -186,11 +186,11 @@ extension Int {
 ```
 
 <a name="mutating_instance_methods"></a>
-### 修改实例方法（Mutating Instance Methods）
+### 修改實例方法（Mutating Instance Methods）
 
-通过扩展添加的实例方法也可以修改该实例本身。结构体和枚举类型中修改`self`或其属性的方法必须将该实例方法标注为`mutating`，正如来自原始实现的修改方法一样。
+通過擴展添加的實例方法也可以修改該實例本身。結構體和枚舉類型中修改`self`或其屬性的方法必須將該實例方法標注為`mutating`，正如來自原始實現的修改方法一樣。
 
-下面的例子向Swift的`Int`类型添加了一个新的名为`square`的修改方法，来实现一个原始值的平方计算：
+下面的例子向Swift的`Int`類型添加了一個新的名為`square`的修改方法，來實現一個原始值的平方計算：
 
 ```swift
 extension Int {
@@ -200,13 +200,13 @@ extension Int {
 }
 var someInt = 3
 someInt.square()
-// someInt 现在值是 9
+// someInt 現在值是 9
 ```
 
 <a name="subscripts"></a>
-## 下标（Subscripts）
+## 下標（Subscripts）
 
-扩展可以向一个已有类型添加新下标。这个例子向Swift内建类型`Int`添加了一个整型下标。该下标`[n]`返回十进制数字从右向左数的第n个数字
+擴展可以向一個已有類型添加新下標。這個例子向Swift內建類型`Int`添加了一個整型下標。該下標`[n]`返回十進制數字從右向左數的第n個數字
 
 - 123456789[0]返回9
 - 123456789[1]返回8
@@ -233,18 +233,18 @@ extension Int {
 // returns 7
 ```
 
-如果该`Int`值没有足够的位数，即下标越界，那么上述实现的下标会返回0，因为它会在数字左边自动补0：
+如果該`Int`值沒有足夠的位數，即下標越界，那麼上述實現的下標會返回0，因為它會在數字左邊自動補0：
 
 ```swift
 746381295[9]
-//returns 0, 即等同于：
+//returns 0, 即等同於：
 0746381295[9]
 ```
 
 <a name="nested_types"></a>
-## 嵌套类型（Nested Types）
+## 嵌套類型（Nested Types）
 
-扩展可以向已有的类、结构体和枚举添加新的嵌套类型：
+擴展可以向已有的類、結構體和枚舉添加新的嵌套類型：
 
 ```swift
 extension Character {
@@ -265,11 +265,11 @@ extension Character {
 }
 ```
 
-该例子向`Character`添加了新的嵌套枚举。这个名为`Kind`的枚举表示特定字符的类型。具体来说，就是表示一个标准的拉丁脚本中的字符是元音还是辅音（不考虑口语和地方变种），或者是其它类型。
+該例子向`Character`添加了新的嵌套枚舉。這個名為`Kind`的枚舉表示特定字符的類型。具體來說，就是表示一個標准的拉丁腳本中的字符是元音還是輔音（不考慮口語和地方變種），或者是其它類型。
 
-这个类子还向`Character`添加了一个新的计算实例属性，即`kind`，用来返回合适的`Kind`枚举成员。
+這個類子還向`Character`添加了一個新的計算實例屬性，即`kind`，用來返回合適的`Kind`枚舉成員。
 
-现在，这个嵌套枚举可以和一个`Character`值联合使用了：
+現在，這個嵌套枚舉可以和一個`Character`值聯合使用了：
 
 ```swift
 func printLetterKinds(word: String) {
@@ -291,8 +291,8 @@ printLetterKinds("Hello")
 // consonant vowel consonant consonant vowel
 ```
 
-函数`printLetterKinds`的输入是一个`String`值并对其字符进行迭代。在每次迭代过程中，考虑当前字符的`kind`计算属性，并打印出合适的类别描述。所以`printLetterKinds`就可以用来打印一个完整单词中所有字母的类型，正如上述单词`"hello"`所展示的。
+函數`printLetterKinds`的輸入是一個`String`值並對其字符進行迭代。在每次迭代過程中，考慮當前字符的`kind`計算屬性，並打印出合適的類別描述。所以`printLetterKinds`就可以用來打印一個完整單詞中所有字母的類型，正如上述單詞`"hello"`所展示的。
 
 >注意：  
-由于已知`character.kind`是`Character.Kind`型，所以`Character.Kind`中的所有成员值都可以使用`switch`语句里的形式简写，比如使用 `.Vowel`代替`Character.Kind.Vowel`
+由於已知`character.kind`是`Character.Kind`型，所以`Character.Kind`中的所有成員值都可以使用`switch`語句裡的形式簡寫，比如使用 `.Vowel`代替`Character.Kind.Vowel`
 

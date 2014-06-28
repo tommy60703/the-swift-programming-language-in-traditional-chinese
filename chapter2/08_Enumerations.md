@@ -1,30 +1,30 @@
-> 翻译：[yankuangshi](https://github.com/yankuangshi)
-> 校对：[shinyzhu](https://github.com/shinyzhu)
+> 翻譯：[yankuangshi](https://github.com/yankuangshi)
+> 校對：[shinyzhu](https://github.com/shinyzhu)
 
-# 枚举（Enumerations）
+# 枚舉（Enumerations）
 ---
 
-本页内容包含：
+本頁內容包含：
 
-- [枚举语法（Enumeration Syntax）](#enumeration_syntax)
-- [匹配枚举值与`Swith`语句（Matching Enumeration Values with a Switch Statement）](#matching_enumeration_values_with_a_switch_statement)
-- [实例值（Associated Values）](#associated_values)
+- [枚舉語法（Enumeration Syntax）](#enumeration_syntax)
+- [匹配枚舉值與`Swith`語句（Matching Enumeration Values with a Switch Statement）](#matching_enumeration_values_with_a_switch_statement)
+- [實例值（Associated Values）](#associated_values)
 - [原始值（Raw Values）](#raw_values)
 
-枚举定义了一个通用类型的一组相关的值，使你可以在你的代码中以一个安全的方式来使用这些值。
+枚舉定義了一個通用類型的一組相關的值，使你可以在你的代碼中以一個安全的方式來使用這些值。
 
-如果你熟悉 C 语言，你就会知道，在 C 语言中枚举指定相关名称为一组整型值。Swift 中的枚举更加灵活，不必给每一个枚举成员提供一个值。如果一个值（被认为是“原始”值）被提供给每个枚举成员，则该值可以是一个字符串，一个字符，或是一个整型值或浮点值。
+如果你熟悉 C 語言，你就會知道，在 C 語言中枚舉指定相關名稱為一組整型值。Swift 中的枚舉更加靈活，不必給每一個枚舉成員提供一個值。如果一個值（被認為是“原始”值）被提供給每個枚舉成員，則該值可以是一個字符串，一個字符，或是一個整型值或浮點值。
 
-此外，枚举成员可以指定任何类型的实例值存储到枚举成员值中，就像其他语言中的联合体（unions）和变体（variants）。你可以定义一组通用的相关成员作为枚举的一部分，每一组都有不同的一组与它相关的适当类型的数值。
+此外，枚舉成員可以指定任何類型的實例值存儲到枚舉成員值中，就像其他語言中的聯合體（unions）和變體（variants）。你可以定義一組通用的相關成員作為枚舉的一部分，每一組都有不同的一組與它相關的適當類型的數值。
 
-在 Swift 中，枚举类型是一等（first-class）类型。它们采用了很多传统上只被类（class)所支持的特征，例如计算型属性（computed properties)，用于提供关于枚举当前值的附加信息， 实例方法（instance methods），用于提供和枚举所代表的值相关联的功能。枚举也可以定义构造函数（initializers）来提供一个初始成员值；可以在原始的实现基础上扩展它们的功能；可以遵守协议（protocols）来提供标准的功能。
+在 Swift 中，枚舉類型是一等（first-class）類型。它們采用了很多傳統上只被類（class)所支持的特征，例如計算型屬性（computed properties)，用於提供關於枚舉當前值的附加信息， 實例方法（instance methods），用於提供和枚舉所代表的值相關聯的功能。枚舉也可以定義構造函數（initializers）來提供一個初始成員值；可以在原始的實現基礎上擴展它們的功能；可以遵守協議（protocols）來提供標准的功能。
 
-欲了解更多相关功能，请参见[属性（Properties）](10_Properties.html)，[方法（Methods）](11_Methods.html)，[构造过程（Initialization）](14_Initialization.html)，[扩展（Extensions）](20_Extensions.html)和[协议（Protocols）](21_Protocols.html)。
+欲了解更多相關功能，請參見[屬性（Properties）](10_Properties.html)，[方法（Methods）](11_Methods.html)，[構造過程（Initialization）](14_Initialization.html)，[擴展（Extensions）](20_Extensions.html)和[協議（Protocols）](21_Protocols.html)。
 
 <a name="enumeration_syntax"></a>
-## 枚举语法
+## 枚舉語法
 
-使用`enum`关键词并且把它们的整个定义放在一对大括号内：
+使用`enum`關鍵詞並且把它們的整個定義放在一對大括號內：
 
 ```swift
 enum SomeEnumeration {
@@ -32,7 +32,7 @@ enum SomeEnumeration {
 }
 ```
 
-以下是指南针四个方向的一个例子：
+以下是指南針四個方向的一個例子：
 
 ```swift
 enum CompassPoint {
@@ -43,12 +43,12 @@ enum CompassPoint {
 }
 ```
 
-一个枚举中被定义的值（例如 `North`，`South`，`East`和`West`）是枚举的***成员值***（或者***成员***）。`case`关键词表明新的一行成员值将被定义。
+一個枚舉中被定義的值（例如 `North`，`South`，`East`和`West`）是枚舉的***成員值***（或者***成員***）。`case`關鍵詞表明新的一行成員值將被定義。
 
 > 注意：  
-> 不像 C 和 Objective-C 一样，Swift 的枚举成员在被创建时不会被赋予一个默认的整数值。在上面的`CompassPoints`例子中，`North`，`South`，`East`和`West`不是隐式的等于`0`，`1`，`2`和`3`。相反的，这些不同的枚举成员在`CompassPoint`的一种显示定义中拥有各自不同的值。  
+> 不像 C 和 Objective-C 一樣，Swift 的枚舉成員在被創建時不會被賦予一個默認的整數值。在上面的`CompassPoints`例子中，`North`，`South`，`East`和`West`不是隱式的等於`0`，`1`，`2`和`3`。相反的，這些不同的枚舉成員在`CompassPoint`的一種顯示定義中擁有各自不同的值。  
 
-多个成员值可以出现在同一行上，用逗号隔开：
+多個成員值可以出現在同一行上，用逗號隔開：
 
 ```swift
 enum Planet {
@@ -56,24 +56,24 @@ enum Planet {
 }
 ```
 
-每个枚举定义了一个全新的类型。像 Swift 中其他类型一样，它们的名字（例如`CompassPoint`和`Planet`）必须以一个大写字母开头。给枚举类型起一个单数名字而不是复数名字，以便于读起来更加容易理解：
+每個枚舉定義了一個全新的類型。像 Swift 中其他類型一樣，它們的名字（例如`CompassPoint`和`Planet`）必須以一個大寫字母開頭。給枚舉類型起一個單數名字而不是復數名字，以便於讀起來更加容易理解：
 
 ```swift
 var directionToHead = CompassPoint.West
 ```
 
-`directionToHead`的类型被推断当它被`CompassPoint`的一个可能值初始化。一旦`directionToHead`被声明为一个`CompassPoint`，你可以使用更短的点（.）语法将其设置为另一个`CompassPoint`的值：
+`directionToHead`的類型被推斷當它被`CompassPoint`的一個可能值初始化。一旦`directionToHead`被聲明為一個`CompassPoint`，你可以使用更短的點（.）語法將其設置為另一個`CompassPoint`的值：
 
 ```swift
 directionToHead = .East
 ```
 
-`directionToHead`的类型已知时，当设定它的值时，你可以不再写类型名。使用显示类型的枚举值可以让代码具有更好的可读性。
+`directionToHead`的類型已知時，當設定它的值時，你可以不再寫類型名。使用顯示類型的枚舉值可以讓代碼具有更好的可讀性。
 
 <a name="matching_enumeration_values_with_a_switch_statement"></a>
-## 匹配枚举值和`Switch`语句
+## 匹配枚舉值和`Switch`語句
 
-你可以匹配单个枚举值和`switch`语句：
+你可以匹配單個枚舉值和`switch`語句：
 
 ```swift
 directionToHead = .South
@@ -87,18 +87,18 @@ case .East:
 case .West:
     println("Where the skies are blue")
 }
-// 输出 "Watch out for penguins”
+// 輸出 "Watch out for penguins”
 ```
 
-你可以如此理解这段代码：
+你可以如此理解這段代碼：
 
-“考虑`directionToHead`的值。当它等于`.North`，打印`“Lots of planets have a north”`。当它等于`.South`，打印`“Watch out for penguins”`。”
+“考慮`directionToHead`的值。當它等於`.North`，打印`“Lots of planets have a north”`。當它等於`.South`，打印`“Watch out for penguins”`。”
 
-等等依次类推。
+等等依次類推。
 
-正如在[控制流（Control Flow）](05_Control_Flow.html)中介绍，当考虑一个枚举的成员们时，一个`switch`语句必须全面。如果忽略了`.West`这种情况，上面那段代码将无法通过编译，因为它没有考虑到`CompassPoint`的全部成员。全面性的要求确保了枚举成员不会被意外遗漏。
+正如在[控制流（Control Flow）](05_Control_Flow.html)中介紹，當考慮一個枚舉的成員們時，一個`switch`語句必須全面。如果忽略了`.West`這種情況，上面那段代碼將無法通過編譯，因為它沒有考慮到`CompassPoint`的全部成員。全面性的要求確保了枚舉成員不會被意外遺漏。
 
-当不需要匹配每个枚举成员的时候，你可以提供一个默认`default`分支来涵盖所有未明确被提出的任何成员：
+當不需要匹配每個枚舉成員的時候，你可以提供一個默認`default`分支來涵蓋所有未明確被提出的任何成員：
 
 ```swift
 let somePlanet = Planet.Earth
@@ -108,27 +108,27 @@ case .Earth:
 default:
     println("Not a safe place for humans")
 }
-// 输出 "Mostly harmless”
+// 輸出 "Mostly harmless”
 ```
 
 <a name="associated_values"></a>
-## 实例值（Associated Values）
+## 實例值（Associated Values）
 
-上一小节的例子演示了一个枚举的成员是如何被定义（分类）的。你可以为`Planet.Earth`设置一个常量或则变量，并且在之后查看这个值。然而，有时候会很有用如果能够把其他类型的实例值和成员值一起存储起来。这能让你随着成员值存储额外的自定义信息，并且当每次你在代码中利用该成员时允许这个信息产生变化。
+上一小節的例子演示了一個枚舉的成員是如何被定義（分類）的。你可以為`Planet.Earth`設置一個常量或則變量，並且在之後查看這個值。然而，有時候會很有用如果能夠把其他類型的實例值和成員值一起存儲起來。這能讓你隨著成員值存儲額外的自定義信息，並且當每次你在代碼中利用該成員時允許這個信息產生變化。
 
-你可以定义 Swift 的枚举存储任何类型的实例值，如果需要的话，每个成员的数据类型可以是各不相同的。枚举的这种特性跟其他语言中的可辨识联合（discriminated unions），标签联合（tagged unions），或者变体（variants）相似。
+你可以定義 Swift 的枚舉存儲任何類型的實例值，如果需要的話，每個成員的數據類型可以是各不相同的。枚舉的這種特性跟其他語言中的可辨識聯合（discriminated unions），標簽聯合（tagged unions），或者變體（variants）相似。
 
-例如，假设一个库存跟踪系统需要利用两种不同类型的条形码来跟踪商品。有些商品上标有 UPC-A 格式的一维码，它使用数字 0 到 9。每一个条形码都有一个代表“数字系统”的数字，该数字后接 10 个代表“标识符”的数字。最后一个数字是“检查”位，用来验证代码是否被正确扫描：
+例如，假設一個庫存跟蹤系統需要利用兩種不同類型的條形碼來跟蹤商品。有些商品上標有 UPC-A 格式的一維碼，它使用數字 0 到 9。每一個條形碼都有一個代表“數字系統”的數字，該數字後接 10 個代表“標識符”的數字。最後一個數字是“檢查”位，用來驗證代碼是否被正確掃描：
 
 <img width="252" height="120" alt="" src="https://developer.apple.com/library/prerelease/ios/documentation/Swift/Conceptual/Swift_Programming_Language/Art/barcode_UPC_2x.png">
 
-其他商品上标有 QR 码格式的二维码，它可以使用任何 ISO8859-1 字符，并且可以编码一个最多拥有 2,953 字符的字符串:
+其他商品上標有 QR 碼格式的二維碼，它可以使用任何 ISO8859-1 字符，並且可以編碼一個最多擁有 2,953 字符的字符串:
 
 <img width="169" height="169" alt="" src="https://developer.apple.com/library/prerelease/ios/documentation/Swift/Conceptual/Swift_Programming_Language/Art/barcode_QR_2x.png">
 
-对于库存跟踪系统来说，能够把 UPC-A 码作为三个整型值的元组，和把 QR 码作为一个任何长度的字符串存储起来是方便的。
+對於庫存跟蹤系統來說，能夠把 UPC-A 碼作為三個整型值的元組，和把 QR 碼作為一個任何長度的字符串存儲起來是方便的。
 
-在 Swift 中，用来定义两种商品条码的枚举是这样子的：
+在 Swift 中，用來定義兩種商品條碼的枚舉是這樣子的：
 
 ```swift
 enum Barcode {
@@ -137,29 +137,29 @@ enum Barcode {
 }
 ```
 
-以上代码可以这么理解：
+以上代碼可以這麼理解：
 
-“定义一个名为`Barcode`的枚举类型，它可以是`UPCA`的一个实例值（`Int`，`Int`，`Int`），或者`QRCode`的一个字符串类型（`String`）实例值。”
+“定義一個名為`Barcode`的枚舉類型，它可以是`UPCA`的一個實例值（`Int`，`Int`，`Int`），或者`QRCode`的一個字符串類型（`String`）實例值。”
 
-这个定义不提供任何`Int`或`String`的实际值，它只是定义了，当`Barcode`常量和变量等于`Barcode.UPCA`或`Barcode.QRCode`时，实例值的类型。
+這個定義不提供任何`Int`或`String`的實際值，它只是定義了，當`Barcode`常量和變量等於`Barcode.UPCA`或`Barcode.QRCode`時，實例值的類型。
 
-然后可以使用任何一种条码类型创建新的条码，如：
+然後可以使用任何一種條碼類型創建新的條碼，如：
 
 ```swift
 var productBarcode = Barcode.UPCA(8, 85909_51226, 3)
 ```
 
-以上例子创建了一个名为`productBarcode`的新变量，并且赋给它一个`Barcode.UPCA`的实例元组值`(8, 8590951226, 3)`。提供的“标识符”值在整数字中有一个下划线，使其便于阅读条形码。
+以上例子創建了一個名為`productBarcode`的新變量，並且賦給它一個`Barcode.UPCA`的實例元組值`(8, 8590951226, 3)`。提供的“標識符”值在整數字中有一個下劃線，使其便於閱讀條形碼。
 
-同一个商品可以被分配给一个不同类型的条形码，如：
+同一個商品可以被分配給一個不同類型的條形碼，如：
 
 ```swift
 productBarcode = .QRCode("ABCDEFGHIJKLMNOP")
 ```
 
-这时，原始的`Barcode.UPCA`和其整数值被新的`Barcode.QRCode`和其字符串值所替代。条形码的常量和变量可以存储一个`.UPCA`或者一个`.QRCode`（连同它的实例值），但是在任何指定时间只能存储其中之一。
+這時，原始的`Barcode.UPCA`和其整數值被新的`Barcode.QRCode`和其字符串值所替代。條形碼的常量和變量可以存儲一個`.UPCA`或者一個`.QRCode`（連同它的實例值），但是在任何指定時間只能存儲其中之一。
 
-像以前那样，不同的条形码类型可以使用一个 switch 语句来检查，然而这次实例值可以被提取作为 switch 语句的一部分。你可以在`switch`的 case 分支代码中提取每个实例值作为一个常量（用`let`前缀）或者作为一个变量（用`var`前缀）来使用：
+像以前那樣，不同的條形碼類型可以使用一個 switch 語句來檢查，然而這次實例值可以被提取作為 switch 語句的一部分。你可以在`switch`的 case 分支代碼中提取每個實例值作為一個常量（用`let`前綴）或者作為一個變量（用`var`前綴）來使用：
 
 ```swift
 switch productBarcode {
@@ -168,10 +168,10 @@ case .UPCA(let numberSystem, let identifier, let check):
 case .QRCode(let productCode):
     println("QR code with value of \(productCode).")
 }
-// 输出 "QR code with value of ABCDEFGHIJKLMNOP.”
+// 輸出 "QR code with value of ABCDEFGHIJKLMNOP.”
 ```
 
-如果一个枚举成员的所有实例值被提取为常量，或者它们全部被提取为变量，为了简洁，你可以只放置一个`var`或者`let`标注在成员名称前：
+如果一個枚舉成員的所有實例值被提取為常量，或者它們全部被提取為變量，為了簡潔，你可以只放置一個`var`或者`let`標注在成員名稱前：
 
 ```swift
 switch productBarcode {
@@ -180,15 +180,15 @@ case let .UPCA(numberSystem, identifier, check):
 case let .QRCode(productCode):
     println("QR code with value of \(productCode).")
 }
-// 输出 "QR code with value of ABCDEFGHIJKLMNOP."
+// 輸出 "QR code with value of ABCDEFGHIJKLMNOP."
 ```
 
 <a name="raw_values"></a>
 ## 原始值（Raw Values）
 
-在实例值小节的条形码例子中演示了一个枚举的成员如何声明它们存储不同类型的实例值。作为实例值的替代，枚举成员可以被默认值（称为原始值）预先填充，其中这些原始值具有相同的类型。
+在實例值小節的條形碼例子中演示了一個枚舉的成員如何聲明它們存儲不同類型的實例值。作為實例值的替代，枚舉成員可以被默認值（稱為原始值）預先填充，其中這些原始值具有相同的類型。
 
-这里是一个枚举成员存储原始 ASCII 值的例子：
+這裡是一個枚舉成員存儲原始 ASCII 值的例子：
 
 ```swift
 enum ASCIIControlCharacter: Character {
@@ -198,13 +198,13 @@ enum ASCIIControlCharacter: Character {
 }
 ```
 
-在这里，称为`ASCIIControlCharacter`的枚举的原始值类型被定义为字符型`Character`，并被设置了一些比较常见的 ASCII 控制字符。字符值的描述请详见字符串和字符[`Strings and Characters`](03_Strings_and_Characters.html)部分。
+在這裡，稱為`ASCIIControlCharacter`的枚舉的原始值類型被定義為字符型`Character`，並被設置了一些比較常見的 ASCII 控制字符。字符值的描述請詳見字符串和字符[`Strings and Characters`](03_Strings_and_Characters.html)部分。
 
-注意，原始值和实例值是不相同的。当你开始在你的代码中定义枚举的时候原始值是被预先填充的值，像上述三个 ASCII 码。对于一个特定的枚举成员，它的原始值始终是相同的。实例值是当你在创建一个基于枚举成员的新常量或变量时才会被设置，并且每次当你这么做得时候，它的值可以是不同的。
+注意，原始值和實例值是不相同的。當你開始在你的代碼中定義枚舉的時候原始值是被預先填充的值，像上述三個 ASCII 碼。對於一個特定的枚舉成員，它的原始值始終是相同的。實例值是當你在創建一個基於枚舉成員的新常量或變量時才會被設置，並且每次當你這麼做得時候，它的值可以是不同的。
 
-原始值可以是字符串，字符，或者任何整型值或浮点型值。每个原始值在它的枚举声明中必须是唯一的。当整型值被用于原始值，如果其他枚举成员没有值时，它们会自动递增。
+原始值可以是字符串，字符，或者任何整型值或浮點型值。每個原始值在它的枚舉聲明中必須是唯一的。當整型值被用於原始值，如果其他枚舉成員沒有值時，它們會自動遞增。
 
-下面的枚举是对之前`Planet`这个枚举的一个细化，利用原始整型值来表示每个 planet 在太阳系中的顺序：
+下面的枚舉是對之前`Planet`這個枚舉的一個細化，利用原始整型值來表示每個 planet 在太陽系中的順序：
 
 ```swift
 enum Planet: Int {
@@ -212,25 +212,25 @@ enum Planet: Int {
 }
 ```
 
-自动递增意味着`Planet.Venus`的原始值是`2`，依次类推。
+自動遞增意味著`Planet.Venus`的原始值是`2`，依次類推。
 
-使用枚举成员的`toRaw`方法可以访问该枚举成员的原始值：
+使用枚舉成員的`toRaw`方法可以訪問該枚舉成員的原始值：
 
 ```swift
 let earthsOrder = Planet.Earth.toRaw()
 // earthsOrder is 3
 ```
 
-使用枚举的`fromRaw`方法来试图找到具有特定原始值的枚举成员。这个例子通过原始值`7`识别`Uranus`：
+使用枚舉的`fromRaw`方法來試圖找到具有特定原始值的枚舉成員。這個例子通過原始值`7`識別`Uranus`：
 
 ```swift
 let possiblePlanet = Planet.fromRaw(7)
 // possiblePlanet is of type Planet? and equals Planet.Uranus
 ```
 
-然而，并非所有可能的`Int`值都可以找到一个匹配的行星。正因为如此，`fromRaw`方法可以返回一个***可选***的枚举成员。在上面的例子中，`possiblePlanet`是`Planet?`类型，或“可选的`Planet`”。
+然而，並非所有可能的`Int`值都可以找到一個匹配的行星。正因為如此，`fromRaw`方法可以返回一個***可選***的枚舉成員。在上面的例子中，`possiblePlanet`是`Planet?`類型，或“可選的`Planet`”。
 
-如果你试图寻找一个位置为9的行星，通过`fromRaw`返回的可选`Planet`值将是`nil`：
+如果你試圖尋找一個位置為9的行星，通過`fromRaw`返回的可選`Planet`值將是`nil`：
 
 ```swift
 let positionToFind = 9
@@ -244,8 +244,8 @@ if let somePlanet = Planet.fromRaw(positionToFind) {
 } else {
     println("There isn't a planet at position \(positionToFind)")
 }
-// 输出 "There isn't a planet at position 9
+// 輸出 "There isn't a planet at position 9
 ```
 
-这个范例使用可选绑定（optional binding），通过原始值`9`试图访问一个行星。`if let somePlanet = Planet.fromRaw(9)`语句获得一个可选`Planet`，如果可选`Planet`可以被获得，把`somePlanet`设置成该可选`Planet`的内容。在这个范例中，无法检索到位置为`9`的行星，所以`else`分支被执行。
+這個範例使用可選綁定（optional binding），通過原始值`9`試圖訪問一個行星。`if let somePlanet = Planet.fromRaw(9)`語句獲得一個可選`Planet`，如果可選`Planet`可以被獲得，把`somePlanet`設置成該可選`Planet`的內容。在這個範例中，無法檢索到位置為`9`的行星，所以`else`分支被執行。
 

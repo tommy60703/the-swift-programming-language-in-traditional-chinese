@@ -1,5 +1,5 @@
-> 翻譯：[numbbbbb](https://github.com/numbbbbb)  
-> 校對：[shinyzhu](https://github.com/shinyzhu), [stanzhai](https://github.com/stanzhai)
+> 翻譯：[tommy60703](https://github.com/tommy60703)
+> 校對：[tommy60703](https://github.com/tommy60703)
 
 # Swift 初見
 
@@ -15,7 +15,7 @@
 -   [協定和擴展（Protocols and Extensions）](#protocols_and_extensions)
 -   [泛型（Generics）](#generics)
 
-通常來說，程式語言教程中的第一個程式應該在螢幕上列印「Hello, world」。在 Swift 中，可以用一行程式碼實作：
+通常來說，程式語言教學中的第一個程式應該在螢幕上顯示「Hello, world」。在 Swift 中，可以用一行程式碼實作：
 
 ```swift
 println("Hello, world")
@@ -40,7 +40,7 @@ myVariable = 50
 let myConstant = 42
 ```
 
-常數或者變數的型別必須和你賦給它們的值一樣。然而，宣告時型別是可選的，宣告的同時賦值的話，編譯器會自動推斷型別。在上面的範例中，編譯器推斷出`myVariable`是一個整數（integer）因為它的初始值是整數。
+常數或者變數的型別必須和你賦給它們的值一樣。然而，宣告時型別不一定要顯式（explicitly）寫明，宣告的同時賦值的話，編譯器會自動推斷型別。在上面的範例中，編譯器推斷出`myVariable`是一個整數（integer）因為它的初始值是整數。
 
 如果初始值沒有提供足夠的資訊（或者沒有初始值），那你需要在變數後面宣告型別，用冒號分割。
 
@@ -51,9 +51,9 @@ let explicitDouble: Double = 70
 ```
 
 > 練習：  
-> 創建一個常數，顯式指定型別為`Float`並指定初始值為4。
+> 創建一個常數，顯式指定型別為`Float`並指定初始值為 4。
 
-值永遠不會被隱式轉換為其他型別。如果你需要把一個值轉換成其他型別，請顯式轉換。
+值永遠不會被隱式（implicitly）轉換為其他型別。如果你需要把一個值轉換成其他型別，請顯式轉換。
 
 ```swift
 let label = "The width is"
@@ -63,7 +63,7 @@ let widthLabel = label + String(width)
 > 練習：  
 > 刪除最後一行中的`String`，錯誤提示是什麼？
 
-有一種更簡單的把值轉換成字串的方法：把值寫到括號中，並且在括號之前寫一個反斜杠。例如：
+有一種更簡單的把值轉換成字串的方法：把值寫到括號中，並且在括號之前寫一個反斜線。例如：
 
 ```swift
 let apples = 3
@@ -75,7 +75,7 @@ let fruitSummary = "I have \(apples + oranges) pieces of fruit."
 > 練習：  
 > 使用`\()`來把一個浮點計算轉換成字串，並加上某人的名字，和他打個招呼。
 
-使用方括號`[]`來創建陣列和字典，並使用下標或者鍵（key）來存取元素。
+使用方括號`[]`來創建陣列（array）和字典（dictionary），並使用索引值（index）或鍵（key）來存取元素（elements）。
 
 ```swift
 var shoppingList = ["catfish", "water", "tulips", "blue paint"]
@@ -121,9 +121,9 @@ for score in individualScores {
 teamScore
 ```
 
-在`if`語句中，條件必須是一個布林表達式——這意味著像`if score { ... }`這樣的程式碼將報錯，而不會隱形地與 0 做對比。
+在`if`語句中，條件必須是一個布林表達式——這意味著像`if score { ... }`這樣的程式碼將報錯，而不會隱性地與 0 做對比。
 
-你可以一起使用`if`和`let`來處理值缺失的情況。有些變數的值是可選的。一個可選的值可能是一個具體的值或者是`nil`，表示值缺失。在型別後面加一個問號來標記這個變數的值是可選的。
+你可以一起使用`if`和`let`來處理值缺失（missing）的情況。有些變數的值是可選的（optional）。一個可選的值可能是一個具體的值或者是`nil`，表示值缺失。在型別後面加一個問號來標記這個變數的值是可選的。
 
 ```swift
 var optionalString: String? = "Hello"
@@ -137,11 +137,11 @@ if let name = optionalName {
 ```
 
 > 練習：  
-> 把`optionalName`改成`nil`，greeting會是什麼？添加一個`else`語句，當`optionalName`是`nil`時給greeting賦一個不同的值。
+> 把`optionalName`改成`nil`，greeting 會是什麼？添加一個`else`語句，當`optionalName`是`nil`時給 greeting 賦一個不同的值。
 
-如果變數的可選值是`nil`，條件會判斷為`false`，大括號中的程式碼會被跳過。如果不是`nil`，會將值賦給`let`後面的常數，這樣程式碼區塊中就可以使用這個值了。
+如果變數的可選值（optional value）是`nil`，條件會判斷為`false`，大括號中的程式碼會被跳過。如果不是`nil`，會將值賦給`let`後面的常數，這樣程式碼區塊中就可以使用這個值了。
 
-`switch`支援任意型別的資料以及各種比較操作——不僅僅是整數以及測試相等。
+`switch`支援任意型別的資料以及各種比較操作——不僅僅是整數以及測試相等（tests for equality）。
 
 ```swift
 let vegetable = "red pepper"
@@ -162,7 +162,7 @@ default:
 
 執行`switch`中匹配到的子句之後，程式會退出`switch`語句，並不會繼續向下執行，所以不需要在每個子句結尾寫`break`。
 
-你可以使用`for-in`來遍歷字典，需要兩個變數來表示每個鍵值對。
+你可以使用`for-in`來遍歷（iterate）字典，需要兩個變數來表示每個鍵值對（key-value pair）。
 
 ```swift
 let interestingNumbers = [
@@ -233,7 +233,7 @@ greet("Bob", "Tuesday")
 > 練習：  
 > 刪除`day`參數，添加一個參數來表示今天吃了什麼午飯。
 
-使用一個元組來回傳多個值。
+使用一個元組（tuple）來回傳多個值。
 
 ```swift
 func getGasPrices() -> (Double, Double, Double) {
@@ -259,7 +259,7 @@ sumOf(42, 597, 12)
 > 練習：  
 > 寫一個計算參數平均值的函式。
 
-函式可以嵌套。被嵌套的函式可以存取外側函式的變數，你可以使用嵌套函式來重構一個太長或者太複雜的函式。
+函式可以是巢狀的。巢狀的函式可以存取外側函式的變數，你可以使用巢狀函式來重構一個太長或者太複雜的函式。
 
 ```swift
 func returnFifteen() -> Int {
@@ -273,7 +273,7 @@ func returnFifteen() -> Int {
 returnFifteen()
 ```
 
-函式是第一等型別，這意味著函式可以作為另一個函式的回傳值。
+函式是第一等型別（first-class type），這意味著函式可以作為另一個函式的回傳值。
 
 ```swift
 func makeIncrementer() -> (Int -> Int) {
@@ -304,7 +304,7 @@ var numbers = [20, 19, 7, 12]
 hasAnyMatches(numbers, lessThanTen)
 ```
 
-函式實際上是一種特殊的閉包，你可以使用`{}`來創建一個匿名閉包。使用`in`將參數和回傳值型別宣告與閉包函式體進行分離。
+函式實際上是一種特殊的閉包（closure），你可以使用`{}`來創建一個匿名閉包。使用`in`將參數和回傳值型別宣告與閉包函式體進行分離。
 
 ```swift
 numbers.map({
@@ -315,9 +315,9 @@ numbers.map({
 ```
 
 > 練習：  
-> 重寫閉包，對所有奇數回傳0。
+> 重寫閉包，對所有奇數回傳 0。
 
-有很多種創建閉包的方法。如果一個閉包的型別已知，比如作為一個回調函式，你可以忽略參數的型別和回傳值。單個語句閉包會把它語句的值當做結果回傳。
+有很多種創建閉包的方法。如果一個閉包的型別已知，比如作為一個回呼函式（callback ），你可以忽略參數的型別和回傳值。單個語句閉包會把它語句的值當做結果回傳。
 
 ```swift
 numbers.map({ number in 3 * number })
@@ -332,7 +332,7 @@ sort([1, 5, 3, 12, 2]) { $0 > $1 }
 <a name="objects_and_classes"></a>
 ## 物件和類別
 
-使用`class`和類別名來創建一個類別。類別中屬性的宣告和常數、變數宣告一樣，唯一的區別就是它們的上下文是類別。同樣，方法和函式宣告也一樣。
+使用`class`和類別名稱來創建一個類別。類別中屬性的宣告和常數、變數宣告一樣，唯一的區別就是它們的上下文是類別。同樣，方法（method）和函式宣告也一樣。
 
 ```swift
 class Shape {
@@ -346,7 +346,7 @@ class Shape {
 > 練習：  
 > 使用`let`添加一個常數屬性，再添加一個接收一個參數的方法。
 
-要創建一個類別的實例，在類別名後面加上括號。使用點語法來存取實例的屬性和方法。
+要創建一個類別的實體（instance），在類別名後面加上括號。使用點語法（dot syntax）來存取實體的屬性和方法。
 
 ```swift
 var shape = Shape()
@@ -354,7 +354,7 @@ shape.numberOfSides = 7
 var shapeDescription = shape.simpleDescription()
 ```
 
-這個版本的`Shape`類別缺少了一些重要的東西：一個建構函式來初始化類別實例。使用`init`來創建一個建構器。
+這個版本的`Shape`類別缺少了一些重要的東西：一個建構函式來初始化類別實體。使用`init`來創建一個建構函式。
 
 ```swift
 class NamedShape {
@@ -371,13 +371,13 @@ class NamedShape {
 }
 ```
 
-注意`self`被用來區別實例變數。當你創建實例的時候，像傳入函式參數一樣給類別傳入建構器的參數。每個屬性都需要賦值——無論是通過宣告（就像`numberOfSides`）還是通過建構器（就像`name`）。
+注意`self`被用來區別實體變數。當你創建實體的時候，像傳入函式參數一樣給類別傳入建構函式的參數。每個屬性都需要賦值——無論是通過宣告（就像`numberOfSides`）還是通過建構函式（就像`name`）。
 
-如果你需要在刪除物件之前進行一些清理工作，使用`deinit`創建一個析構函式。
+如果你需要在刪除物件實體之前進行一些清理工作，使用`deinit`創建一個解構函式。
 
-子類別的定義方法是在它們的類別名後面加上父類別的名字，用冒號分割。創建類別的時候並不需要一個標準的根類別，所以你可以忽略父類別。
+子類別的定義方法是在它們的類別名稱後面加上父類別的名稱，用冒號分開。創建類別的時候並不需要一個標準的根類別，所以你可以忽略父類別。
 
-子類別如果要重寫父類別的方法的話，需要用`override`標記——如果沒有添加`override`就重寫父類別方法的話編譯器會報錯。編譯器同樣會檢測`override`標記的方法是否確實在父類別中。
+子類別如果要重寫父類別的方法的話，需要用`override`標記——如果沒有添加`override`就重寫父類別方法的話，編譯器會報錯。編譯器同樣會檢測`override`標記的方法是否確實在父類別中。
 
 ```swift
 class Square: NamedShape {
@@ -403,7 +403,7 @@ test.simpleDescription()
 ```
 
 > 練習：  
-> 創建`NamedShape`的另一個子類別`Circle`，建構器接收兩個參數，一個是半徑一個是名稱，實作`area`和`describe`方法。
+> 創建`NamedShape`的另一個子類別`Circle`，建構函式接收兩個參數，一個是半徑，一個是名稱，實作`area`和`describe`方法。
 
 屬性可以有 getter 和 setter 。
 
@@ -438,13 +438,13 @@ triangle.sideLength
 
 在`perimeter`的 setter 中，新值的名字是`newValue`。你可以在`set`之後顯式的設置一個名字。
 
-注意`EquilateralTriangle`類別的建構器執行了三步：
+注意`EquilateralTriangle`類別的建構函式執行了三步：
 
 1. 設置子類別宣告的屬性值
-2. 呼叫父類別的建構器
-3. 改變父類別定義的屬性值。其他的工作比如呼叫方法、getters和setters也可以在這個階段完成。
+2. 呼叫父類別的建構函式
+3. 改變父類別定義的屬性值。其他的工作比如呼叫方法、getters 和 setters 也可以在這個階段完成。
 
-如果你不需要計算屬性，但是仍然需要在設置一個新值之前或者之後執行程式碼，使用`willSet`和`didSet`。
+如果你不需要計算屬性，但是仍然需要在設置一個新值之前或之後執行程式碼，使用`willSet`和`didSet`。
 
 比如，下面的類別確保三角形的邊長總是和正方形的邊長相同。
 
@@ -472,7 +472,7 @@ triangleAndSquare.square = Square(sideLength: 50, name: "larger square")
 triangleAndSquare.triangle.sideLength
 ```
 
-類別中的方法和一般的函式有一個重要的區別，函式的參數名只在函式內部使用，但是方法的參數名需要在呼叫的時候顯式說明（除了第一個參數）。預設情況下，方法的參數名和它在方法內部的名字一樣，不過你也可以定義第二個名字，這個名字被用在方法內部。
+類別中的方法和一般的函式有一個重要的區別，函式的參數名只在函式內部使用，但是方法的參數名需要在呼叫的時候會被使用（除了第一個參數）。預設情況下，方法的參數名和它在方法內部的名字一樣，不過你也可以定義第二個名字，這個名字被用在方法內部。
 
 ```swift
 class Counter {
@@ -485,7 +485,7 @@ var counter = Counter()
 counter.incrementBy(2, numberOfTimes: 7)
 ```
 
-處理變數的可選值時，你可以在操作（比如方法、屬性和子腳本）之前加`?`。如果`?`之前的值是`nil`，`?`後面的東西都會被忽略，並且整個表達式回傳`nil`。否則，`?`之後的東西都會被執行。在這兩種情況下，整個表達式的值也是一個可選值。
+處理變數的可選值時，你可以在操作（比如方法、屬性和下標腳本）之前加`?`。如果`?`之前的值是`nil`，`?`後面的東西都會被忽略，並且整個表達式回傳`nil`。否則，`?`之後的東西都會被執行。在這兩種情況下，整個表達式的值也是一個可選值。
 
 ```swift
 let optionalSquare: Square? = Square(sideLength: 2.5, name: "optional square")
@@ -522,9 +522,9 @@ let aceRawValue = ace.toRaw()
 ```
 
 > 練習：  
-> 寫一個函式，通過比較它們的原始值來比較兩個`Rank`值。
+> 寫一個函式，透過比較它們的原始值來比較兩個`Rank`值。
 
-在上面的範例中，列舉原始值的型別是`Int`，所以你只需要設置第一個原始值。剩下的原始值會按照順序賦值。你也可以使用字串或者浮點數作為列舉的原始值。
+在上面的範例中，列舉原始值的型別是`Int`，所以你只需要設置第一個原始值，剩下的原始值會按照順序賦值。你也可以使用字串或者浮點數作為列舉的原始值。
 
 使用`toRaw`和`fromRaw`函式來在原始值和列舉值之間進行轉換。
 
@@ -560,9 +560,9 @@ let heartsDescription = hearts.simpleDescription()
 > 練習：  
 > 給`Suit`添加一個`color`方法，對`spades`和`clubs`回傳「black」，對`hearts`和`diamonds`回傳「red」。
 
-注意，有兩種方式可以參考`Hearts`成員：給`hearts`常數賦值時，列舉成員`Suit.Hearts`需要用全名來參考，因為常數沒有顯式指定型別。在`switch`裡，列舉成員使用縮寫`.Hearts`來參考，因為`self`的值已經知道是一個`suit`。已知變數型別的情況下你可以使用縮寫。
+注意，有兩種方式可以參考（refer）`Hearts`成員：給`hearts`常數賦值時，列舉成員`Suit.Hearts`需要用全名來參考，因為常數沒有顯式指定型別。在`switch`裡，列舉成員使用縮寫`.Hearts`來參考，因為`self`的值已經知道是一個`Suit`。已知變數型別的情況下你可以使用縮寫。
 
-使用`struct`來創建一個結構。結構和類別有很多相同的地方，比如方法和建構器。它們之間最大的一個區別就是
+使用`struct`來創建一個結構。結構和類別有很多相同的地方，比如方法和建構函式。它們之間最大的一個區別就是
 結構是傳值，類別是傳參考。
 
 ```swift
@@ -605,7 +605,7 @@ case let .Error(error):
 > 練習：  
 > 給`ServerResponse`和`switch`添加第三種情況。
 
-注意如何從`ServerResponse`中提取日升和日落時間。
+注意如何從`ServerResponse`中提取日出和日落時間。
 
 <a name="protocols_and_extensions"></a>
 ## 協定和擴展
@@ -666,7 +666,7 @@ extension Int: ExampleProtocol {
 > 練習：  
 > 給`Double`型別寫一個擴展，添加`absoluteValue`功能。
 
-你可以像使用其他命名型別一樣使用協定名——例如，創建一個有不同型別但是都實作一個協定的物件集合。當你處理型別是協定的值時，協定外定義的方法不可用。
+你可以像使用其他命名型別一樣使用協定名稱——例如，創建一個有不同型別但是都實作一個協定的物件集合。當你處理型別是協定的值時，協定外定義的方法不可用。
 
 ```swift
 let protocolValue: ExampleProtocol = a
@@ -723,4 +723,4 @@ anyCommonElements([1, 2, 3], [3])
 > 練習：  
 > 修改`anyCommonElements`函式來創建一個函式，回傳一個陣列，內容是兩個序列的共有元素。
 
-簡單起見，你可以忽略`where`，只在冒號後面寫協定或者類別名。` <T: Equatable>`和`<T where T: Equatable>`是等價的。
+簡單起見，你可以忽略`where`，只在冒號後面寫協定或者類別名稱。` <T: Equatable>`和`<T where T: Equatable>`是等價的。

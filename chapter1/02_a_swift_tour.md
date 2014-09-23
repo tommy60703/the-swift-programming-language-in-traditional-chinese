@@ -27,7 +27,7 @@ println("Hello, world")
 
 > 注意：  
 > 為了獲得最好的體驗，在 Xcode 當中使用程式碼預覽功能。程式碼預覽功能可以讓你編輯程式碼並即時看到執行結果。
-> <a href="https://github.com/Tairraos/the-swift-programming-language-in-chinese/blob/gh-pages/chapter1/GuidedTour.playground.zip?raw=true">打開Playground</a>
+> <a href="https://developer.apple.com/library/ios/documentation/Swift/Conceptual/Swift_Programming_Language/GuidedTour.playground.zip">打開Playground</a>
 
 <a name="simple_values"></a>
 ## 簡單值

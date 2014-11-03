@@ -297,7 +297,7 @@ increment(7)
 函式也可以當做參數傳入另一個函式。
 
 ```swift
-func hasAnyMatches(list: Int[], condition: Int -> Bool) -> Bool {
+func hasAnyMatches(list: [Int], condition: Int -> Bool) -> Bool {
     for item in list {
         if condition(item) {
             return true

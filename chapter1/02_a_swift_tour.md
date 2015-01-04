@@ -93,14 +93,15 @@ occupations["Jayne"] = "Public Relations"
 要創建一個空陣列或者字典，使用初始化語法。
 
 ```swift
-let emptyArray = String[]()
-let emptyDictionary = Dictionary<String, Float>()
+let emptyArray = [String]()
+let emptyDictionary = [String: Float]()
 ```
 
 如果型別資訊可以被推斷出來，你可以用`[]`和`[:]`來創建空陣列和空字典——就像你宣告變數或者給函式傳參數的時候一樣。
 
 ```swift
 shoppingList = []   // 去逛街並買點東西
+occupations = [:]
 ```
 
 <a name="control_flow"></a>

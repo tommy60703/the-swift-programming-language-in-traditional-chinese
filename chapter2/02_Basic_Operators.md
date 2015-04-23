@@ -11,6 +11,7 @@
 - [複合指派運算子（Compound Assignment Operators）](#compound_assignment_operators)
 - [比較運算子](#comparison_operators)
 - [三元條件運算子（Ternary Conditional Operator）](#ternary_conditional_operator)
+- [空值聚合運算子（Nil Coalescing Operator）](#nil_coalescing_operators)
 - [區間運算子](#range_operators)
 - [邏輯運算子](#logical_operators)
 
@@ -18,7 +19,7 @@
 
 Swift 支援大部分標準 C 語言的運算子，且改進許多特性來減少常見的編碼錯誤。如，指派運算子（`=`）不回傳值，以防止把想要判斷相等運算子（`==`）的地方寫成指派運算子導致的錯誤。數值運算子（`+`，`-`，`*`，`/`，`%`等）會檢測並不允許溢位，以此來避免保存變數時由於變數大於或小於其型別所能儲存的範圍時導致的異常結果。當然允許你使用 Swift 的溢位運算子來實作溢位。詳情參見[溢位運算子](23_Advanced_Operators.html#overflow_operators)。
 
-有別於 C 語言，在 Swift 中你可以對浮點數進行餘數運算（`%`），Swift 還提供了 C 語言所沒有的，用來表達兩數之間的值的區間運算子，（`a..b`和`a...b`），這方便我們表達一個區間內的數值。
+有別於 C 語言，在 Swift 中你可以對浮點數進行餘數運算（`%`），Swift 還提供了 C 語言所沒有的，用來表達兩數之間的值的區間運算子，（`a..<b`和`a...b`），這方便我們表達一個區間內的數值。
 
 本章節只描述了 Swift 中的基本運算子，[進階運算子](23_Advanced_Operators.html)包含了進階運算子、如何自定義運算子，以及如何進行自定義型別的運算子多載。
 
@@ -279,7 +280,7 @@ if name == "world" {
 使用三元條件運算簡化了以下程式碼：
 
 ```swift
-if question: {
+if question {
   answer1
 } else {
   answer2
@@ -313,13 +314,50 @@ if hasHeader {
 
 三元條件運算提供有效率且便捷的方式來表達二選一的選擇。需要注意的事，過度使用三元條件運算就會由簡潔的程式碼變成難懂的程式碼。我們應避免在一個組合語句使用多個三元條件運算子。
 
+<a name="nil_coalescing_operators"></a>
+## 空值聚合運算子
+
+空值聚合（nil coalescing）運算子（`a ?? b`）如果`optional a`有值的話就解析，但若`a`是空值，就回傳預設值`b`。
+這運算元`a`永遠是個optional型別。而運算子`b`必須得式`a`的型別。
+
+空值聚合運算子是以下表達式的簡碼。
+
+```swift
+a != nil ? a! : b
+```
+
+上述程式碼使用三元條件運算子，並且當`a`不是空值時，強制解析（`a!`）來存取`a`，若`a`是空值則回傳`b`。空值聚合運算子題空一個更優雅的方式，並以一個明確可讀的形式來封裝類似的條件確認及解析。
+
+> 注意：
+若a是非空值，那就不會運算b。這就是所謂的_最小化求值_。
+
+下面這個例子使用空值聚合運算子來選擇預設顏色值或是一個optional使用者定義的顏色值。
+
+```swift
+let defaultColorName = "red"
+var userDefinedColorName: String?   // 預設為空值
+ 
+var colorNameToUse = userDefinedColorName ?? defaultColorName
+// userDefinedColorName 是空值, 所以 colorNameToUse 就被設成預設的 「red」。
+```
+
+變數`userDefinedColorName`是定義成optional字串型別，且其預設值為空值。因為`userDefinedColorName`變數是個optional型別，你可以使用空值聚合運算子來決定他的值。在上面的例子當中，這運算子被用來定義一個Sting型別`colorNameToUse`變數的初始值。因為`userDefinedColorName`是空值，這表達式` userDefinedColorName ?? defaultColorName` 回傳 `defaultColorName`，也就是「red」。
+
+如果你把`userDefinedColorName`設成非空值，並且執行空值聚合運算子來確認，則`userDefinedColorName`就會被解析，而不是使用預設值：
+
+```swift
+userDefinedColorName = "green"
+colorNameToUse = userDefinedColorName ?? defaultColorName
+// userDefinedColorName非空值，所以colorNameToUse被設成「green」。
+```
+
 <a name="range_operators"></a>
 ## 區間運算子
 
 Swift 提供了兩個方便表達一個區間的值的運算子。
 
 ### 閉區間運算子
-閉區間運算子（`a...b`）定義一個包含從`a`到`b`(包括`a`和`b`)的所有值的區間。
+閉區間運算子（`a...b`）定義一個包含從`a`到`b`(包括`a`和`b`)的所有值的區間。`a`的值必不大於`b`。
 ‌
 閉區間運算子在迭代一個區間的所有值時是非常有用的，如在`for-in`迴圈中：
 
@@ -338,8 +376,8 @@ for index in 1...5 {
 
 ### 半閉區間運算子
 
-半閉區間運算子（`a..b`）定義一個從`a`到`b`但不包括`b`的區間。
-之所以稱為半閉區間，是因為該區間包含第一個值而不包括最後的值。
+半閉區間運算子（`a..<b`）定義一個從`a`到`b`但不包括`b`的區間。
+之所以稱為半閉區間，是因為該區間包含第一個值而不包括最後的值。就像閉區間運算子一樣，`a`的值必不大於`b`。如果`a`跟`b`相等，那結果的區間就會是空。
 
 半閉區間運算子的實用性在於當你使用一個 0 始的列表(如陣列)時，非常方便地從 0 數到列表的長度。
 
@@ -355,7 +393,7 @@ for i in 0..count {
 // 第 4 個人叫 Jack
 ```
 
-陣列有 4 個元素，但`0..count`只數到 3(最後一個元素的索引)，因為它是半閉區間。關於陣列，請查閱[陣列](04_Collection_Types.html#arrays)。
+陣列有 4 個元素，但`0..<count`只數到 3(最後一個元素的索引)，因為它是半閉區間。關於陣列，請查閱[陣列](04_Collection_Types.html#arrays)。
 
 <a name="logical_operators"></a>
 ## 邏輯運算

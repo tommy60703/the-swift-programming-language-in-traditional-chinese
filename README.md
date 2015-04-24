@@ -14,7 +14,7 @@
 
 * 歡迎使用 Swift
    * 關於 Swift ([tommy60703])
-   * Swift 初見 ([tommy60703], [jayhsu], [ckvir], [rsbrian]
+   * Swift 初見 ([tommy60703], [jayhsu], [ckvir], [rsbrian])
 * Swift 教程
    * 基礎部分 ([tommy60703])
    * 基本運算子 ([tommy60703])

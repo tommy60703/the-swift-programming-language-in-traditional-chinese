@@ -10,11 +10,11 @@
 
 # 譯者記錄
 
-* [簡體中文] 
+* [簡體中文]
 
 * 歡迎使用 Swift
    * 關於 Swift ([tommy60703])
-   * Swift 初見 ([tommy60703])
+   * Swift 初見 ([tommy60703], [jayhsu], [ckvir], [rsbrian]
 * Swift 教程
    * 基礎部分 ([tommy60703])
    * 基本運算子 ([tommy60703])
@@ -22,7 +22,7 @@
    * 集合型別 ([tommy60703])
    * 控制流程 ([tommy60703])
    * 函式 ([tommy60703])
-   * 閉包 ([tommy60703])
+   * 閉包 ([tommy60703], [hcjao])
    * 列舉 ([tommy60703])
    * 類別和結構 ([tommy60703])
    * 屬性 ([tommy60703])
@@ -109,3 +109,8 @@
 
 [簡體中文]:https://github.com/numbbbbb/the-swift-programming-language-in-chinese
 [tommy60703]:https://github.com/tommy60703
+[jayhsu]:https://github.com/jayhsu21
+[ckvir]:https://github.com/ckvir
+[hcjao]:https://github.com/hcjao
+[rsbrian]:https://github.com/briansheng
+[petertom51]:https://github.com/petertom51

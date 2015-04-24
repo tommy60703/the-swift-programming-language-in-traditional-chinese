@@ -1,5 +1,5 @@
 > 翻譯：[tommy60703](https://github.com/tommy60703)
-> 校對：[tommy60703](https://github.com/tommy60703)
+> 校對：[tommy60703](https://github.com/tommy60703), [petertom51](https://github.com/petertom51)
 
 # 關於 Swift
 -----------------

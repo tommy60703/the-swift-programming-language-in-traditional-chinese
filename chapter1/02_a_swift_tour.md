@@ -1,5 +1,5 @@
 > 翻譯：[tommy60703](https://github.com/tommy60703)
-> 校對：[tommy60703](https://github.com/tommy60703)
+> 校對：[tommy60703](https://github.com/tommy60703), [jayhsu](https://github.com/jayhsu21), [ckvir](https://github.com/ckvir), [rsbrian](https://github.com/briansheng), [petertom51](https://github.com/petertom51)
 
 # Swift 初見
 
@@ -25,7 +25,7 @@ println("Hello, world")
 
 這個教程會通過一系列程式範例來讓你對 Swift 有初步了解，如果你有什麼不理解的地方也不用擔心——任何本章介紹的內容都會在後面的章節中詳細講解。
 
-> 注意：  
+> 注意：
 > 為了獲得最好的體驗，在 Xcode 當中使用程式碼預覽功能。程式碼預覽功能可以讓你編輯程式碼並即時看到執行結果。
 > <a href="https://developer.apple.com/library/ios/documentation/Swift/Conceptual/Swift_Programming_Language/GuidedTour.playground.zip">打開Playground</a>
 
@@ -50,7 +50,7 @@ let implicitDouble = 70.0
 let explicitDouble: Double = 70
 ```
 
-> 練習：  
+> 練習：
 > 創建一個常數，顯式指定型別為`Float`並指定初始值為 4。
 
 值永遠不會被隱式（implicitly）轉換為其他型別。如果你需要把一個值轉換成其他型別，請顯式轉換。
@@ -60,7 +60,7 @@ let label = "The width is"
 let width = 94
 let widthLabel = label + String(width)
 ```
-> 練習：  
+> 練習：
 > 刪除最後一行中的`String`，錯誤提示是什麼？
 
 有一種更簡單的把值轉換成字串的方法：把值寫到括號中，並且在括號之前寫一個反斜線。例如：
@@ -72,7 +72,7 @@ let appleSummary = "I have \(apples) apples."
 let fruitSummary = "I have \(apples + oranges) pieces of fruit."
 ```
 
-> 練習：  
+> 練習：
 > 使用`\()`來把一個浮點計算轉換成字串，並加上某人的名字，和他打個招呼。
 
 使用方括號`[]`來創建陣列（array）和字典（dictionary），並使用索引值（index）或鍵（key）來存取元素（elements）。
@@ -137,7 +137,7 @@ if let name = optionalName {
 }
 ```
 
-> 練習：  
+> 練習：
 > 把`optionalName`改成`nil`，greeting 會是什麼？添加一個`else`語句，當`optionalName`是`nil`時給 greeting 賦一個不同的值。
 
 如果變數的可選值（optional value）是`nil`，條件會判斷為`false`，大括號中的程式碼會被跳過。如果不是`nil`，會將值賦給`let`後面的常數，這樣程式碼區塊中就可以使用這個值了。
@@ -158,7 +158,7 @@ default:
 }
 ```
 
-> 練習：  
+> 練習：
 > 刪除`default`語句，看看會有什麼錯誤？
 
 執行`switch`中匹配到的子句之後，程式會退出`switch`語句，並不會繼續向下執行，所以不需要在每個子句結尾寫`break`。
@@ -182,7 +182,7 @@ for (kind, numbers) in interestingNumbers {
 largest
 ```
 
-> 練習：  
+> 練習：
 > 添加另一個變數來記錄哪種型別的數字是最大的。
 
 使用`while`來重複執行一段程式碼直到不滿足條件。迴圈條件可以在開頭也可以在結尾。
@@ -239,7 +239,7 @@ func greet(name: String, day: String) -> String {
 greet("Bob", "Tuesday")
 ```
 
-> 練習：  
+> 練習：
 > 刪除`day`參數，添加一個參數來表示今天吃了什麼午飯。
 
 使用一個元組（tuple）來回傳多個值。
@@ -265,7 +265,7 @@ sumOf()
 sumOf(42, 597, 12)
 ```
 
-> 練習：  
+> 練習：
 > 寫一個計算參數平均值的函式。
 
 函式可以是巢狀的。巢狀的函式可以存取外側函式的變數，你可以使用巢狀函式來重構一個太長或者太複雜的函式。
@@ -323,7 +323,7 @@ numbers.map({
 })
 ```
 
-> 練習：  
+> 練習：
 > 重寫閉包，對所有奇數回傳 0。
 
 有很多種創建閉包的方法。如果一個閉包的型別已知，比如作為一個回呼函式（callback ），你可以忽略參數的型別和回傳值。單個語句閉包會把它語句的值當做結果回傳。
@@ -352,7 +352,7 @@ class Shape {
 }
 ```
 
-> 練習：  
+> 練習：
 > 使用`let`添加一個常數屬性，再添加一個接收一個參數的方法。
 
 要創建一個類別的實體（instance），在類別名後面加上括號。使用點語法（dot syntax）來存取實體的屬性和方法。
@@ -411,7 +411,7 @@ test.area()
 test.simpleDescription()
 ```
 
-> 練習：  
+> 練習：
 > 創建`NamedShape`的另一個子類別`Circle`，建構函式接收兩個參數，一個是半徑，一個是名稱，實作`area`和`describe`方法。
 
 屬性可以有 getter 和 setter 。
@@ -530,7 +530,7 @@ let ace = Rank.Ace
 let aceRawValue = ace.rawValue
 ```
 
-> 練習：  
+> 練習：
 > 寫一個函式，透過比較它們的原始值來比較兩個`Rank`值。
 
 在上面的範例中，列舉原始值的型別是`Int`，所以你只需要設置第一個原始值，剩下的原始值會按照順序賦值。你也可以使用字串或者浮點數作為列舉的原始值。使用`rawValue`屬性來取得列舉值成員的原始值。
@@ -566,7 +566,7 @@ let hearts = Suit.Hearts
 let heartsDescription = hearts.simpleDescription()
 ```
 
-> 練習：  
+> 練習：
 > 給`Suit`添加一個`color`方法，對`spades`和`clubs`回傳「black」，對`hearts`和`diamonds`回傳「red」。
 
 注意，有兩種方式可以參考（refer）`Hearts`成員：給`hearts`常數賦值時，列舉成員`Suit.Hearts`需要用全名來參考，因為常數沒有顯式指定型別。在`switch`裡，列舉成員使用縮寫`.Hearts`來參考，因為`self`的值已經知道是一個`Suit`。已知變數型別的情況下你可以使用縮寫。
@@ -587,7 +587,7 @@ let threeOfSpades = Card(rank: .Three, suit: .Spades)
 let threeOfSpadesDescription = threeOfSpades.simpleDescription()
 ```
 
-> 練習：  
+> 練習：
 > 給`Card`添加一個方法，創建一副完整的撲克牌並把每張牌的 rank 和 suit 對應起來。
 
 一個列舉成員的實例可以有實例值。相同列舉成員的實例可以有不同的值。創建實例的時候傳入值即可。實例值和原始值是不同的：列舉成員的原始值對於所有實例都是相同的，而且你是在定義列舉的時候設置原始值。
@@ -611,7 +611,7 @@ case let .Error(error):
 }
 ```
 
-> 練習：  
+> 練習：
 > 給`ServerResponse`和`switch`添加第三種情況。
 
 注意如何從`ServerResponse`中提取日出和日落時間。
@@ -653,7 +653,7 @@ b.adjust()
 let bDescription = b.simpleDescription
 ```
 
-> 練習：  
+> 練習：
 > 寫一個實作這個協定的列舉。
 
 注意宣告`SimpleStructure`時候`mutating`關鍵字用來標記一個會修改結構的方法。`SimpleClass`的宣告不需要標記任何方法因為類別中的方法經常會修改類別。
@@ -672,7 +672,7 @@ extension Int: ExampleProtocol {
 7.simpleDescription
 ```
 
-> 練習：  
+> 練習：
 > 給`Double`型別寫一個擴展，添加`absoluteValue`功能。
 
 你可以像使用其他命名型別一樣使用協定名稱——例如，創建一個有不同型別但是都實作一個協定的物件集合。當你處理型別是協定的值時，協定外定義的方法不可用。
@@ -729,7 +729,7 @@ func anyCommonElements <T, U where T: Sequence, U: Sequence, T.GeneratorType.Ele
 anyCommonElements([1, 2, 3], [3])
 ```
 
-> 練習：  
+> 練習：
 > 修改`anyCommonElements`函式來創建一個函式，回傳一個陣列，內容是兩個序列的共有元素。
 
 簡單起見，你可以忽略`where`，只在冒號後面寫協定或者類別名稱。` <T: Equatable>`和`<T where T: Equatable>`是等價的。

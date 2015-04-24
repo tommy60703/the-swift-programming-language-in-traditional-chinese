@@ -522,23 +522,23 @@ enum Rank: Int {
         case .King:
             return "king"
         default:
-            return String(self.toRaw())
+            return String(self.rawValue)
         }
     }
 }
 let ace = Rank.Ace
-let aceRawValue = ace.toRaw()
+let aceRawValue = ace.rawValue
 ```
 
 > 練習：  
 > 寫一個函式，透過比較它們的原始值來比較兩個`Rank`值。
 
-在上面的範例中，列舉原始值的型別是`Int`，所以你只需要設置第一個原始值，剩下的原始值會按照順序賦值。你也可以使用字串或者浮點數作為列舉的原始值。
+在上面的範例中，列舉原始值的型別是`Int`，所以你只需要設置第一個原始值，剩下的原始值會按照順序賦值。你也可以使用字串或者浮點數作為列舉的原始值。使用`rawValue`屬性來取得列舉值成員的原始值。
 
-使用`toRaw`和`fromRaw`函式來在原始值和列舉值之間進行轉換。
+使用`init?(rawValue:)`這個初始化函式透過原始值來初始化一個列舉值的實體。
 
 ```swift
-if let convertedRank = Rank.fromRaw(3) {
+if let convertedRank = Rank(rawValue: 3) {
     let threeDescription = convertedRank.simpleDescription()
 }
 ```

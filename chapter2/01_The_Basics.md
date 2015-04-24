@@ -27,7 +27,7 @@ Swift 的型別是在 C 和 Objective-C 的基礎上提出的，`Int`是整數�
 
 除了我們熟悉的型別，Swift 還增加了 Objective-C 中沒有的型別比如 tuple。Tuple 可以讓你創建或者傳遞一組資料，比如作為函式的回傳值時，你可以用一個 tuple 回傳多個值。
 
-Swift 還增加了 optional 型別，用於處理值不存在的情況。optional 表示 「那兒有一個值，並且它等於 x 」 或者 「那兒沒有值」。optional 有點像在 Objective-C 中使用`nil`，但是它可以用在任何型別上，不僅僅是類別別。optional 型別比 Objective-C 中的`nil`指標更加安全也更具表現力，它是 Swift 許多強大特性的重要組成部分。
+Swift 還增加了 optional 型別，用於處理值不存在的情況。optional 表示 「那兒有一個值，並且它等於 x 」 或者 「那兒沒有值」。optional 有點像在 Objective-C 中使用`nil`，但是它可以用在任何型別上，不僅僅是類別。optional 型別比 Objective-C 中的`nil`指標更加安全也更具表現力，它是 Swift 許多強大特性的重要組成部分。
 
 Swift 是一個型別安全的語言，optional 就是一個很好的範例。Swift 可以讓你清楚地知道值的型別。如果你的程式碼期望得到一個`String`，型別安全會阻止你不小心傳入一個`Int`。你可以在開發階段盡早發現並修正錯誤。
 
@@ -47,7 +47,7 @@ var currentLoginAttempt = 0
 
 這兩行程式碼可以被理解為：
 
-「宣告一個名字是`maximumNumberOfLoginAttempts`的新常數，並給它一個值`10`。然後，宣告一個名字是`currentLoginAttempt`的變數並將它的值初始化為`0`。」
+「宣告一個新常數叫`maximumNumberOfLoginAttempts`，並給它一個值`10`。然後，宣告一個變數是`currentLoginAttempt`並將它的值初始化為`0`。」
 
 在這個範例中，允許的最大嘗試登錄次數被宣告為一個常數，因為這個值不會改變。目前嘗試登錄次數被宣告為一個變數，因為每次嘗試登錄失敗的時候都需要增加這個值。
 
@@ -75,11 +75,18 @@ var welcomeMessage: String
 「宣告一個型別為`String`，名字為`welcomeMessage`的變數。」
 
 「型別為`String`」的意思是「可以儲存任意`String`型別的值。」
+可以把他想成是「這種型別的東西」或是「這種類型的東西」可以被儲存。
 
 `welcomeMessage`變數現在可以被設置成任意字串：
 
 ```swift
 welcomeMessage = "Hello"
+```
+
+你可以在同一行定義定義多個相同行別的變數，並用逗號隔開，最後加上型別標注。
+
+```swift
+var red, green, blue: Double
 ```
 
 > 注意：  
@@ -115,7 +122,7 @@ friendlyWelcome = "Bonjour!"
 ```swift
 let languageName = "Swift"
 languageName = "Swift++"
-// 這會報編譯時錯誤 - languageName 不可改變
+// 這會報編譯時錯誤 - languageName 不能被改變
 ```
 
 ### 輸出常數和變數
@@ -165,7 +172,7 @@ Swift 中的註解與 C 語言的註解非常相似。單行註解以雙正斜�
 多行註解 */
 ```
 
-與 C 語言多行註解不同，Swift 的多行註解可以巢狀地寫在其它的多行註解之中。你可以先生成一個多行註解區塊，然後在這個註解區塊之中再套入第二個多行註解。終止註解時先插入第二個註解區塊的終止標記，然後再插入第一個註解區塊的終止標記：
+與 C 語言多行註解不同，Swift 的多行註解可以巢狀地寫在其它的多行註解之中。你可以先寫一個多行註解區塊，然後在這個註解區塊之中再套入第二個多行註解。終止註解時先插入第二個註解區塊的終止標記，然後再插入第一個註解區塊的終止標記：
 
 ```swift
 /* 這是第一個多行註解的開頭
@@ -524,22 +531,29 @@ C 和 Objective-C 中並沒有 optionals 型別這個概念。最接近的是 Ob
 ```swift
 let possibleNumber = "123"
 let convertedNumber = possibleNumber.toInt()
-// convertedNumber 被推測為型別 "Int?"， 或者型別 "optional Int"
+// convertedNumber 被推測為型別 "Int?"， 也就是 "optional Int"
 ```
 
 因為`toInt`方法可能會失敗，所以它回傳一個_optional_ `Int`，而不是一個`Int`。一個 optional `Int`被寫作`Int?`而不是`Int`。問號暗示包含的值是 optional 型別，也就是說可能包含`Int`值也可能不包含值。（不能包含其他任何值比如`Bool`值或者`String`值。只能是`Int`或者什麼都沒有。）
 
 ### if 語句以及強制解析
 
-你可以使用`if`語句來判斷一個 optional 是否包含值。如果 optional 有值，結果是`true`；如果沒有值，結果是`false`。
+你可以使用`if`語句透過對比nil的方式來判斷一個 optional 是否包含值。使用「等於」運算子（`==`）或是「不等於」運算子(`!=`)來執行這樣的比較。
+
+如果一個 optional 有值，就會被認為是「不等於」`nil`。
+
+```swift
+if convertedNumber != nil {
+    println("convertedNumber contains some integer value.")
+}
+// 輸出 "convertedNumber contains some integer value."
+```
 
 當你確定 optional _確實_包含值之後，你可以在 optional 的名字後面加一個感嘆號（`!`）來獲取值。這個驚嘆號表示「我知道這個 optional 有值，請使用它。」這被稱為 optional 值的_強制解析（forced unwrapping）_：
 
 ```swift
-if convertedNumber {
-    println("\(possibleNumber) has an integer value of \(convertedNumber!)")
-} else {
-    println("\(possibleNumber) could not be converted to an integer")
+if convertedNumber != nil {
+    println("convertedNumber has an integer value of \(convertedNumber!).")
 }
 // 輸出 "123 has an integer value of 123"
 ```
@@ -639,7 +653,7 @@ println(assumedString)  // 不需要感嘆號
 你仍然可以把隱式解析 optional 當做普通 optional 來判斷它是否包含值：
 
 ```swift
-if assumedString {
+if assumedString != nil {
     println(assumedString)
 }
 // 輸出 "An implicitly unwrapped optional string."

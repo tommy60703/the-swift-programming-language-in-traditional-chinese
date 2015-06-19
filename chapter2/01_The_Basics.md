@@ -206,7 +206,7 @@ Swift 提供了 8、16、32 和 64 位元的有號和無號整數型別。這些
 let minValue = UInt8.min // minValue 為 0，且是Uint8型別
 let maxValue = UInt8.max // maxValue 為 255，且是UInt8型別
 ```
-`min`和`max`所傳回值的型別，正是所其所對應的整數型別(如上UInt8，所傳回的型別為UInt)，且可用在相同型別的陳述式
+`min`和`max`所傳回值的型別，正是其所對應的整數型別(如上UInt8，所傳回的型別為UInt8)，可用在相同型別的陳述式
 
 ### Int
 

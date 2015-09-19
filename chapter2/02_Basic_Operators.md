@@ -1,4 +1,5 @@
 > 翻譯：[tommy60703](https://github.com/tommy60703)
+> 校對：[rocooshiang](https://github.com/rocooshiang)
 
 # 基本運算子
 -----------------
@@ -371,8 +372,8 @@ for index in 1...5 {
 ```swift
 let names = ["Anna", "Alex", "Brian", "Jack"]
 let count = names.count
-for i in 0..count {
-    print("第 \(i + 1) 個人叫 \(names[i])")
+for i in 0..<count {
+    println("第 \(i + 1) 個人叫 \(names[i])")
 }
 // 第 1 個人叫 Anna
 // 第 2 個人叫 Alex

@@ -14,7 +14,7 @@
 * [簡體中文]
 * 簡轉繁：[tommy60703]
 * Swift 2.0：[tommy60703]
-* 校對：[jayhsu], [ckvir], [rsbrian], [hcjao]
+* 校對：[jayhsu], [ckvir], [rsbrian], [hcjao], [rocooshiang]
 
 # 貢獻力量
 
@@ -78,3 +78,4 @@
 [hcjao]:https://github.com/hcjao
 [rsbrian]:https://github.com/briansheng
 [petertom51]:https://github.com/petertom51
+[rocooshiang]:https://github.com/rocooshiang

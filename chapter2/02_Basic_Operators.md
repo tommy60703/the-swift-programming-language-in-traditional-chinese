@@ -1,4 +1,5 @@
 > 翻譯：[tommy60703](https://github.com/tommy60703)
+> 校對：[rocooshiang](https://github.com/rocooshiang)
 
 # 基本運算子
 -----------------
@@ -103,7 +104,7 @@ let dogCow = dog + cow
 
 餘數運算（`a % b`）是計算`b`的多少倍剛剛好可以容入`a`，回傳多出來的那部分（餘數）。
 
->注意：  
+>注意：
 餘數運算（`%`）在其他語言也叫取模運算。然而嚴格說來，我們看該運算子對負數的操作結果，"餘數"比"取模"更合適些。
 
 我們來談談取餘數是怎麼回事，計算`9 % 4`，你先計算出`4`的多少倍會剛好可以容入`9`中：
@@ -227,7 +228,7 @@ a += 2 // a 現在是 3
 
 表達式`a += 2`是`a = a + 2`的簡寫，一個加賦運算就把加法和指派兩件事完成了。
 
->注意：  
+>注意：
 複合指派運算沒有回傳值，`let b = a += 2`這類別程式碼是錯誤。這不同於上面提到的累加和累減運算子。
 
 在[表達式](../chapter3/04_Expressions.html)章節裡有複合運算子的完整列表。
@@ -244,7 +245,7 @@ a += 2 // a 現在是 3
 - 大於等於（`a >= b`）
 - 小於等於（`a <= b`）
 
-> 注意：  
+> 注意：
 Swift 也提供恆等`===`和不恆等`!==`這兩個比較符來判斷兩個物件是否參考同一個物件實例。更多細節在[類別別與結構](09_Classes_and_Structures.html)。
 
 每個比較運算都回傳了一個顯示表達式是否成立的布林值：
@@ -336,7 +337,7 @@ a != nil ? a! : b
 ```swift
 let defaultColorName = "red"
 var userDefinedColorName: String?   // 預設為空值
- 
+
 var colorNameToUse = userDefinedColorName ?? defaultColorName
 // userDefinedColorName 是空值, 所以 colorNameToUse 就被設成預設的 「red」。
 ```
@@ -384,7 +385,7 @@ for index in 1...5 {
 ```swift
 let names = ["Anna", "Alex", "Brian", "Jack"]
 let count = names.count
-for i in 0..count {
+for i in 0..<count {
     println("第 \(i + 1) 個人叫 \(names[i])")
 }
 // 第 1 個人叫 Anna

@@ -1,4 +1,5 @@
 > 翻譯：[tommy60703](https://github.com/tommy60703)
+> 校對：[rocooshiang](https://github.com/rocooshiang)
 
 # 基礎部分
 -----------------
@@ -57,7 +58,7 @@ var currentLoginAttempt = 0
 var x = 0.0, y = 0.0, z = 0.0
 ```
 
->注意：  
+>注意：
 如果你的程式碼中有不需要改變的值，請使用`let`關鍵字將它宣告為常數。只將需要改變的值宣告為變數。
 
 ### 型別標注
@@ -89,7 +90,7 @@ welcomeMessage = "Hello"
 var red, green, blue: Double
 ```
 
-> 注意：  
+> 注意：
 一般來說你很少需要寫型別標注。如果你在宣告常數或者變數的時候指派了一個初始值，Swift可以推斷出這個常數或者變數的型別，請參考[型別安全和型別推斷](#type_safety_and_type_inference)。在上面的範例中，沒有給`welcomeMessage`指派初始值，所以變數`welcomeMessage`的型別是透過一個型別標注指定的，而不是透過初始值推斷的。
 
 ### 常數和變數的命名
@@ -106,7 +107,7 @@ let 🐶🐮 = "dogcow"
 
 一旦你將常數或者變數宣告為確定的型別，你就不能使用相同的名字再次進行宣告，或者改變其儲存的值的型別。同時，你也不能將常數與變數進行互轉。
 
-> 注意：  
+> 注意：
 如果你需要使用與 Swift 保留關鍵字相同的名稱作為常數或者變數名，你可以使用反引號（`）將關鍵字包圍的方式將其作為名字使用。無論如何，你應當避免使用關鍵字作為常數或變數名，除非你別無選擇。
 
 你可以更改現有的變數值為其他同型別的值，在下面的範例中，`friendlyWelcome`的值從`"Hello!"`改為了`"Bonjour!"`:
@@ -152,7 +153,7 @@ println("The current value of friendlyWelcome is \(friendlyWelcome)")
 // 輸出 "The current value of friendlyWelcome is Bonjour!
 ```
 
-> 注意：  
+> 注意：
 字串插值所有可用的選項，請參考[字串插值](03_Strings_and_Characters.html#string_interpolation)。
 
 <a name="comments"></a>
@@ -237,7 +238,7 @@ Swift 也提供了一個特殊的無號型別`UInt`，長度與目前平台的�
 * `Double`表示 64 位元浮點數。當你需要儲存很大或者很高精度的浮點數時請使用此型別。
 * `Float`表示 32 位元浮點數。精度要求不高的話可以使用此型別。
 
-> 注意：  
+> 注意：
 `Double`精確度很高，至少有 15 位數字，而`Float`最少只有 6 位數字。選擇哪個型別取決於你的程式碼需要處理的值的範圍。
 
 <a name="type_safety_and_type_inference"></a>
@@ -376,7 +377,7 @@ let integerPi = Int(pi)
 
 當用這種方式來初始化一個新的整數值時，浮點值會被截斷。也就是說`4.75`會變成`4`，`-3.9`會變成`-3`。
 
-> 注意：  
+> 注意：
 結合數值型常數和變數不同於結合數值型字面量。字面量`3`可以直接和字面量`0.14159`相加，因為數值字面量本身沒有明確的型別。它們的型別只在編譯器需要求值的時候被推測。
 
 <a name="type_aliases"></a>
@@ -506,7 +507,7 @@ println("The status message is \(http200Status.description)")
 
 作為函式回傳值時，tuple 非常有用。一個用來獲取網頁的函式可能會回傳一個`(Int, String)` tuple 來描述是否獲取成功。和只能回傳一個型別的值比較起來，一個包含兩個不同型別的值的 tuple 可以讓函式的回傳訊息更有用。請參考[函式參數與回傳值](06_Functions.html#Function_Parameters_and_Return_Values)。
 
-> 注意：  
+> 注意：
 tuple 在臨時組織值的時候很有用，但是並不適合創建複雜的資料結構。如果你的資料結構並不是臨時使用，請使用類別別或者結構而不是 tuple。請參考[類別別和結構](09_Classes_and_Structures.html)。
 
 <a name="optionals"></a>
@@ -555,12 +556,12 @@ if convertedNumber != nil {
 if convertedNumber != nil {
     println("convertedNumber has an integer value of \(convertedNumber!).")
 }
-// 輸出 "123 has an integer value of 123"
+// 輸出 "convertedNumber has an integer value of 123"
 ```
 
 更多關於`if`語句的內容，請參考[控制流程程](05_Control_Flow.html)。
 
-> 注意：  
+> 注意：
 使用`!`來獲取一個不存在的 optional 值會導致執行時錯誤。使用`!`來強制解析值之前，一定要確定 optional 包含一個非`nil`的值。
 
 <a name="optional_binding"></a>
@@ -606,7 +607,7 @@ serverResponseCode = nil
 // serverResponseCode 現在不包含值
 ```
 
-> 注意：  
+> 注意：
 `nil`不能用於非 optional 的常數和變數。如果你的程式碼中有常數或者變數需要處理值不存在的情況，請把它們宣告成對應的 optional 型別。
 
 如果你宣告一個 optional 常數或者變數但是沒有指派，它們會自動被設置為`nil`：
@@ -709,5 +710,5 @@ assert(age >= 0)
 
 請參考[Subscripts](12_Subscripts.html)和[函式](06_Functions.html)。
 
-> 注意：  
+> 注意：
 Assertion 可能導致你的應用程式終止執行，所以你應當仔細設計你的程式碼來讓非法條件不會出現。然而，在你的應用程式發佈之前，有時候非法條件可能出現，這時使用 assertion 可以快速發現問題。

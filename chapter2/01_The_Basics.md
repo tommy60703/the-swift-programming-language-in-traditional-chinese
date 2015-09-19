@@ -17,11 +17,12 @@
 - [布林值](#booleans)
 - [Tuples](#tuples)
 - [Optionals](#optionals)
+- [錯誤處理](#error_handling)
 - [Assertions](#assertions)
 
 Swift 是開發 iOS 和 OS X 應用程式的一門新語言。然而，如果你有 C 或者 Objective-C 開發經驗的話，你會發現 Swift 的很多內容都是你熟悉的。
 
-Swift 的型別是在 C 和 Objective-C 的基礎上提出的，`Int`是整數；`Double`和`Float`是浮點數；`Bool`是布林值；`String`是字串。Swift 還有兩個有用的集合型別，`Array`和`Dictionary`，請參考[集合型別](04_Collection_Types.html)。
+Swift 的型別是在 C 和 Objective-C 的基礎上提出的，`Int`是整數；`Double`和`Float`是浮點數；`Bool`是布林值；`String`是字串。Swift 還有三個有用的集合型別，`Array`、`Set`和`Dictionary`，請參考[集合型別](04_Collection_Types.html)。
 
 就像 C 語言一樣，Swift 使用變數來進行儲存並透過變數名稱來參考值。在 Swift 中，值不可變的變數有著廣泛的應用，它們就是常數，而且比 C 語言的常數更強大。在 Swift 中，如果你要處理的值不需要改變，那使用常數可以讓你的程式碼更加安全並且更好地表達你的意圖。
 
@@ -57,7 +58,7 @@ var currentLoginAttempt = 0
 var x = 0.0, y = 0.0, z = 0.0
 ```
 
->注意：  
+>注意：
 如果你的程式碼中有不需要改變的值，請使用`let`關鍵字將它宣告為常數。只將需要改變的值宣告為變數。
 
 ### 型別標注
@@ -89,7 +90,7 @@ welcomeMessage = "Hello"
 var red, green, blue: Double
 ```
 
-> 注意：  
+> 注意：
 一般來說你很少需要寫型別標注。如果你在宣告常數或者變數的時候指派了一個初始值，Swift可以推斷出這個常數或者變數的型別，請參考[型別安全和型別推斷](#type_safety_and_type_inference)。在上面的範例中，沒有給`welcomeMessage`指派初始值，所以變數`welcomeMessage`的型別是透過一個型別標注指定的，而不是透過初始值推斷的。
 
 ### 常數和變數的命名
@@ -106,8 +107,8 @@ let 🐶🐮 = "dogcow"
 
 一旦你將常數或者變數宣告為確定的型別，你就不能使用相同的名字再次進行宣告，或者改變其儲存的值的型別。同時，你也不能將常數與變數進行互轉。
 
-> 注意：  
-如果你需要使用與 Swift 保留關鍵字相同的名稱作為常數或者變數名，你可以使用反引號（`）將關鍵字包圍的方式將其作為名字使用。無論如何，你應當避免使用關鍵字作為常數或變數名，除非你別無選擇。
+> 注意：
+如果你需要使用與 Swift 保留關鍵字相同的名稱作為常數或者變數名，你可以使用反引號（`）將關鍵字包圍的方式將其作為名字使用。然而，你應當避免使用關鍵字作為常數或變數名，除非你別無選擇。
 
 你可以更改現有的變數值為其他同型別的值，在下面的範例中，`friendlyWelcome`的值從`"Hello!"`改為了`"Bonjour!"`:
 
@@ -127,32 +128,23 @@ languageName = "Swift++"
 
 ### 輸出常數和變數
 
-你可以用`println`函式來輸出目前常數或變數的值:
+你可以用`print(_:separator:terminator:)`函式來輸出目前常數或變數的值:
 
 ```swift
-println(friendlyWelcome)
+print(friendlyWelcome)
 // 輸出 "Bonjour!"
 ```
 
-`println`是一個用來輸出的全域函式，輸出的內容會在最後換行。如果你用 Xcode，`println`將會輸出內容到「console」面板上。(另一種函式叫`print`，唯一區別是在輸出內容最後不會換行。)
-
-`println`函式輸出傳入的`String`值：
-
-```swift
-println("This is a string")
-// 輸出 "This is a string"
-```
-
-與 Cocoa 裡的`NSLog`函式類似的是，`println`函式可以輸出更複雜的訊息。這些訊息可以包含目前常數和變數的值。
+`print(_:separator:terminator:)`是一個用來輸出的全域函式。如果你用 Xcode，`print(_:separator:terminator:)`將會輸出內容到「console」面板上。`seperator`和`terminator`參數有預設值，所以在呼叫時可以忽略不寫，這個函式預設會在行尾換行。如果不想要自動換行，把空字串作為`terminator`傳入，例如print(someValue, terminator: "")。請參考[參數預設值](00_Default_Parameter_Values.html)
 
 Swift 用_字串插值（string interpolation）_的方式把常數名或者變數名當做占位符（placeholder）加入到長字串中，Swift 會用目前常數或變數的值替換這些占位符。將常數或變數名放入圓括號中，並在開括號前使用反斜線將其跳脫：
 
 ```swift
-println("The current value of friendlyWelcome is \(friendlyWelcome)")
+print("The current value of friendlyWelcome is \(friendlyWelcome)")
 // 輸出 "The current value of friendlyWelcome is Bonjour!
 ```
 
-> 注意：  
+> 注意：
 字串插值所有可用的選項，請參考[字串插值](03_Strings_and_Characters.html#string_interpolation)。
 
 <a name="comments"></a>
@@ -187,7 +179,7 @@ Swift 中的註解與 C 語言的註解非常相似。單行註解以雙正斜�
 與其他大部分程式語言不同，Swift 並不強制要求你在每條語句的結尾處使用分號（`;`），當然，你也可以按照你自己的習慣添加分號。有一種情況下必須要用分號，即你打算在同一行內寫多條獨立的語句：
 
 ```swift
-let cat = "🐱"; println(cat)
+let cat = "🐱"; print(cat)
 // 輸出 "🐱"
 ```
 
@@ -234,10 +226,10 @@ Swift 也提供了一個特殊的無號型別`UInt`，長度與目前平台的�
 
 浮點型別比整數型別表示的範圍更大，可以儲存比`Int`型別更大或者更小的數字。Swift 提供了兩種有號浮點數型別：
 
-* `Double`表示 64 位元浮點數。當你需要儲存很大或者很高精度的浮點數時請使用此型別。
-* `Float`表示 32 位元浮點數。精度要求不高的話可以使用此型別。
+* `Double`表示 64 位元浮點數。
+* `Float`表示 32 位元浮點數。
 
-> 注意：  
+> 注意：
 `Double`精確度很高，至少有 15 位數字，而`Float`最少只有 6 位數字。選擇哪個型別取決於你的程式碼需要處理的值的範圍。
 
 <a name="type_safety_and_type_inference"></a>
@@ -376,7 +368,7 @@ let integerPi = Int(pi)
 
 當用這種方式來初始化一個新的整數值時，浮點值會被截斷。也就是說`4.75`會變成`4`，`-3.9`會變成`-3`。
 
-> 注意：  
+> 注意：
 結合數值型常數和變數不同於結合數值型字面量。字面量`3`可以直接和字面量`0.14159`相加，因為數值字面量本身沒有明確的型別。它們的型別只在編譯器需要求值的時候被推測。
 
 <a name="type_aliases"></a>
@@ -415,9 +407,9 @@ let turnipsAreDelicious = false
 
 ```swift
 if turnipsAreDelicious {
-    println("Mmm, tasty turnips!")
+    print("Mmm, tasty turnips!")
 } else {
-    println("Eww, turnips are horrible.")
+    print("Eww, turnips are horrible.")
 }
 // 輸出 "Eww, turnips are horrible."
 ```
@@ -466,9 +458,9 @@ let http404Error = (404, "Not Found")
 
 ```swift
 let (statusCode, statusMessage) = http404Error
-println("The status code is \(statusCode)")
+print("The status code is \(statusCode)")
 // 輸出 "The status code is 404"
-println("The status message is \(statusMessage)")
+print("The status message is \(statusMessage)")
 // 輸出 "The status message is Not Found"
 ```
 
@@ -476,16 +468,16 @@ println("The status message is \(statusMessage)")
 
 ```swift
 let (justTheStatusCode, _) = http404Error
-println("The status code is \(justTheStatusCode)")
+print("The status code is \(justTheStatusCode)")
 // 輸出 "The status code is 404"
 ```
 
 此外，你還可以透過索引值來存取 tuple 中的單個元素，索引值從零開始：
 
 ```swift
-println("The status code is \(http404Error.0)")
+print("The status code is \(http404Error.0)")
 // 輸出 "The status code is 404"
-println("The status message is \(http404Error.1)")
+print("The status message is \(http404Error.1)")
 // 輸出 "The status message is Not Found"
 ```
 
@@ -498,15 +490,15 @@ let http200Status = (statusCode: 200, description: "OK")
 給 tuple 中的元素命名後，你可以透過名字來獲取這些元素的值：
 
 ```swift
-println("The status code is \(http200Status.statusCode)")
+print("The status code is \(http200Status.statusCode)")
 // 輸出 "The status code is 200"
-println("The status message is \(http200Status.description)")
+print("The status message is \(http200Status.description)")
 // 輸出 "The status message is OK"
 ```
 
 作為函式回傳值時，tuple 非常有用。一個用來獲取網頁的函式可能會回傳一個`(Int, String)` tuple 來描述是否獲取成功。和只能回傳一個型別的值比較起來，一個包含兩個不同型別的值的 tuple 可以讓函式的回傳訊息更有用。請參考[函式參數與回傳值](06_Functions.html#Function_Parameters_and_Return_Values)。
 
-> 注意：  
+> 注意：
 tuple 在臨時組織值的時候很有用，但是並不適合創建複雜的資料結構。如果你的資料結構並不是臨時使用，請使用類別別或者結構而不是 tuple。請參考[類別別和結構](09_Classes_and_Structures.html)。
 
 <a name="optionals"></a>
@@ -530,11 +522,37 @@ C 和 Objective-C 中並沒有 optionals 型別這個概念。最接近的是 Ob
 
 ```swift
 let possibleNumber = "123"
-let convertedNumber = possibleNumber.toInt()
+let convertedNumber = Int(possibleNumber)
 // convertedNumber 被推測為型別 "Int?"， 也就是 "optional Int"
 ```
 
-因為`toInt`方法可能會失敗，所以它回傳一個_optional_ `Int`，而不是一個`Int`。一個 optional `Int`被寫作`Int?`而不是`Int`。問號暗示包含的值是 optional 型別，也就是說可能包含`Int`值也可能不包含值。（不能包含其他任何值比如`Bool`值或者`String`值。只能是`Int`或者什麼都沒有。）
+因為`Int()`建構式可能會失敗，所以它回傳一個_optional_ `Int`，而不是一個`Int`。一個 optional `Int`被寫作`Int?`而不是`Int`。問號暗示包含的值是 optional 型別，也就是說可能包含`Int`值也可能不包含值。（不能包含其他任何值比如`Bool`值或者`String`值。只能是`Int`或者什麼都沒有。）
+
+### nil
+
+你可以給 optional 變數指派為`nil`來表示它沒有值：
+
+```swift
+var serverResponseCode: Int? = 404
+// serverResponseCode 包含一個optionals的 Int 值 404
+serverResponseCode = nil
+// serverResponseCode 現在不包含值
+```
+
+> 注意：
+`nil`不能用於非 optional 的常數和變數。如果你的程式碼中有常數或者變數需要處理值不存在的情況，請把它們宣告成對應的 optional 型別。
+
+如果你宣告一個 optional 常數或者變數但是沒有指派，它們會自動被設置為`nil`：
+
+```swift
+var surveyAnswer: String?
+// surveyAnswer 被自動設置為 nil
+```
+
+> 注意：
+>
+Swift 的`nil`和 Objective-C 中的`nil`並不一樣。在 Objective-C 中，`nil`是一個指向不存在物件的指標。在 Swift 中，`nil`不是指標——它是一個確定的值，用來表示值不存在。_任何_型別的 optional 狀態都可以被設置為`nil`，不只是物件型別。
+
 
 ### if 語句以及強制解析
 
@@ -544,7 +562,7 @@ let convertedNumber = possibleNumber.toInt()
 
 ```swift
 if convertedNumber != nil {
-    println("convertedNumber contains some integer value.")
+    print("convertedNumber contains some integer value.")
 }
 // 輸出 "convertedNumber contains some integer value."
 ```
@@ -553,14 +571,14 @@ if convertedNumber != nil {
 
 ```swift
 if convertedNumber != nil {
-    println("convertedNumber has an integer value of \(convertedNumber!).")
+    print("convertedNumber has an integer value of \(convertedNumber!).")
 }
 // 輸出 "123 has an integer value of 123"
 ```
 
-更多關於`if`語句的內容，請參考[控制流程程](05_Control_Flow.html)。
+更多關於`if`語句的內容，請參考[控制流程](05_Control_Flow.html)。
 
-> 注意：  
+> 注意：
 使用`!`來獲取一個不存在的 optional 值會導致執行時錯誤。使用`!`來強制解析值之前，一定要確定 optional 包含一個非`nil`的值。
 
 <a name="optional_binding"></a>
@@ -579,46 +597,22 @@ if let constantName = someOptional {
 你可以像上面這樣使用 optional 綁定來重寫`possibleNumber`這個範例：
 
 ```swift
-if let actualNumber = possibleNumber.toInt() {
-    println("\(possibleNumber) has an integer value of \(actualNumber)")
+if let actualNumber = Int(possibleNumber) {
+    print("\(possibleNumber) has an integer value of \(actualNumber)")
 } else {
-    println("\(possibleNumber) could not be converted to an integer")
+    print("\(possibleNumber) could not be converted to an integer")
 }
 // 輸出 "123 has an integer value of 123"
 ```
 
 這段程式碼可以被理解為：
 
-「如果`possibleNumber.toInt`回傳的 optional `Int`包含一個值，創建一個叫做`actualNumber`的新常數並將optional 包含的值指派給它。」
+「如果`Int(possibleNumber)`回傳的 optional `Int`包含一個值，創建一個叫做`actualNumber`的新常數並將optional 包含的值指派給它。」
 
 如果轉換成功，`actualNumber`常數可以在`if`語句的第一個分支中使用。它已經被 optional _包含的_值初始化過，所以不需要再使用`!`後綴來獲取它的值。在這個範例中，`actualNumber`只被用來輸出轉換結果。
 
 你可以在 optional 綁定中使用常數和變數。如果你想在`if`語句的第一個分支中操作`actualNumber`的值，你可以改成`if var actualNumber`，這樣 optional 包含的值就會被指派給一個變數而不是常數。
 
-### nil
-
-你可以給 optional 變數指派為`nil`來表示它沒有值：
-
-```swift
-var serverResponseCode: Int? = 404
-// serverResponseCode 包含一個optionals的 Int 值 404
-serverResponseCode = nil
-// serverResponseCode 現在不包含值
-```
-
-> 注意：  
-`nil`不能用於非 optional 的常數和變數。如果你的程式碼中有常數或者變數需要處理值不存在的情況，請把它們宣告成對應的 optional 型別。
-
-如果你宣告一個 optional 常數或者變數但是沒有指派，它們會自動被設置為`nil`：
-
-```swift
-var surveyAnswer: String?
-// surveyAnswer 被自動設置為 nil
-```
-
-> 注意：
->
-Swift 的`nil`和 Objective-C 中的`nil`並不一樣。在 Objective-C 中，`nil`是一個指向不存在物件的指標。在 Swift 中，`nil`不是指標——它是一個確定的值，用來表示值不存在。_任何_型別的 optional 狀態都可以被設置為`nil`，不只是物件型別。
 
 ### 隱式解析 Optionals
 
@@ -634,14 +628,10 @@ Swift 的`nil`和 Objective-C 中的`nil`並不一樣。在 Objective-C 中，`n
 
 ```swift
 let possibleString: String? = "An optional string."
-println(possibleString!) // 需要驚嘆號來獲取值
-// 輸出 "An optional string."
-```
+let forcedString: String = possibleString! // 需要驚嘆號來獲取值
 
-```swift
 let assumedString: String! = "An implicitly unwrapped optional string."
-println(assumedString)  // 不需要感嘆號
-// 輸出 "An implicitly unwrapped optional string."
+let implicitString: String = assumedString // 不需要感嘆號
 ```
 
 你可以把隱式解析 optional 當做一個可以自動解析的 optional。你要做的只是宣告的時候把感嘆號放到型別的結尾，而不是每次取值的 optional 名字的結尾。
@@ -654,7 +644,7 @@ println(assumedString)  // 不需要感嘆號
 
 ```swift
 if assumedString != nil {
-    println(assumedString)
+    print(assumedString)
 }
 // 輸出 "An implicitly unwrapped optional string."
 ```
@@ -663,7 +653,7 @@ if assumedString != nil {
 
 ```swift
 if let definiteString = assumedString {
-    println(definiteString)
+    print(definiteString)
 }
 // 輸出 "An implicitly unwrapped optional string."
 ```
@@ -671,6 +661,57 @@ if let definiteString = assumedString {
 > 注意：
 >
 如果一個變數之後可能變成`nil`的話請不要使用隱式解析 optionals。如果你需要在變數的生命周期中判斷是否是`nil`的話，請使用普通的 optionals。
+
+<a href="error_handling"></a>
+## 錯誤處理(Error Handling)
+
+使用_錯誤處理(error handling)_來處理你的程式在執行階段可能會遇到的錯誤情況。
+
+相較於用 Optionals 值的有無來表示函式的成功或失敗，錯誤處理讓你可以確定錯誤的根本原因，並且在需要的時候，傳送這個錯誤給程式程的其他部分。
+
+當函式遇到錯誤情況時會_拋出(throws)_一個錯誤(error)，之後函式的呼叫者可以_接住(catch)_這個錯誤並作出相應的處理。
+
+```siwft
+func canThrowAnErrow() throws {
+    // 這個函式有可能拋出錯誤
+}
+```
+一個函式可以透過宣告的時候加上`throws`來表示它可以拋出錯誤訊息。當函式可以拋出錯誤時，你應該在呼叫前放置`try`關鍵字。
+
+```swift
+do {
+    try canThrowAnErrow()
+    // 没有抛出錯誤
+} catch {
+    // 拋出一個錯誤
+}
+```
+
+`do`語法開始一個新的作用域(scope)，讓錯誤能夠被傳到一個或多個`catch`子句。
+
+這裡有一個處理不同錯誤情況的例子：
+
+```swift
+func makeASandwich() throws {
+    // ...
+}
+
+do {
+    try makeASandwich()
+    eatASandwich()
+} catch Error.OutOfCleanDishes {
+    washDishes()
+} catch Error.MissingIngredients(let ingredients) {
+    buyGroceries(ingredients)
+}
+```
+
+在此例中，`makeASandwich()`函式如果没有乾淨的盤子或式有缺原料，會抛出一個錯誤。因為`makeASandwich()`會拋出錯誤，函式呼叫需要使用`try`語句。將函式包在`do`語句中，任何被拋出的錯誤都會被傳送接著的`catch`中。
+
+如果沒有錯誤被拋出，`eatASandwich()`會被呼叫；如果一個匹配`Error.OutOfCleanDishes`
+的錯誤被拋出，`washDishes()`函式會被呼叫；如果一個匹配`Error.MissingIngredients`的錯誤被拋出，`buyGroceries(_:)`函數會被呼叫，並以`catch`所捕捉到的關聯值[String]為參數。
+
+拋出、捕捉以及傳送錯誤會在[錯誤處理](foobar)章節詳細說明。
 
 <a name="assertions"></a>
 ## Assertions
@@ -683,7 +724,7 @@ Optionals 可以讓你判斷值是否存在，你可以在程式碼中優雅地�
 
 如果你的程式碼在除錯環境下觸發了一個 assertion，比如你在 Xcode 中構建並執行一個應用程式，你可以清楚地看到不合法的狀態發生在哪裡並檢查 assertion 被觸發時你的應用程式的狀態。此外，assertion 允許你附加一條除錯訊息。
 
-你可以使用全域`assert`函式來寫一個 assertion。向`assert`函式傳入一個結果為`true`或者`false`的表達式以及一條訊息，當表達式為`false`的時候這條訊息會被顯示：
+你可以使用全域`assert(_:_:)`函式來寫一個 assertion。向`assert(_:_:)`函式傳入一個結果為`true`或者`false`的表達式以及一條訊息，當表達式為`false`的時候這條訊息會被顯示：
 
 ```swift
 let age = -3
@@ -709,5 +750,5 @@ assert(age >= 0)
 
 請參考[Subscripts](12_Subscripts.html)和[函式](06_Functions.html)。
 
-> 注意：  
+> 注意：
 Assertion 可能導致你的應用程式終止執行，所以你應當仔細設計你的程式碼來讓非法條件不會出現。然而，在你的應用程式發佈之前，有時候非法條件可能出現，這時使用 assertion 可以快速發現問題。

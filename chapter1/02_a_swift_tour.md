@@ -18,10 +18,10 @@
 通常來說，程式語言教學中的第一個程式應該在螢幕上顯示「Hello, world」。在 Swift 中，可以用一行程式碼實作：
 
 ```swift
-println("Hello, world")
+print("Hello, world")
 ```
 
-如果你寫過 C 或者 Objective-C 程式碼，那你應該很熟悉這種形式——在 Swift 中，這行程式碼就是一個完整的程式。你不需要為了輸入輸出或者字串處理導入一個單獨的函式庫。全域作用域中的程式碼會被自動當做程式的入口點，所以你也不需要`main`函式。你同樣不需要在每個語句結尾寫上分號。
+如果你寫過 C 或者 Objective-C 程式碼，那你應該很熟悉這種形式——在 Swift 中，這行程式碼就是一個完整的程式。你不需要為了輸入輸出或者字串處理導入一個單獨的函式庫。全域作用域中的程式碼會被自動當做程式的入口點，所以你也不需要`main()`函式。你同樣不需要在每個語句結尾寫上分號。
 
 這個教程會通過一系列程式範例來讓你對 Swift 有初步了解，如果你有什麼不理解的地方也不用擔心——任何本章介紹的內容都會在後面的章節中詳細講解。
 
@@ -100,7 +100,7 @@ let emptyDictionary = [String: Float]()
 如果型別資訊可以被推斷出來，你可以用`[]`和`[:]`來創建空陣列和空字典——就像你宣告變數或者給函式傳參數的時候一樣。
 
 ```swift
-shoppingList = []   // 去逛街並買點東西
+shoppingList = []
 occupations = [:]
 ```
 
@@ -119,16 +119,16 @@ for score in individualScores {
         teamScore += 1
     }
 }
-teamScore
+print(teamScore)
 ```
 
 在`if`語句中，條件必須是一個布林表達式——這意味著像`if score { ... }`這樣的程式碼將報錯，而不會隱性地與 0 做對比。
 
-你可以一起使用`if`和`let`來處理值缺失（missing）的情況。有些變數的值是可選的（optional）。一個可選的值可能是一個具體的值或者是`nil`，表示值缺失。在型別後面加一個問號來標記這個變數的值是可選的。
+你可以一起使用`if`和`let`來處理值缺失（missing）的情況。有些變數的值是非必要的（optional）。一個非必要的值可能是一個具體的值或者是`nil`，表示值缺失。在型別後面加一個問號來標記這個變數的值是非必要的。
 
 ```swift
 var optionalString: String? = "Hello"
-optionalString == nil
+print(optionalString == nil)
 
 var optionalName: String? = "John Appleseed"
 var greeting = "Hello!"
@@ -148,13 +148,13 @@ if let name = optionalName {
 let vegetable = "red pepper"
 switch vegetable {
 case "celery":
-    let vegetableComment = "Add some raisins and make ants on a log."
+    print("Add some raisins and make ants on a log.")
 case "cucumber", "watercress":
-    let vegetableComment = "That would make a good tea sandwich."
+    print("That would make a good tea sandwich.")
 case let x where x.hasSuffix("pepper"):
-    let vegetableComment = "Is it a spicy \(x)?"
+    print("Is it a spicy \(x)?")
 default:
-    let vegetableComment = "Everything tastes good in soup."
+    print("Everything tastes good in soup.")
 }
 ```
 
@@ -163,7 +163,7 @@ default:
 
 執行`switch`中匹配到的子句之後，程式會退出`switch`語句，並不會繼續向下執行，所以不需要在每個子句結尾寫`break`。
 
-你可以使用`for-in`來遍歷（iterate）字典，需要兩個變數來表示每個鍵值對（key-value pair）。
+你可以使用`for-in`來遍歷（iterate）字典，需要兩個變數來表示每個鍵值對（key-value pair）。字典是沒有順序的集合，所以鍵值對會以隨機的順序被遍歷。
 
 ```swift
 let interestingNumbers = [
@@ -179,7 +179,7 @@ for (kind, numbers) in interestingNumbers {
         }
     }
 }
-largest
+print(largest)
 ```
 
 > 練習：
@@ -192,37 +192,30 @@ var n = 2
 while n < 100 {
     n = n * 2
 }
-n
+print(n)
 
 var m = 2
-do {
+repeat {
     m = m * 2
 } while m < 100
-m
+print(m)
 ```
 
-你可以在迴圈中使用`...`來表示範圍，也可以使用傳統的寫法，兩者是等價的：
+你可以在迴圈中使用`..<`來表示範圍，也可以使用傳統的寫法，兩者是等價的：
 
 ```swift
-var firstForLoop = 0
-for i in 0...3 {
-    firstForLoop += i
-}
-firstForLoop
-
-或是
-
 var firstForLoop = 0
 for i in 0..<4 {
     firstForLoop += i
 }
-firstForLoop
+print(firstForLoop)
+
 
 var secondForLoop = 0
-for var i = 0; i < 3; ++i {
-    secondForLoop += 1
+for var i = 0; i < 4; ++i {
+    secondForLoop += i
 }
-secondForLoop
+print(secondForLoop)
 ```
 
 使用`..<`創建的範圍不包含上界，如果想包含的話需要使用`...`。
@@ -236,19 +229,34 @@ secondForLoop
 func greet(name: String, day: String) -> String {
     return "Hello \(name), today is \(day)."
 }
-greet("Bob", "Tuesday")
+greet("Bob", day: "Tuesday")
 ```
 
 > 練習：
 > 刪除`day`參數，添加一個參數來表示今天吃了什麼午飯。
 
-使用一個元組（tuple）來回傳多個值。
+使用一個值組（tuple）來回傳多個值。
 
 ```swift
-func getGasPrices() -> (Double, Double, Double) {
-    return (3.59, 3.69, 3.79)
+func calculateStatistics(scores: [Int]) -> (min: Int, max: Int, sum: Int) {
+    var min = scores[0]
+    var max = scores[0]
+    var sum = 0
+
+    for score in scores {
+        if score > max {
+            max = score
+        } else if score < min {
+            min = score
+        }
+        sum += score
+    }
+
+    return (min, max, sum)
 }
-getGasPrices()
+let statistics = calculateStatistics([5, 3, 100, 3, 9])
+print(statistics.sum)
+print(statistics.2)
 ```
 
 函式可以帶有可變個數的參數，這些參數在函式內表現為陣列的形式：
@@ -310,7 +318,7 @@ func lessThanTen(number: Int) -> Bool {
     return number < 10
 }
 var numbers = [20, 19, 7, 12]
-hasAnyMatches(numbers, lessThanTen)
+hasAnyMatches(numbers, condition: lessThanTen)
 ```
 
 函式實際上是一種特殊的閉包（closure），你可以使用`{}`來創建一個匿名閉包。使用`in`將參數和回傳值型別宣告與閉包函式體進行分離。
@@ -329,13 +337,15 @@ numbers.map({
 有很多種創建閉包的方法。如果一個閉包的型別已知，比如作為一個回呼函式（callback ），你可以忽略參數的型別和回傳值。單個語句閉包會把它語句的值當做結果回傳。
 
 ```swift
-numbers.map({ number in 3 * number })
+let mappedNumbers = numbers.map({ number in 3 * number })
+print(mappedNumbers)
 ```
 
 你可以通過參數位置而不是參數名字來參考參數——這個方法在非常短的閉包中非常有用。當一個閉包作為最後一個參數傳給一個函式的時候，它可以直接跟在括號後面。
 
 ```swift
-sort([1, 5, 3, 12, 2]) { $0 > $1 }
+let sortedNumbers = sort([1, 5, 3, 12, 2]) { $0 > $1 }
+print(sortedNumbers)
 ```
 
 <a name="objects_and_classes"></a>
@@ -427,12 +437,12 @@ class EquilateralTriangle: NamedShape {
     }
 
     var perimeter: Double {
-    get {
-        return 3.0 * sideLength
-    }
-    set {
-        sideLength = newValue / 3.0
-    }
+        get {
+            return 3.0 * sideLength
+        }
+        set {
+            sideLength = newValue / 3.0
+        }
     }
 
     override func simpleDescription() -> String {
@@ -440,9 +450,9 @@ class EquilateralTriangle: NamedShape {
     }
 }
 var triangle = EquilateralTriangle(sideLength: 3.1, name: "a triangle")
-triangle.perimeter
+print(triangle.perimeter)
 triangle.perimeter = 9.9
-triangle.sideLength
+print(triangle.sideLength)
 ```
 
 在`perimeter`的 setter 中，新值的名字是`newValue`。你可以在`set`之後顯式的設置一個名字。
@@ -460,14 +470,14 @@ triangle.sideLength
 ```swift
 class TriangleAndSquare {
     var triangle: EquilateralTriangle {
-    willSet {
-        square.sideLength = newValue.sideLength
-    }
+        willSet {
+            square.sideLength = newValue.sideLength
+        }
     }
     var square: Square {
-    willSet {
-        triangle.sideLength = newValue.sideLength
-    }
+        willSet {
+            triangle.sideLength = newValue.sideLength
+        }
     }
     init(size: Double, name: String) {
         square = Square(sideLength: size, name: name)
@@ -475,26 +485,13 @@ class TriangleAndSquare {
     }
 }
 var triangleAndSquare = TriangleAndSquare(size: 10, name: "another test shape")
-triangleAndSquare.square.sideLength
-triangleAndSquare.triangle.sideLength
+print(triangleAndSquare.square.sideLength)
+print(triangleAndSquare.triangle.sideLength)
 triangleAndSquare.square = Square(sideLength: 50, name: "larger square")
-triangleAndSquare.triangle.sideLength
+print(triangleAndSquare.triangle.sideLength)
 ```
 
-類別中的方法和一般的函式有一個重要的區別，函式的參數名只在函式內部使用，但是方法的參數名需要在呼叫的時候會被使用（除了第一個參數）。預設情況下，方法的參數名和它在方法內部的名字一樣，不過你也可以定義第二個名字，這個名字被用在方法內部。
-
-```swift
-class Counter {
-    var count: Int = 0
-    func incrementBy(amount: Int, numberOfTimes times: Int) {
-        count += amount * times
-    }
-}
-var counter = Counter()
-counter.incrementBy(2, numberOfTimes: 7)
-```
-
-處理變數的可選值時，你可以在操作（比如方法、屬性和下標腳本）之前加`?`。如果`?`之前的值是`nil`，`?`後面的東西都會被忽略，並且整個表達式回傳`nil`。否則，`?`之後的東西都會被執行。在這兩種情況下，整個表達式的值也是一個可選值。
+處理非必要值的時候，你可以在操作（比如方法、屬性和下標腳本）之前加`?`。如果`?`之前的值是`nil`，`?`後面的東西都會被忽略，並且整個表達式回傳`nil`。否則，`?`之後的東西都會被執行。在這兩種情況下，整個表達式的值也是一個非必要值。
 
 ```swift
 let optionalSquare: Square? = Square(sideLength: 2.5, name: "optional square")
@@ -567,7 +564,7 @@ let heartsDescription = hearts.simpleDescription()
 ```
 
 > 練習：
-> 給`Suit`添加一個`color`方法，對`spades`和`clubs`回傳「black」，對`hearts`和`diamonds`回傳「red」。
+> 給`Suit`添加一個`color()`方法，對`spades`和`clubs`回傳 "black"，對`hearts`和`diamonds`回傳 "red"。
 
 注意，有兩種方式可以參考（refer）`Hearts`成員：給`hearts`常數賦值時，列舉成員`Suit.Hearts`需要用全名來參考，因為常數沒有顯式指定型別。在`switch`裡，列舉成員使用縮寫`.Hearts`來參考，因為`self`的值已經知道是一個`Suit`。已知變數型別的情況下你可以使用縮寫。
 
@@ -656,7 +653,7 @@ let bDescription = b.simpleDescription
 > 練習：
 > 寫一個實作這個協定的列舉。
 
-注意宣告`SimpleStructure`時候`mutating`關鍵字用來標記一個會修改結構的方法。`SimpleClass`的宣告不需要標記任何方法因為類別中的方法經常會修改類別。
+注意宣告`SimpleStructure`時候`mutating`關鍵字用來標記一個會修改結構的方法。`SimpleClass`的宣告不需要標記任何方法，因為類別中的方法經常會修改類別。
 
 使用`extension`來為現有的型別添加功能，比如新的方法和參數。你可以使用擴展來改造定義在別處，甚至是從外部函式庫或者框架引入的一個型別，使得這個型別遵循某個協定。
 
@@ -669,7 +666,7 @@ extension Int: ExampleProtocol {
         self += 42
     }
 }
-7.simpleDescription
+print(7.simpleDescription)
 ```
 
 > 練習：
@@ -691,23 +688,23 @@ protocolValue.simpleDescription
 在角括號裡寫一個名字來創建一個泛型函式或者型別。
 
 ```swift
-func repeat<ItemType>(item: ItemType, times: Int) -> ItemType[] {
-    var result = ItemType[]()
-    for i in 0..times {
-        result += item
+func repeatItem<Item>(item: Item, numberOfTimes: Int) -> [Item] {
+    var result = [Item]()
+    for _ in 0 ..< numberOfTimes {
+        result.append(item)
     }
     return result
 }
-repeat("knock", 4)
+repeatItem("knock", numberOfTimes:4)
 ```
 
 你也可以創建泛型類別、列舉和結構。
 
 ```swift
 // Reimplement the Swift standard library's optional type
-enum OptionalValue<T> {
+enum OptionalValue<Wrapped> {
     case None
-    case Some(T)
+    case Some(Wrapped)
 }
 var possibleInteger: OptionalValue<Int> = .None
 possibleInteger = .Some(100)
@@ -716,7 +713,7 @@ possibleInteger = .Some(100)
 在型別名後面使用`where`來指定對型別的需求，比如，限定型別實作某一個協定，限定兩個型別是相同的，或者限定某個類別必須有一個特定的父類別
 
 ```swift
-func anyCommonElements <T, U where T: Sequence, U: Sequence, T.GeneratorType.Element: Equatable, T.GeneratorType.Element == U.GeneratorType.Element> (lhs: T, rhs: U) -> Bool {
+func anyCommonElements <T: SequenceType, U: SequenceType where T.Generator.Element: Equatable, T.Generator.Element == U.Generator.Element> (lhs: T, _ rhs: U) -> Bool {
     for lhsItem in lhs {
         for rhsItem in rhs {
             if lhsItem == rhsItem {
@@ -730,6 +727,6 @@ anyCommonElements([1, 2, 3], [3])
 ```
 
 > 練習：
-> 修改`anyCommonElements`函式來創建一個函式，回傳一個陣列，內容是兩個序列的共有元素。
+> 修改`anyCommonElements(_:_:)`函式來創建一個函式，回傳一個陣列，內容是兩個序列的共有元素。
 
 簡單起見，你可以忽略`where`，只在冒號後面寫協定或者類別名稱。` <T: Equatable>`和`<T where T: Equatable>`是等價的。

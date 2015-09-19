@@ -88,29 +88,16 @@ Swift 支援所有數值型別基本的四則運算：
 "hello, " + "world"  // 等於 "hello, world"
 ```
 
-兩個`Character`值或一個`String`和一個`Character`值，相加會生成一個新的`String`值：
-
-```swift
-let dog: Character = "🐶"
-let cow: Character = "🐮"
-let dogCow = dog + cow
-// dogCow 現在是 "🐶🐮"
-```
-
-詳情參見[字元和字串的拼接](03_Strings_and_Characters.html#concatenating_strings_and_characters)。
-
 ### 餘數運算
 
 餘數運算（`a % b`）是計算`b`的多少倍剛剛好可以容入`a`，回傳多出來的那部分（餘數）。
 
->注意：  
+>注意：
 餘數運算（`%`）在其他語言也叫取模運算。然而嚴格說來，我們看該運算子對負數的操作結果，"餘數"比"取模"更合適些。
 
 我們來談談取餘數是怎麼回事，計算`9 % 4`，你先計算出`4`的多少倍會剛好可以容入`9`中：
 
 ![Art/remainderInteger_2x.png](https://developer.apple.com/library/prerelease/ios/documentation/Swift/Conceptual/Swift_Programming_Language/Art/remainderInteger_2x.png "Art/remainderInteger_2x.png")
-
-2 倍，非常好，那餘數是 1（用橙色標出）
 
 在 Swift 中這麼來表達：
 
@@ -227,7 +214,7 @@ a += 2 // a 現在是 3
 
 表達式`a += 2`是`a = a + 2`的簡寫，一個加賦運算就把加法和指派兩件事完成了。
 
->注意：  
+>注意：
 複合指派運算沒有回傳值，`let b = a += 2`這類別程式碼是錯誤。這不同於上面提到的累加和累減運算子。
 
 在[表達式](../chapter3/04_Expressions.html)章節裡有複合運算子的完整列表。
@@ -244,7 +231,7 @@ a += 2 // a 現在是 3
 - 大於等於（`a >= b`）
 - 小於等於（`a <= b`）
 
-> 注意：  
+> 注意：
 Swift 也提供恆等`===`和不恆等`!==`這兩個比較符來判斷兩個物件是否參考同一個物件實例。更多細節在[類別別與結構](09_Classes_and_Structures.html)。
 
 每個比較運算都回傳了一個顯示表達式是否成立的布林值：
@@ -263,14 +250,14 @@ Swift 也提供恆等`===`和不恆等`!==`這兩個比較符來判斷兩個物�
 ```swift
 let name = "world"
 if name == "world" {
-    println("hello, world")
+    print("hello, world")
 } else {
-    println("I'm sorry \(name), but I don't recognize you")
+    print("I'm sorry \(name), but I don't recognize you")
 }
 // 輸出 "hello, world", 因為 `name` 就是等於 "world"
 ```
 
-關於`if`語句，請看[控制流程程](05_Control_Flow.html)。
+關於`if`語句，請看[控制流程](05_Control_Flow.html)。
 
 <a name="ternary_conditional_operator"></a>
 ## 三元條件運算(Ternary Conditional Operator)
@@ -281,9 +268,9 @@ if name == "world" {
 
 ```swift
 if question {
-  answer1
+    answer1
 } else {
-  answer2
+    answer2
 }
 ```
 
@@ -329,16 +316,16 @@ a != nil ? a! : b
 上述程式碼使用三元條件運算子，並且當`a`不是空值時，強制解析（`a!`）來存取`a`，若`a`是空值則回傳`b`。空值聚合運算子題空一個更優雅的方式，並以一個明確可讀的形式來封裝類似的條件確認及解析。
 
 > 注意：
-若a是非空值，那就不會運算b。這就是所謂的_最小化求值_。
+若a是非空值，那就不會運算b。這就是所謂的_最小化求值_(短路求值)。
 
 下面這個例子使用空值聚合運算子來選擇預設顏色值或是一個optional使用者定義的顏色值。
 
 ```swift
 let defaultColorName = "red"
 var userDefinedColorName: String?   // 預設為空值
- 
+
 var colorNameToUse = userDefinedColorName ?? defaultColorName
-// userDefinedColorName 是空值, 所以 colorNameToUse 就被設成預設的 「red」。
+// userDefinedColorName 是空值, 所以 colorNameToUse 就被設成預設的「red」。
 ```
 
 變數`userDefinedColorName`是定義成optional字串型別，且其預設值為空值。因為`userDefinedColorName`變數是個optional型別，你可以使用空值聚合運算子來決定他的值。在上面的例子當中，這運算子被用來定義一個Sting型別`colorNameToUse`變數的初始值。因為`userDefinedColorName`是空值，這表達式` userDefinedColorName ?? defaultColorName` 回傳 `defaultColorName`，也就是「red」。
@@ -363,7 +350,7 @@ Swift 提供了兩個方便表達一個區間的值的運算子。
 
 ```swift
 for index in 1...5 {
-    println("\(index) * 5 = \(index * 5)")
+    print("\(index) * 5 = \(index * 5)")
 }
 // 1 * 5 = 5
 // 2 * 5 = 10
@@ -372,7 +359,7 @@ for index in 1...5 {
 // 5 * 5 = 25
 ```
 
-關於`for-in`，請看[控制流程程](05_Control_Flow.html)。
+關於`for-in`，請看[控制流程](05_Control_Flow.html)。
 
 ### 半閉區間運算子
 
@@ -385,7 +372,7 @@ for index in 1...5 {
 let names = ["Anna", "Alex", "Brian", "Jack"]
 let count = names.count
 for i in 0..count {
-    println("第 \(i + 1) 個人叫 \(names[i])")
+    print("第 \(i + 1) 個人叫 \(names[i])")
 }
 // 第 1 個人叫 Anna
 // 第 2 個人叫 Alex
@@ -413,7 +400,7 @@ for i in 0..count {
 ```swift
 let allowedEntry = false
 if !allowedEntry {
-    println("ACCESS DENIED")
+    print("ACCESS DENIED")
 }
 // 輸出 "ACCESS DENIED"
 ```
@@ -433,9 +420,9 @@ if !allowedEntry {
 let enteredDoorCode = true
 let passedRetinaScan = false
 if enteredDoorCode && passedRetinaScan {
-    println("Welcome!")
+    print("Welcome!")
 } else {
-    println("ACCESS DENIED")
+    print("ACCESS DENIED")
 }
 // 輸出 "ACCESS DENIED"
 ```
@@ -451,9 +438,9 @@ if enteredDoorCode && passedRetinaScan {
 let hasDoorKey = false
 let knowsOverridePassword = true
 if hasDoorKey || knowsOverridePassword {
-    println("Welcome!")
+    print("Welcome!")
 } else {
-    println("ACCESS DENIED")
+    print("ACCESS DENIED")
 }
 // 輸出 "Welcome!"
 ```
@@ -464,9 +451,9 @@ if hasDoorKey || knowsOverridePassword {
 
 ```swift
 if enteredDoorCode && passedRetinaScan || hasDoorKey || knowsOverridePassword {
-    println("Welcome!")
+    print("Welcome!")
 } else {
-    println("ACCESS DENIED")
+    print("ACCESS DENIED")
 }
 // 輸出 "Welcome!"
 ```
@@ -483,9 +470,9 @@ if enteredDoorCode && passedRetinaScan || hasDoorKey || knowsOverridePassword {
 
 ```swift
 if (enteredDoorCode && passedRetinaScan) || hasDoorKey || knowsOverridePassword {
-    println("Welcome!")
+    print("Welcome!")
 } else {
-    println("ACCESS DENIED")
+    print("ACCESS DENIED")
 }
 // 輸出 "Welcome!"
 ```

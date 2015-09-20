@@ -109,11 +109,8 @@ let 🐶🐮 = "dogcow"
 一旦你將常數或者變數宣告為確定的型別，你就不能使用相同的名字再次進行宣告，或者改變其儲存的值的型別。同時，你也不能將常數與變數進行互轉。
 
 > 注意：
-<<<<<<< HEAD
 如果你需要使用與 Swift 保留關鍵字相同的名稱作為常數或者變數名，你可以使用反引號（`）將關鍵字包圍的方式將其作為名字使用。然而，你應當避免使用關鍵字作為常數或變數名，除非你別無選擇。
-=======
-如果你需要使用與 Swift 保留關鍵字相同的名稱作為常數或者變數名，你可以使用反引號（`）將關鍵字包圍的方式將其作為名字使用。無論如何，你應當避免使用關鍵字作為常數或變數名，除非你別無選擇。
->>>>>>> master
+
 
 你可以更改現有的變數值為其他同型別的值，在下面的範例中，`friendlyWelcome`的值從`"Hello!"`改為了`"Bonjour!"`:
 
@@ -619,33 +616,6 @@ if let actualNumber = Int(possibleNumber) {
 
 你可以在 optional 綁定中使用常數和變數。如果你想在`if`語句的第一個分支中操作`actualNumber`的值，你可以改成`if var actualNumber`，這樣 optional 包含的值就會被指派給一個變數而不是常數。
 
-<<<<<<< HEAD
-=======
-### nil
-
-你可以給 optional 變數指派為`nil`來表示它沒有值：
-
-```swift
-var serverResponseCode: Int? = 404
-// serverResponseCode 包含一個optionals的 Int 值 404
-serverResponseCode = nil
-// serverResponseCode 現在不包含值
-```
-
-> 注意：
-`nil`不能用於非 optional 的常數和變數。如果你的程式碼中有常數或者變數需要處理值不存在的情況，請把它們宣告成對應的 optional 型別。
-
-如果你宣告一個 optional 常數或者變數但是沒有指派，它們會自動被設置為`nil`：
-
-```swift
-var surveyAnswer: String?
-// surveyAnswer 被自動設置為 nil
-```
-
-> 注意：
->
-Swift 的`nil`和 Objective-C 中的`nil`並不一樣。在 Objective-C 中，`nil`是一個指向不存在物件的指標。在 Swift 中，`nil`不是指標——它是一個確定的值，用來表示值不存在。_任何_型別的 optional 狀態都可以被設置為`nil`，不只是物件型別。
->>>>>>> master
 
 ### 隱式解析 Optionals
 

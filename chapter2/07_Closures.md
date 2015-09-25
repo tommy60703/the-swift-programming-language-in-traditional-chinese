@@ -415,7 +415,7 @@ serveNextCustomer(customersInLine.removeAtIndex(0))
 > 注意：
 > 過度使用自動閉包會使你的程式碼難以閱讀，函式的名稱和上下文應該清楚表明程式會被延遲。
 
-`@autoclosure`屬性隱含著`@noescape`屬性，`@noescape`表示閉包只會在函式內被使用，而且不被允許被任何方式儲存，使這個閉包逃出(escape)函式的作用域並且在函式回傳之後還被執行。如果你需要一個允許離開作用域的自動閉包，使用`@autoclosure(escaping)`來標記：
+`@autoclosure`屬性隱含著`@noescape`屬性，`@noescape`表示閉包只會在函式內被使用，而且不被允許被任何方式儲存，使這個閉包跳脫(escape)函式的作用域並且在函式回傳之後還被執行。如果你需要一個允許跳脫作用域的自動閉包，使用`@autoclosure(escaping)`來標記：
 
 ```swift
 // customersInLine is ["Barry", "Daniella"]
@@ -435,6 +435,6 @@ for customerClosure in customerClosures {
 // prints "Now serving Daniella!"
 ```
 
-上面這段程式碼中，`collectCustomerClosures(_:)`不是直接呼叫被當作`customer`傳入的閉包，而是將這個閉包附加在`customerClosures`陣列。這個陣列是在函式外宣告的，這意味著這些陣列中的閉包可以在函式回傳後被執行，所以`customer`必須允許離開函式的作用域。
+上面這段程式碼中，`collectCustomerClosures(_:)`不是直接呼叫被當作`customer`傳入的閉包，而是將這個閉包附加在`customerClosures`陣列。這個陣列是在函式外宣告的，這意味著這些陣列中的閉包可以在函式回傳後被執行，所以`customer`必須允許跳脫函式的作用域。
 
 `@autoclosure`和`@noescape`的詳細資訊請看[屬性](../chapter3/06_Attributes.md)

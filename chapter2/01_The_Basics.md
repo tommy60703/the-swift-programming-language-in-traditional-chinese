@@ -630,7 +630,7 @@ Swift 的`nil`和 Objective-C 中的`nil`並不一樣。在 Objective-C 中，`n
 
 這種型別的 optionals 狀態被定義為_隱式解析 optionals（implicitly unwrapped optionals）_。把想要用作 optionals 的型別的後面的問號（`String?`）改成感嘆號（`String!`）來宣告一個隱式解析 optionals。
 
-當 optionals 被第一次指派之後就可以確定之後一直有值的時候，隱式解析 optionals 非常有用。隱式解析 optionals 主要被用在 Swift 中類別別的初始化中，請參考[類別別實例之間的迴圈強參考](16_Automatic_Reference_Counting.html#strong_reference_cycles_between_class_instances)。
+當 optionals 被第一次指派之後就可以確定之後一直有值的時候，隱式解析 optionals 非常有用。隱式解析 optionals 主要被用在 Swift 中類別別的初始化中，請參考[類別實例之間的迴圈強參考](16_Automatic_Reference_Counting.html#strong_reference_cycles_between_class_instances)。
 
 一個隱式解析 optionals 其實就是一個普通的 optionals，但是可以被當做非 optionals 來使用，並不需要每次都使用解析來獲取 optionals 值。下面的範例展示了 optionals `String`和隱式解析 optional `String`之間的區別：
 
